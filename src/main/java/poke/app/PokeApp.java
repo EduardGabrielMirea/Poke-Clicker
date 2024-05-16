@@ -8,7 +8,7 @@ import poke.app.ui.LoginUI;
 
 import java.awt.*;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"poke.app"})
 public class PokeApp {
     public static void main(String[] args) {
         ConfigurableApplicationContext context =
@@ -16,13 +16,13 @@ public class PokeApp {
                         .headless(false)
                         .web(WebApplicationType.NONE)
                         .run(args);
-    }
-       /*EventQueue.invokeLater(()->{
-            //obtenemos el objeto form a través de Spring
+
+        EventQueue.invokeLater(() -> {
+            // Obtenemos el objeto form a través de Spring
             LoginUI loginUI = context.getBean(LoginUI.class);
             loginUI.setVisible(true);
         });
-
     }
-        */
+
+
 }

@@ -14,16 +14,35 @@ public class Login {
     private String nombre;
     private String pass;
 
+    /**
+     * Constructor completo.
+     *
+     * @param id    Identificador único de la entidad.
+     * @param nombre Nombre de usuario.
+     * @param pass   Contraseña del usuario.
+     */
+
     public Login(Long id, String nombre, String pass) {
         this.id = id;
         this.nombre = nombre;
         this.pass = pass;
     }
 
+    /**
+     * Constructor sin ID, utilizado al crear nuevas instancias antes de persistir.
+     *
+     * @param nombre Nombre de usuario.
+     * @param pass   Contraseña del usuario.
+     */
+
     public Login(String nombre, String pass) {
         this.nombre = nombre;
         this.pass = pass;
     }
+
+    /**
+     * Constructor por defecto.
+     */
 
     public Login() {
     }

@@ -5,7 +5,19 @@ import org.springframework.stereotype.Component;
 import poke.app.entity.Login;
 @Component
 public interface LoginRepository extends CrudRepository<Login, Long> {
-    Login findbyUsername(String username);
-    Login usernameToLogin(String username);
-    boolean existsByUsername(String username);
+    /**
+     * Encuentra un Login por nombre de usuario.
+     *
+     * @param nombre Nombre de usuario.
+     * @return La entidad Login correspondiente.
+     */
+    Login findByNombre(String nombre);
+
+    /**
+     * Verifica si existe un Login por nombre de usuario.
+     *
+     * @param nombre Nombre de usuario.
+     * @return True si existe, de lo contrario false.
+     */
+    boolean existsByNombre(String nombre);
 }

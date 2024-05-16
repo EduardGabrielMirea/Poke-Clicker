@@ -9,11 +9,22 @@ import poke.app.service.AppService;
 @Component
 public class LoginController {
     private final LoginRepository loginRepository;
+    private final AppService appService;
+
     @Autowired
-    public LoginController(LoginRepository loginRepository) {
+    public LoginController(LoginRepository loginRepository, AppService appService) {
         this.loginRepository = loginRepository;
+        this.appService = appService;
     }
-    public static void login(String username, String password) {
-        Login login = new Login(username, password);
+
+    public boolean login(String username, String password) {
+        Login login = loginRepository.findByNombre(username);
+        if (login != null && login.getPass().equals(password)) {
+            // Login successful
+            return true;
+        } else {
+            // Login failed
+            return false;
+        }
     }
 }
