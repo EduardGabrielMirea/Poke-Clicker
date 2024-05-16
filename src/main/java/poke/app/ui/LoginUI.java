@@ -18,7 +18,7 @@ public class LoginUI extends JFrame {
     public LoginUI() {
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 800, 700);
+        setBounds(100, 100, 700, 700);
         panelLogin = new JPanel();
         panelLogin.setLayout(null);
         panelLogin.setBorder(new EmptyBorder(5, 5, 5, 5));
