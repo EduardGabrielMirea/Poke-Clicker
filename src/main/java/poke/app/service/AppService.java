@@ -8,10 +8,10 @@ import poke.app.repository.LoginRepository;
 @Service
 public class AppService {
     private final LoginRepository loginRepository;
-    @Autowired
 
+    @Autowired
     public AppService(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
     }
- public LoginRepository getLoginRepository() {return  loginRepository;}
+    public LoginRepository getLoginRepository() {return  loginRepository;}
 }

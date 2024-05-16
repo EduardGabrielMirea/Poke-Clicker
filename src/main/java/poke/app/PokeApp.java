@@ -11,16 +11,17 @@ import java.awt.*;
 @SpringBootApplication
 public class PokeApp {
     public static void main(String[] args) {
-        ConfigurableApplicationContext context  =
+        ConfigurableApplicationContext context =
                 new SpringApplicationBuilder(PokeApp.class)
                         .headless(false)
                         .web(WebApplicationType.NONE)
                         .run(args);
-       /** EventQueue.invokeLater(()->{
-            //obtenemos el objeto form a través de Spring
-            EntityGUI entityUI = context.getBean(EntityGUI.class);
-            entityUI.setVisible(true);
-        });
-        */
     }
+       /*EventQueue.invokeLater(()->{
+            //obtenemos el objeto form a través de Spring
+            LoginUI loginUI = context.getBean(LoginUI.class);
+            loginUI.setVisible(true);
+        });
+
+    }*/
 }
