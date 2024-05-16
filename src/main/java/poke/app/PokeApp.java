@@ -18,7 +18,7 @@ public class PokeApp {
                         .run(args);
         System.out.println("Hola mundo");
         EventQueue.invokeLater(() -> {
-            // Obtenemos el objeto form a través de Spring
+
             LoginUI loginUI = context.getBean(LoginUI.class);
             loginUI.setVisible(true);
         });
