@@ -4,6 +4,7 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+import poke.app.ui.LoginUI;
 
 import java.awt.*;
 
@@ -15,7 +16,6 @@ public class PokeApp {
                         .headless(false)
                         .web(WebApplicationType.NONE)
                         .run(args);
-
        /** EventQueue.invokeLater(()->{
             //obtenemos el objeto form a través de Spring
             EntityGUI entityUI = context.getBean(EntityGUI.class);
