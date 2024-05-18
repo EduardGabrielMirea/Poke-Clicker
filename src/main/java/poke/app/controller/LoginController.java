@@ -2,6 +2,7 @@ package poke.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import poke.app.PokeApp;
 import poke.app.entity.Login;
 import poke.app.repository.LoginRepository;
 import poke.app.service.AppService;
@@ -22,6 +23,7 @@ public class LoginController {
         if (login != null && login.getPass().equals(password)) {
             // Login successful
             System.out.println("BIEN");
+            PokeApp.pantalla = 1;
             return true;
         } else {
             System.out.println("MAL");

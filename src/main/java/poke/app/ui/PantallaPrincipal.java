@@ -2,7 +2,7 @@ package poke.app.ui;
 
 import javax.swing.*;
 
-public class PantallaPrincipal {
+public class PantallaPrincipal extends JFrame{
     private JPanel PantallaPrincipal;
     private JPanel personaje;
     private JPanel hombre;
