@@ -2,11 +2,14 @@ package poke.app.ui;
 
 import org.hibernate.annotations.Cache;
 import org.springframework.stereotype.Component;
+import poke.app.controller.LoginController;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
 @Component
 public class LoginUI extends JFrame {
+    private final LoginController loginController;
     private JPanel panelLogin;
     private JTextField usernameField;
     private JTextField passwordField;
@@ -15,7 +18,8 @@ public class LoginUI extends JFrame {
     private JButton recuperarContraseñaButton;
     private JLabel Banner;
 
-    public LoginUI() {
+    public LoginUI(LoginController loginController) {
+        this.loginController = loginController;
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 700, 700);
@@ -63,6 +67,7 @@ public class LoginUI extends JFrame {
         panelLogin.add(loginButton);
         loginButton.addActionListener(e -> {
             // Lógica de inicio de sesión
+            //loginController.login(usernameField.getText(), passwordField.getText());
         });
 
         registroButton = new JButton("Registro");
