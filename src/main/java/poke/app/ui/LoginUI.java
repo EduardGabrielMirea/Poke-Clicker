@@ -3,6 +3,7 @@ package poke.app.ui;
 import org.hibernate.annotations.Cache;
 import org.springframework.stereotype.Component;
 import poke.app.controller.LoginController;
+import poke.app.repository.LoginRepository;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -10,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 @Component
 public class LoginUI extends JFrame {
     private final LoginController loginController;
+    private final LoginRepository loginRepository;
     private JPanel panelLogin;
     private JTextField usernameField;
     private JTextField passwordField;
@@ -18,7 +20,7 @@ public class LoginUI extends JFrame {
     private JButton recuperarContraseñaButton;
     private JLabel Banner;
 
-    public LoginUI(LoginController loginController) {
+    public LoginUI(LoginController loginController, LoginRepository loginRepository) {
         this.loginController = loginController;
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,6 +61,7 @@ public class LoginUI extends JFrame {
         panelLogin.add(recuperarContraseñaButton);
         recuperarContraseñaButton.addActionListener(e -> {
             // Lógica de recuperación de contraseña
+            loginController.recuperarContraseña(usernameField.getText(),passwordField.getText());
         });
 
 
@@ -67,7 +70,7 @@ public class LoginUI extends JFrame {
         panelLogin.add(loginButton);
         loginButton.addActionListener(e -> {
             // Lógica de inicio de sesión
-            //loginController.login(usernameField.getText(), passwordField.getText());
+            loginController.login(usernameField.getText(), passwordField.getText());
         });
 
         registroButton = new JButton("Registro");
@@ -75,7 +78,8 @@ public class LoginUI extends JFrame {
         panelLogin.add(registroButton);
         registroButton.addActionListener(e -> {
             // Lógica de registro
+            loginController.registro(usernameField.getText(),passwordField.getText());
         });
-
+        this.loginRepository = loginRepository;
     }
 }
