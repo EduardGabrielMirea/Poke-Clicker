@@ -22,6 +22,7 @@ public class PokeApp {
             LoginUI loginUI = context.getBean(LoginUI.class);
             loginUI.setVisible(true);
         });
+        //Prueba
     }
 
 
