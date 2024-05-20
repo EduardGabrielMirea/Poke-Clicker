@@ -5,6 +5,9 @@ import org.springframework.stereotype.Component;
 import poke.app.entity.Login;
 import poke.app.repository.LoginRepository;
 import poke.app.service.AppService;
+import poke.app.ui.LoginUI;
+
+import javax.swing.*;
 
 @Component
 public class LoginController {
@@ -44,6 +47,12 @@ public class LoginController {
             System.out.println("failed");
             return false;
         }
+
+    }
+
+
+    public static void login()
+    {
 
     }
 }
