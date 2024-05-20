@@ -16,7 +16,6 @@ public class PokeApp {
                         .headless(false)
                         .web(WebApplicationType.NONE)
                         .run(args);
-        System.out.println("Hola mundo");
         EventQueue.invokeLater(() -> {
 
             LoginUI loginUI = context.getBean(LoginUI.class);

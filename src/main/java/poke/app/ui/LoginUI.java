@@ -3,11 +3,15 @@ package poke.app.ui;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.imageio.ImageIO;
 import org.springframework.stereotype.Component;
+import poke.app.controller.LoginController;
 
 @Component
 public class LoginUI extends JFrame {
+    private JFrame frame;
     private JPanel panelLogin;
     private JTextField usernameField;
     private JTextField passwordField;
@@ -93,5 +97,39 @@ public class LoginUI extends JFrame {
 
         registroButton = new JButton("Registro");
         panelLogin.add(registroButton);
+
+        loginButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                login(usernameField, passwordField);
+
+            }
+        });
+
+
+
     }
+        public void login(JTextField usuario, JTextField password)
+        {
+            String username = usuario.getText();
+            String pass = password.getText();
+
+            if (LoginController.getInfo(username,pass))
+            {
+            cambiarPantalla();
+            }
+        }
+
+    public void cambiarPantalla()
+    {
+        PantallaSeleccion pantallaSeleccion = new PantallaSeleccion();
+        pantallaSeleccion.newWindow(this);
+    }
+
+    public void forgotPass()
+    {
+
+    }
+
 }
