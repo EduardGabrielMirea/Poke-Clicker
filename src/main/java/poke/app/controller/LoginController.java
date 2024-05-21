@@ -7,8 +7,10 @@ import poke.app.entity.Login;
 import poke.app.repository.LoginRepository;
 import poke.app.service.AppService;
 
+import javax.swing.*;
+
 @Component
-public class LoginController {
+public class LoginController{
     private final LoginRepository loginRepository;
     private final AppService appService;
 
@@ -21,13 +23,8 @@ public class LoginController {
     public boolean login(String username, String password) {
         Login login = loginRepository.findByNombre(username);
         if (login != null && login.getPass().equals(password)) {
-            // Login successful
-            System.out.println("BIEN");
-            PokeApp.pantalla = 1;
             return true;
         } else {
-            System.out.println("MAL");
-            // Login failed
             return false;
         }
     }
@@ -35,12 +32,10 @@ public class LoginController {
     public boolean registro(String username, String password) {
         Login login = loginRepository.findByNombre(username);
         if (login == null) {
-            loginRepository.save(new Login(username,password));
-            System.out.println("Registrado");
+            return true;
         }else{
-            System.out.println("Usuario ya existe");
+            return false;
         }
-        return true;
     }
 
     public boolean recuperarContraseña(String username,String password) {
@@ -48,10 +43,8 @@ public class LoginController {
         if (login != null){
             login.setPass(password);
             loginRepository.save(login);
-            System.out.println("Contraseña cambiada correctamente");
             return true;
         }else{
-            System.out.println("Usuario no encontrado");
             return false;
         }
     }

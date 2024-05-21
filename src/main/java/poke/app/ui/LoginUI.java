@@ -3,10 +3,12 @@ package poke.app.ui;
 import org.hibernate.annotations.Cache;
 import org.springframework.stereotype.Component;
 import poke.app.controller.LoginController;
+import poke.app.entity.Login;
 import poke.app.repository.LoginRepository;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 @Component
 public class LoginUI extends JFrame {
@@ -22,6 +24,7 @@ public class LoginUI extends JFrame {
 
     public LoginUI(LoginController loginController, LoginRepository loginRepository) {
         this.loginController = loginController;
+        //setLayout(null);
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 700, 700);
@@ -61,7 +64,11 @@ public class LoginUI extends JFrame {
         panelLogin.add(recuperarContraseñaButton);
         recuperarContraseñaButton.addActionListener(e -> {
             // Lógica de recuperación de contraseña
-            loginController.recuperarContraseña(usernameField.getText(),passwordField.getText());
+            if(loginController.recuperarContraseña(usernameField.getText(),passwordField.getText())){
+                JOptionPane.showMessageDialog(null,"Contraseña cambiada correctamente");
+            }else{
+                JOptionPane.showMessageDialog(null,"El usuario "+usernameField.getText()+" no existe");
+            }
         });
 
 
@@ -70,7 +77,11 @@ public class LoginUI extends JFrame {
         panelLogin.add(loginButton);
         loginButton.addActionListener(e -> {
             // Lógica de inicio de sesión
-            loginController.login(usernameField.getText(), passwordField.getText());
+            if(loginController.login(usernameField.getText(), passwordField.getText())) {
+                JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText());
+            }else{
+                JOptionPane.showMessageDialog(null,"No se ha podido iniciar sesión con el usuario");
+            }
         });
 
         registroButton = new JButton("Registro");
@@ -78,7 +89,12 @@ public class LoginUI extends JFrame {
         panelLogin.add(registroButton);
         registroButton.addActionListener(e -> {
             // Lógica de registro
-            loginController.registro(usernameField.getText(),passwordField.getText());
+            if(loginController.registro(usernameField.getText(), passwordField.getText())) {
+                loginRepository.save(new Login(usernameField.getText(),passwordField.getText()));
+                JOptionPane.showMessageDialog(null,"Registrando usuario "+usernameField.getText());
+            }else{
+                JOptionPane.showMessageDialog(null,String.format("El usuario %s ya existe",usernameField.getText()));
+            }
         });
         this.loginRepository = loginRepository;
     }
