@@ -36,7 +36,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <grid id="fd8cc" binding="barra1" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="fd8cc" binding="barra1" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <tabbedpane title="Seleccionar Personaje"/>
@@ -44,19 +44,9 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="56537" class="javax.swing.JLabel" binding="Chica">
-                    <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <icon value="img/leafPlayer.png"/>
-                      <inheritsPopupMenu value="false"/>
-                      <text value=""/>
-                    </properties>
-                  </component>
                   <component id="9740b" class="javax.swing.JLabel" binding="textoPrincipal">
                     <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                      <grid row="0" column="0" row-span="2" col-span="3" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
@@ -64,15 +54,35 @@
                       <text value="Selecciona el personaje que quieras utilizar"/>
                     </properties>
                   </component>
-                  <component id="263ac" class="javax.swing.JLabel" binding="Chico">
+                  <component id="bf389" class="javax.swing.JButton" binding="chico">
                     <constraints>
-                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <focusable value="true"/>
+                      <borderPainted value="false"/>
+                      <contentAreaFilled value="false"/>
                       <icon value="img/redPlayer.png"/>
-                      <opaque value="false"/>
                       <text value=""/>
+                    </properties>
+                  </component>
+                  <component id="695ec" class="javax.swing.JButton" binding="chica">
+                    <constraints>
+                      <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <borderPainted value="false"/>
+                      <contentAreaFilled value="false"/>
+                      <icon value="img/leafPlayer.png"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                  <component id="48d2" class="javax.swing.JButton" binding="continuar1">
+                    <constraints>
+                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <label value="Continuar"/>
+                      <text value="Continuar"/>
                     </properties>
                   </component>
                 </children>
