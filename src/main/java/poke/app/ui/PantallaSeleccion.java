@@ -8,8 +8,10 @@ public class PantallaSeleccion {
 
     public PantallaSeleccion(JFrame frame)
 {
+    Image icon = Toolkit.getDefaultToolkit().getImage("src/main/resources/img/icono.png");
     JPanel panel = new JPanel();
     frame.setContentPane(panel);
+    frame.setIconImage(icon);
     panel.setLayout(null);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setSize(1080, 720);

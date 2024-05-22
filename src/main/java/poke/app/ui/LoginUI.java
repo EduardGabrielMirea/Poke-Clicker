@@ -26,6 +26,8 @@ public class LoginUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1280, 720); // Tamaño inicial
         setLocationRelativeTo(null); // Centrar en la pantalla
+        ImageIcon icon = new ImageIcon("src/main/resources/img/icono.png");
+        setIconImage(icon.getImage());
         panelLogin = new JPanel() {
             private Image backgroundImage;
             {
