@@ -79,6 +79,10 @@ public class LoginUI extends JFrame {
             // Lógica de inicio de sesión
             if(loginController.login(usernameField.getText(), passwordField.getText())) {
                 JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText());
+                /*SeleccionUI seleccionUI = new SeleccionUI();
+                seleccionUI.setVisible(true);*/
+                SeleccionUI seleccionUI = new SeleccionUI();
+                seleccionUI.main(this);
             }else{
                 JOptionPane.showMessageDialog(null,"No se ha podido iniciar sesión con el usuario");
             }
