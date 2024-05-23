@@ -14,4 +14,8 @@ public class UIService extends JFrame {
             e.printStackTrace();
         }
     }
+
+    public static void asignarTextoAlabel(String texto,JLabel label){
+        label.setText(texto);
+    }
 }

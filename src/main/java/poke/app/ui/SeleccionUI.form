@@ -29,11 +29,15 @@
           </hspacer>
           <tabbedpane id="dc634" binding="SeleccionTab">
             <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false">
                 <preferred-size width="200" height="200"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-13272272"/>
+              <tabLayoutPolicy value="0"/>
+              <tabPlacement value="1"/>
+            </properties>
             <border type="none"/>
             <children>
               <grid id="fd8cc" binding="barra1" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -57,7 +61,12 @@
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                         </constraints>
-                        <properties/>
+                        <properties>
+                          <background color="-13272272"/>
+                        </properties>
+                        <clientProperties>
+                          <html.disable class="java.lang.Boolean" value="false"/>
+                        </clientProperties>
                         <border type="none"/>
                         <children>
                           <component id="2bec6" class="javax.swing.JLabel" binding="textoPJ">
@@ -75,7 +84,9 @@
                         <constraints>
                           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                         </constraints>
-                        <properties/>
+                        <properties>
+                          <background color="-14844042"/>
+                        </properties>
                         <border type="none"/>
                         <children>
                           <grid id="b1d17" binding="ConChico" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -83,7 +94,13 @@
                             <constraints>
                               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                             </constraints>
-                            <properties/>
+                            <properties>
+                              <background color="-14844042"/>
+                              <enabled value="true"/>
+                            </properties>
+                            <clientProperties>
+                              <html.disable class="java.lang.Boolean" value="false"/>
+                            </clientProperties>
                             <border type="none"/>
                             <children>
                               <component id="208da" class="javax.swing.JButton" binding="chico">
@@ -91,9 +108,17 @@
                                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                 </constraints>
                                 <properties>
+                                  <background color="-14844042"/>
+                                  <borderPainted value="false"/>
+                                  <contentAreaFilled value="false"/>
+                                  <enabled value="false"/>
+                                  <hideActionText value="false"/>
                                   <icon value="img/players/red.png"/>
                                   <text value=""/>
                                 </properties>
+                                <clientProperties>
+                                  <html.disable class="java.lang.Boolean" value="false"/>
+                                </clientProperties>
                               </component>
                             </children>
                           </grid>
@@ -102,7 +127,12 @@
                             <constraints>
                               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                             </constraints>
-                            <properties/>
+                            <properties>
+                              <background color="-14844042"/>
+                            </properties>
+                            <clientProperties>
+                              <html.disable class="java.lang.Boolean" value="false"/>
+                            </clientProperties>
                             <border type="none"/>
                             <children>
                               <component id="766e1" class="javax.swing.JButton" binding="chica">
@@ -110,6 +140,12 @@
                                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                 </constraints>
                                 <properties>
+                                  <autoscrolls value="false"/>
+                                  <background color="-14844042"/>
+                                  <borderPainted value="false"/>
+                                  <contentAreaFilled value="false"/>
+                                  <defaultCapable value="true"/>
+                                  <enabled value="false"/>
                                   <icon value="img/players/leaf.png"/>
                                   <text value=""/>
                                 </properties>
@@ -125,7 +161,13 @@
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <background color="-14844042"/>
+                      <enabled value="true"/>
+                    </properties>
+                    <clientProperties>
+                      <html.disable class="java.lang.Boolean" value="false"/>
+                    </clientProperties>
                     <border type="none"/>
                     <children>
                       <component id="dd5b6" class="javax.swing.JButton" binding="continuar1">
@@ -133,19 +175,25 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
+                          <background color="-13272272"/>
                           <text value="Siguiente"/>
                         </properties>
+                        <clientProperties>
+                          <html.disable class="java.lang.Boolean" value="false"/>
+                        </clientProperties>
                       </component>
                     </children>
                   </grid>
                 </children>
               </grid>
-              <grid id="d6449" binding="barra2" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="d6449" binding="barra2" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <tabbedpane title="Selección de Pokemon Inicial"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <background color="-13882064"/>
+                </properties>
                 <border type="none"/>
                 <children>
                   <grid id="a2f4e" binding="arribaPokemon" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -153,7 +201,12 @@
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <background color="-14844042"/>
+                    </properties>
+                    <clientProperties>
+                      <html.disable class="java.lang.Boolean" value="false"/>
+                    </clientProperties>
                     <border type="none"/>
                     <children>
                       <component id="43f01" class="javax.swing.JButton" binding="p1">
@@ -161,6 +214,9 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
+                          <borderPainted value="false"/>
+                          <contentAreaFilled value="false"/>
+                          <enabled value="true"/>
                           <text value=""/>
                         </properties>
                       </component>
@@ -169,6 +225,8 @@
                           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
+                          <borderPainted value="false"/>
+                          <contentAreaFilled value="false"/>
                           <text value=""/>
                         </properties>
                       </component>
@@ -177,6 +235,8 @@
                           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
+                          <borderPainted value="false"/>
+                          <contentAreaFilled value="false"/>
                           <text value=""/>
                         </properties>
                       </component>
@@ -185,9 +245,14 @@
                   <grid id="85254" binding="abajoPokemon" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <background color="-14844042"/>
+                    </properties>
+                    <clientProperties>
+                      <html.disable class="java.lang.Boolean" value="false"/>
+                    </clientProperties>
                     <border type="none"/>
                     <children>
                       <component id="66ac5" class="javax.swing.JButton" binding="pfin">
@@ -195,7 +260,34 @@
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <text value="Button"/>
+                          <background color="-13272272"/>
+                          <enabled value="true"/>
+                          <foreground color="-1"/>
+                          <hideActionText value="false"/>
+                          <text value="Finalizar"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <grid id="ada8c" binding="medioPokemon" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-14844042"/>
+                    </properties>
+                    <clientProperties>
+                      <html.disable class="java.lang.Boolean" value="false"/>
+                    </clientProperties>
+                    <border type="none"/>
+                    <children>
+                      <component id="7958e" class="javax.swing.JLabel" binding="informacion">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Información pokemon seleccionado"/>
                         </properties>
                       </component>
                     </children>

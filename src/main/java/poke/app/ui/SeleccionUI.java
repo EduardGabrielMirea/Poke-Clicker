@@ -1,14 +1,12 @@
 package poke.app.ui;
 
 import org.springframework.stereotype.Component;
-import poke.app.service.PokemonService;
 import poke.app.service.UIService;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.net.URL;
 
 @Component
 public class SeleccionUI extends JFrame{
@@ -34,6 +32,8 @@ public class SeleccionUI extends JFrame{
     private JPanel contenedorImagenes;
     private JPanel ConChico;
     private JPanel ConChica;
+    private JPanel medioPokemon;
+    private JLabel informacion;
     private Image foto;
 
     public SeleccionUI() {
@@ -42,12 +42,16 @@ public class SeleccionUI extends JFrame{
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                chico.setEnabled(true);
+                chica.setEnabled(false);
             }
         });
         chica.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                chica.setEnabled(true);
+                chico.setEnabled(false);
             }
         });
         continuar1.addMouseListener(new MouseAdapter() {
@@ -64,9 +68,34 @@ public class SeleccionUI extends JFrame{
                 super.mouseClicked(e);
             }
         });
+
         UIService.mostrarImagenEnBoton("charmander",p1);
         UIService.mostrarImagenEnBoton("Squirtle",p2);
         UIService.mostrarImagenEnBoton("BULBASAUR",p3);
+
+        p1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                //NO HACE SALTO DE LÍNEA
+                UIService.asignarTextoAlabel(String.format("%s\n%s\n%s","Pokemon 1","Charmander","ESTO ES UNA PRUEBA"),informacion);
+            }
+        });
+        p2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                //NECESITAS HTML PARA HACER SALTOS DE LÍNEA... O TAMBIÉN UN JTEXTAREA
+                UIService.asignarTextoAlabel("<html>Pokemon 2<br>Squirtle<br>A VER SI FUNCA</html>",informacion);
+            }
+        });
+        p3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                UIService.asignarTextoAlabel("Pokemon 3\nBulbasaur\nREMPLAZAR LUEGO CON INFO DE LA API",informacion);
+            }
+        });
     }
 
     public void main(JFrame frame) {
