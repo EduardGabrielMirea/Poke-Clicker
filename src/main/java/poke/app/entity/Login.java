@@ -1,9 +1,6 @@
 package poke.app.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Login {
@@ -13,19 +10,22 @@ public class Login {
     private Long id;
     private String nombre;
     private String pass;
+    private int nuevo_user;
 
-    /**
-     * Constructor completo.
-     *
-     * @param id    Identificador único de la entidad.
-     * @param nombre Nombre de usuario.
-     * @param pass   Contraseña del usuario.
-     */
+    @OneToOne(mappedBy = "login")
+    private Equipo equipo;
 
-    public Login(Long id, String nombre, String pass) {
+    public Login(Long id, String nombre, String pass, Equipo equipo) {
         this.id = id;
         this.nombre = nombre;
         this.pass = pass;
+        this.equipo = equipo;
+    }
+
+    public Login(String nombre, String pass, Equipo equipo) {
+        this.nombre = nombre;
+        this.pass = pass;
+        this.equipo = equipo;
     }
 
     /**
@@ -70,6 +70,7 @@ public class Login {
     public void setPass(String pass) {
         this.pass = pass;
     }
+
 
     @Override
     public String toString() {
