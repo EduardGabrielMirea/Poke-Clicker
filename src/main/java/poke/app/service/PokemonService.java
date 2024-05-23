@@ -34,7 +34,12 @@ public class PokemonService {
 
     public static String urlSpritePokemon(String nombre){
         Pokemon p = llamadasAPI(nombre);
-        String sprite = p.sprites.versions.generationVIII.icons.frontDefault;
+        //Sprites pequeñitos
+        //String sprite = p.sprites.versions.generationVIII.icons.frontDefault;
+        //Sprites más grandecitos
+        //String sprite = p.sprites.frontDefault;
+        //Sprites animados
+        String sprite = p.sprites.other.showdown.frontDefault;
         return sprite;
     }
 }

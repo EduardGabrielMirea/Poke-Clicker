@@ -64,14 +64,18 @@ public class SeleccionUI extends JFrame{
                 super.mouseClicked(e);
             }
         });
-        UIService.mostrarImagenEnBoton("Pikachu",p1);
-        UIService.mostrarImagenEnBoton("Chikorita",p2);
+        UIService.mostrarImagenEnBoton("charmander",p1);
+        UIService.mostrarImagenEnBoton("Squirtle",p2);
         UIService.mostrarImagenEnBoton("BULBASAUR",p3);
     }
 
     public void main(JFrame frame) {
         frame.setContentPane(new SeleccionUI().pMain);
-        frame.setSize(1080, 720);
+        //Tamaño de pantalla
+        Dimension dimension = new Dimension(800,900);
+        frame.setMinimumSize(dimension);
+        frame.setResizable(false);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
