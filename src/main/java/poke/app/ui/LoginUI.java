@@ -5,6 +5,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import javax.imageio.ImageIO;
 import org.springframework.stereotype.Component;
 import poke.app.controller.LoginController;
@@ -28,6 +29,7 @@ public class LoginUI extends JFrame {
         setLocationRelativeTo(null); // Centrar en la pantalla
         ImageIcon icon = new ImageIcon("src/main/resources/img/icono.png");
         setIconImage(icon.getImage());
+        setResizable(false);
         panelLogin = new JPanel() {
             private Image backgroundImage;
             {
@@ -124,7 +126,11 @@ public class LoginUI extends JFrame {
         {
             @Override
             public void actionPerformed(ActionEvent e) {
-                login(usernameField, passwordField);
+                try {
+                    login(usernameField, passwordField);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
@@ -138,8 +144,7 @@ public class LoginUI extends JFrame {
         //--------------MÉTODOS-------------------------------------------------//
 
                 //MÉTODO LOGIN: no consigo llamarlo desde el LoginController, así que lo he puesto aquí.
-        public void login(JTextField usuario, JTextField password)
-        {
+        public void login(JTextField usuario, JTextField password) throws IOException {
             String username = usuario.getText();
             String pass = password.getText();
             if (LoginController.getInfo(username,pass))
@@ -150,9 +155,10 @@ public class LoginUI extends JFrame {
         
 
 
-    public void cambiarPantalla()
-    {
-       PantallaSeleccion pantallaSeleccion = new PantallaSeleccion(this);
+    public void cambiarPantalla() throws IOException {
+       //PantallaSeleccion pantallaSeleccion = new PantallaSeleccion(this);
+        SeleccionUI seleccionUI = new SeleccionUI();
+        seleccionUI.main(this);
     }
 
 }
