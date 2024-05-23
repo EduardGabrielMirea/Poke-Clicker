@@ -63,14 +63,9 @@ public class SeleccionUI extends JFrame{
                 super.mouseClicked(e);
             }
         });
-        try {
-            // Cargar la imagen desde la URL
-            URL url = new URL(PokemonService.urlSpritePokemon("pikachu"));
-            ImageIcon icon = new ImageIcon(url);
-            p1.setIcon(icon);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        mostrarImagenEnBoton("Pikachu",p1);
+        mostrarImagenEnBoton("Charmander",p2);
+        mostrarImagenEnBoton("BULBASAUR",p3);
     }
 
     public void main(JFrame frame) {
@@ -79,5 +74,16 @@ public class SeleccionUI extends JFrame{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    private void mostrarImagenEnBoton(String nombrePokemon,JButton boton){
+        try {
+            // Cargar la imagen desde la URL
+            URL url = new URL(PokemonService.urlSpritePokemon(nombrePokemon));
+            ImageIcon icon = new ImageIcon(url);
+            boton.setIcon(icon);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
