@@ -19,6 +19,12 @@ public class SeleccionUI extends JFrame{
     private JButton chico;
     private JButton chica;
     private JButton continuar1;
+    private JButton pfin;
+    private JButton p1;
+    private JButton p2;
+    private JButton p3;
+    private JPanel arribaPokemon;
+    private JPanel abajoPokemon;
     private Image foto;
 
     public SeleccionUI() {
