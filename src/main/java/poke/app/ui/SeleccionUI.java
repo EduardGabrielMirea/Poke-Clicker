@@ -11,7 +11,6 @@ import java.awt.event.MouseEvent;
 public class SeleccionUI extends JFrame{
 
     private JTabbedPane SeleccionTab;
-    private JLabel textoPrincipal;
     private JPanel barra1;
     private JPanel barra2;
     private JPanel bg;
@@ -25,9 +24,17 @@ public class SeleccionUI extends JFrame{
     private JButton p3;
     private JPanel arribaPokemon;
     private JPanel abajoPokemon;
+    private JPanel arribaPersonaje;
+    private JPanel abajoPersonaje;
+    private JPanel Ptexto;
+    private JLabel textoPJ;
+    private JPanel contenedorImagenes;
+    private JPanel ConChico;
+    private JPanel ConChica;
     private Image foto;
 
     public SeleccionUI() {
+
         chico.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
