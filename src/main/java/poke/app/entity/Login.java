@@ -22,6 +22,18 @@ public class Login {
         this.equipo = equipo;
     }
 
+    /**
+     * Este constructor contiene el parámetro que contendrá (0--> No se ha configurado el usuario, 1--> Chico ,2--> Chica)
+     * @param nombre
+     * @param pass
+     * @param nuevo_user (0--> No se ha configurado el usuario, 1--> Chico ,2--> Chica)
+     */
+    public Login(String nombre, String pass, int nuevo_user) {
+        this.nombre = nombre;
+        this.pass = pass;
+        this.nuevo_user = nuevo_user;
+    }
+
     public Login(String nombre, String pass, Equipo equipo) {
         this.nombre = nombre;
         this.pass = pass;
