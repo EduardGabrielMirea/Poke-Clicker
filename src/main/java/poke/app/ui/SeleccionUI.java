@@ -2,6 +2,7 @@ package poke.app.ui;
 
 import org.springframework.stereotype.Component;
 import poke.app.service.PokemonService;
+import poke.app.service.UIService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,9 +64,9 @@ public class SeleccionUI extends JFrame{
                 super.mouseClicked(e);
             }
         });
-        mostrarImagenEnBoton("Pikachu",p1);
-        mostrarImagenEnBoton("Charmander",p2);
-        mostrarImagenEnBoton("BULBASAUR",p3);
+        UIService.mostrarImagenEnBoton("Pikachu",p1);
+        UIService.mostrarImagenEnBoton("Chikorita",p2);
+        UIService.mostrarImagenEnBoton("BULBASAUR",p3);
     }
 
     public void main(JFrame frame) {
@@ -74,16 +75,5 @@ public class SeleccionUI extends JFrame{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-    }
-
-    private void mostrarImagenEnBoton(String nombrePokemon,JButton boton){
-        try {
-            // Cargar la imagen desde la URL
-            URL url = new URL(PokemonService.urlSpritePokemon(nombrePokemon));
-            ImageIcon icon = new ImageIcon(url);
-            boton.setIcon(icon);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
