@@ -1,11 +1,13 @@
 package poke.app.ui;
 
 import org.springframework.stereotype.Component;
+import poke.app.service.PokemonService;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 
 @Component
 public class SeleccionUI extends JFrame{
@@ -61,6 +63,14 @@ public class SeleccionUI extends JFrame{
                 super.mouseClicked(e);
             }
         });
+        try {
+            // Cargar la imagen desde la URL
+            URL url = new URL(PokemonService.urlSpritePokemon("pikachu"));
+            ImageIcon icon = new ImageIcon(url);
+            p1.setIcon(icon);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void main(JFrame frame) {
