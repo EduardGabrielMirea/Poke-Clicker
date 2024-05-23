@@ -83,6 +83,22 @@ public class Login {
         this.pass = pass;
     }
 
+    public int getNuevo_user() {
+        return nuevo_user;
+    }
+
+    public void setNuevo_user(int nuevo_user) {
+        this.nuevo_user = nuevo_user;
+    }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
+
 
     @Override
     public String toString() {

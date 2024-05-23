@@ -48,4 +48,15 @@ public class LoginController{
             return false;
         }
     }
+
+    public boolean isConfigured(String username){
+        Login login = loginRepository.findByNombre(username);
+        int dato = login.getNuevo_user();
+        if(dato == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
 }

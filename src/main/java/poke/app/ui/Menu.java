@@ -27,4 +27,13 @@ public class Menu {
     private JButton b6;
     private JButton entrenar;
     private JButton luchar;
+
+    public void main(JFrame frame) {
+        frame.setContentPane(new Menu().menu);
+        frame.setSize(1080, 720);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
 }
