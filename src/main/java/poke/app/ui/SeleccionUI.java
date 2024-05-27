@@ -86,8 +86,6 @@ public class SeleccionUI extends JFrame{
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                //NO HACE SALTO DE LÍNEA
-                //UIService.asignarTextoAlabel(String.format("%s\n%s\n%s","Pokemon 1","Charmander","ESTO ES UNA PRUEBA"),informacion);
                 Pokemon p = PokemonService.getPokemon(fireStarter);
                 UIService.asignarTextoAlabel(String.format("<html>Nombre (id): %s (%s)<br>Tipos: %s<br>Descripción: %s</html>",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
@@ -96,8 +94,6 @@ public class SeleccionUI extends JFrame{
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                //NECESITAS HTML PARA HACER SALTOS DE LÍNEA... O TAMBIÉN UN JTEXTAREA
-                //UIService.asignarTextoAlabel("<html>Pokemon 2<br>Squirtle<br>A VER SI FUNCA</html>",informacion);
                 Pokemon p = PokemonService.getPokemon(waterStarter);
                 UIService.asignarTextoAlabel(String.format("<html>Nombre (id): %s (%s)<br>Tipos: %s<br>Descripción: %s</html>",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
@@ -106,7 +102,6 @@ public class SeleccionUI extends JFrame{
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                //UIService.asignarTextoAlabel("Pokemon 3\nBulbasaur\nREMPLAZAR LUEGO CON INFO DE LA API",informacion);
                 Pokemon p = PokemonService.getPokemon(grassStarter);
 
                 UIService.asignarTextoAlabel(String.format("<html>Nombre (id): %s (%s)<br>Tipos: %s<br>Descripción: %s</html>",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);

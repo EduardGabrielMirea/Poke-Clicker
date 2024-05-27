@@ -60,7 +60,7 @@ public class PokemonService {
     public static String getDescription(String name){
         PokemonSpecies pe = llamadasAPISpecies(name);
         for (PokemonSpecies.FlavorTextEntry i : pe.flavor_text_entries){
-            if(i.language.name.equals("es")){
+            if(i.language.name.equals("en")){
                 return i.flavor_text;
             }
         }
