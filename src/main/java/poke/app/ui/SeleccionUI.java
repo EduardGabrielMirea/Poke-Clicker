@@ -66,7 +66,7 @@ public class SeleccionUI extends JFrame{
                 super.mouseClicked(e);
                 chica.setEnabled(true);
                 chico.setEnabled(false);
-                int opcionPersonaje = 2;
+                opcionPersonaje = 2;
             }
         });
 
