@@ -1,6 +1,9 @@
 package poke.app.ui;
 
 import org.springframework.stereotype.Component;
+import poke.app.entity.Pokemon;
+import poke.app.service.PokemonService;
+import poke.app.service.RandomStarter;
 import poke.app.service.UIService;
 
 import javax.swing.*;
@@ -69,16 +72,24 @@ public class SeleccionUI extends JFrame{
             }
         });
 
-        UIService.mostrarImagenEnBoton("charmander",p1);
-        UIService.mostrarImagenEnBoton("Squirtle",p2);
-        UIService.mostrarImagenEnBoton("BULBASAUR",p3);
+        RandomStarter randomStarter = new RandomStarter();
+
+        String fireStarter = randomStarter.getStarters("fire");
+        String waterStarter = randomStarter.getStarters("water");
+        String grassStarter = randomStarter.getStarters("grass");
+
+        UIService.mostrarImagenEnBoton(fireStarter,p1);
+        UIService.mostrarImagenEnBoton(waterStarter,p2);
+        UIService.mostrarImagenEnBoton(grassStarter,p3);
 
         p1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 //NO HACE SALTO DE LÍNEA
-                UIService.asignarTextoAlabel(String.format("%s\n%s\n%s","Pokemon 1","Charmander","ESTO ES UNA PRUEBA"),informacion);
+                //UIService.asignarTextoAlabel(String.format("%s\n%s\n%s","Pokemon 1","Charmander","ESTO ES UNA PRUEBA"),informacion);
+                Pokemon p = PokemonService.getPokemon(fireStarter);
+                UIService.asignarTextoAlabel(String.format("<html>Nombre (id): %s (%s)<br>Tipos: %s<br>Descripción: %s</html>",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
         p2.addMouseListener(new MouseAdapter() {
@@ -86,14 +97,19 @@ public class SeleccionUI extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 //NECESITAS HTML PARA HACER SALTOS DE LÍNEA... O TAMBIÉN UN JTEXTAREA
-                UIService.asignarTextoAlabel("<html>Pokemon 2<br>Squirtle<br>A VER SI FUNCA</html>",informacion);
+                //UIService.asignarTextoAlabel("<html>Pokemon 2<br>Squirtle<br>A VER SI FUNCA</html>",informacion);
+                Pokemon p = PokemonService.getPokemon(waterStarter);
+                UIService.asignarTextoAlabel(String.format("<html>Nombre (id): %s (%s)<br>Tipos: %s<br>Descripción: %s</html>",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
         p3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                UIService.asignarTextoAlabel("Pokemon 3\nBulbasaur\nREMPLAZAR LUEGO CON INFO DE LA API",informacion);
+                //UIService.asignarTextoAlabel("Pokemon 3\nBulbasaur\nREMPLAZAR LUEGO CON INFO DE LA API",informacion);
+                Pokemon p = PokemonService.getPokemon(grassStarter);
+
+                UIService.asignarTextoAlabel(String.format("<html>Nombre (id): %s (%s)<br>Tipos: %s<br>Descripción: %s</html>",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
     }

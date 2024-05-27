@@ -2,6 +2,7 @@ package poke.app.service;
 
 import com.google.gson.Gson;
 import poke.app.entity.Pokemon;
+import poke.app.entity.PokemonSpecies;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -28,6 +29,40 @@ public class PokemonService {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    private static PokemonSpecies llamadasAPISpecies(String nombre){
+        nombre = nombre.toLowerCase();
+        final Gson gson = new Gson();
+
+        try {
+            URL pokeAPI = new URL("https://pokeapi.co/api/v2/pokemon-species/" + nombre);
+            BufferedReader in = new BufferedReader(new InputStreamReader(pokeAPI.openStream(), StandardCharsets.UTF_8));
+            PokemonSpecies p = gson.fromJson(in, PokemonSpecies.class);
+            return p;
+        }catch (FileNotFoundException e){
+            System.out.println("Pokemon no encontrado");
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    public static Pokemon getPokemon(String name){
+        Pokemon p = llamadasAPI(name);
+        return p;
+    }
+
+    public static String getDescription(String name){
+        PokemonSpecies pe = llamadasAPISpecies(name);
+        for (PokemonSpecies.FlavorTextEntry i : pe.flavor_text_entries){
+            if(i.language.name.equals("es")){
+                return i.flavor_text;
+            }
         }
         return null;
     }
