@@ -3,6 +3,7 @@ package poke.app.ui;
 import org.springframework.stereotype.Component;
 import poke.app.controller.LoginController;
 import poke.app.entity.Pokemon;
+import poke.app.localData.User;
 import poke.app.repository.LoginRepository;
 import poke.app.service.PokemonService;
 import poke.app.service.RandomStarter;
@@ -75,11 +76,11 @@ public class SeleccionUI extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if(opcionPersonaje == 1){
-                    loginController.setPersona(username,1);
-                    System.out.println("metodo 1"+username);
+                    loginController.setPersona(User.username,1);
+                    System.out.println("metodo 1"+User.username);
                 }else if(opcionPersonaje == 2){
-                    loginController.setPersona(username,2);
-                    System.out.println("metodo 2"+username);
+                    loginController.setPersona(User.username,2);
+                    System.out.println("metodo 2"+User.username);
                 }
                 SeleccionTab.setSelectedIndex(1);
             }
@@ -140,8 +141,5 @@ public class SeleccionUI extends JFrame{
         frame.setVisible(true);
         System.out.println(username);
 
-    }
-    public void setName(String nombre) {
-        username = nombre;
     }
 }

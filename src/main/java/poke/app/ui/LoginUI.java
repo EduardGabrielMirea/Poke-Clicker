@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cache;
 import org.springframework.stereotype.Component;
 import poke.app.controller.LoginController;
 import poke.app.entity.Login;
+import poke.app.localData.User;
 import poke.app.repository.LoginRepository;
 
 import javax.swing.*;
@@ -83,14 +84,15 @@ public class LoginUI extends JFrame {
         loginButton.addActionListener(e -> {
             // Lógica de inicio de sesión
             String nombreUser = usernameField.getText();
+            User.username = nombreUser;
             if(loginController.login(nombreUser, passwordField.getText())) {
                 if(loginController.isConfigured(nombreUser)){
-                    seleccionUI.setName(nombreUser);
+                    //seleccionUI.setName(nombreUser);
                     JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText());
                     Menu menu = new Menu();
                     menu.main(this);
                 }else{
-                    seleccionUI.setName(nombreUser);
+                    //seleccionUI.setName(nombreUser);
                     JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText()+" necesitamos que configures tu usuario.");
                     //SeleccionUI seleccionUI = new SeleccionUI(loginController,loginRepository);
                     seleccionUI.main(this);
