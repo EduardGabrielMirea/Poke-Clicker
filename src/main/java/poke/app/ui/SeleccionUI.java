@@ -77,10 +77,10 @@ public class SeleccionUI extends JFrame{
                 super.mouseClicked(e);
                 if(opcionPersonaje == 1){
                     loginController.setPersona(User.username,1);
-                    System.out.println("metodo 1"+User.username);
+                    //System.out.println("metodo 1"+User.username);
                 }else if(opcionPersonaje == 2){
                     loginController.setPersona(User.username,2);
-                    System.out.println("metodo 2"+User.username);
+                    //System.out.println("metodo 2"+User.username);
                 }
                 SeleccionTab.setSelectedIndex(1);
             }
