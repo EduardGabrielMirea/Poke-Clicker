@@ -59,4 +59,12 @@ public class LoginController{
         }
     }
 
+    public void setPersona(String username,int persona){
+        Login login = loginRepository.findByNombre(username);
+        if(login != null){
+            login.setNuevo_user(persona);
+            loginRepository.save(login);
+        }
+    }
+
 }

@@ -14,6 +14,8 @@ import java.awt.*;
 public class LoginUI extends JFrame {
     private final LoginController loginController;
     private final LoginRepository loginRepository;
+
+
     private JPanel panelLogin;
     private JTextField usernameField;
     private JTextField passwordField;
@@ -24,6 +26,9 @@ public class LoginUI extends JFrame {
 
     public LoginUI(LoginController loginController, LoginRepository loginRepository) {
         this.loginController = loginController;
+        this.loginRepository = loginRepository;
+
+        SeleccionUI seleccionUI = new SeleccionUI(loginController, loginRepository);
         //setLayout(null);
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,12 +85,14 @@ public class LoginUI extends JFrame {
             String nombreUser = usernameField.getText();
             if(loginController.login(nombreUser, passwordField.getText())) {
                 if(loginController.isConfigured(nombreUser)){
+                    seleccionUI.setName(nombreUser);
                     JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText());
                     Menu menu = new Menu();
                     menu.main(this);
                 }else{
+                    seleccionUI.setName(nombreUser);
                     JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText()+" necesitamos que configures tu usuario.");
-                    SeleccionUI seleccionUI = new SeleccionUI();
+                    //SeleccionUI seleccionUI = new SeleccionUI(loginController,loginRepository);
                     seleccionUI.main(this);
                 }
             }else{
@@ -105,6 +112,5 @@ public class LoginUI extends JFrame {
                 JOptionPane.showMessageDialog(null,String.format("El usuario %s ya existe",usernameField.getText()));
             }
         });
-        this.loginRepository = loginRepository;
     }
 }

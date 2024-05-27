@@ -1,10 +1,13 @@
 package poke.app.ui;
 
 import org.springframework.stereotype.Component;
+import poke.app.controller.LoginController;
 import poke.app.entity.Pokemon;
+import poke.app.repository.LoginRepository;
 import poke.app.service.PokemonService;
 import poke.app.service.RandomStarter;
 import poke.app.service.UIService;
+import poke.app.entity.Login;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +16,10 @@ import java.awt.event.MouseEvent;
 
 @Component
 public class SeleccionUI extends JFrame{
+
+    private final LoginController loginController;
+    private final LoginRepository loginRepository;
+    int opcionPersonaje = 0;
 
     private JTabbedPane SeleccionTab;
     private JPanel barra1;
@@ -38,8 +45,11 @@ public class SeleccionUI extends JFrame{
     private JPanel medioPokemon;
     private JLabel informacion;
     private Image foto;
+    private String username;
+    public SeleccionUI(LoginController loginController,LoginRepository loginRepository) {
+        this.loginController = loginController;
+        this.loginRepository = loginRepository;
 
-    public SeleccionUI() {
 
         chico.addMouseListener(new MouseAdapter() {
             @Override
@@ -47,6 +57,7 @@ public class SeleccionUI extends JFrame{
                 super.mouseClicked(e);
                 chico.setEnabled(true);
                 chica.setEnabled(false);
+                opcionPersonaje = 1;
             }
         });
         chica.addMouseListener(new MouseAdapter() {
@@ -55,12 +66,21 @@ public class SeleccionUI extends JFrame{
                 super.mouseClicked(e);
                 chica.setEnabled(true);
                 chico.setEnabled(false);
+                int opcionPersonaje = 2;
             }
         });
+
         continuar1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                if(opcionPersonaje == 1){
+                    loginController.setPersona(username,1);
+                    System.out.println("metodo 1"+username);
+                }else if(opcionPersonaje == 2){
+                    loginController.setPersona(username,2);
+                    System.out.println("metodo 2"+username);
+                }
                 SeleccionTab.setSelectedIndex(1);
             }
         });
@@ -103,14 +123,13 @@ public class SeleccionUI extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 Pokemon p = PokemonService.getPokemon(grassStarter);
-
                 UIService.asignarTextoAlabel(String.format("<html>Nombre (id): %s (%s)<br>Tipos: %s<br>Descripción: %s</html>",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
     }
 
     public void main(JFrame frame) {
-        frame.setContentPane(new SeleccionUI().pMain);
+        frame.setContentPane(new SeleccionUI(loginController,loginRepository).pMain);
         //Tamaño de pantalla
         Dimension dimension = new Dimension(800,900);
         frame.setMinimumSize(dimension);
@@ -119,5 +138,10 @@ public class SeleccionUI extends JFrame{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        System.out.println(username);
+
+    }
+    public void setName(String nombre) {
+        username = nombre;
     }
 }
