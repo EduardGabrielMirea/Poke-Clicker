@@ -17,5 +17,9 @@ public class UIService extends JFrame {
 
     public static void asignarTextoAlabel(String texto,JLabel label){
         label.setText(texto);
+
     }
+
+
+
 }
