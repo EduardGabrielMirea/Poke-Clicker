@@ -75,13 +75,6 @@ public class SeleccionUI extends JFrame{
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if(opcionPersonaje == 1){
-                    loginController.setPersona(User.username,1);
-                    //System.out.println("metodo 1"+User.username);
-                }else if(opcionPersonaje == 2){
-                    loginController.setPersona(User.username,2);
-                    //System.out.println("metodo 2"+User.username);
-                }
                 SeleccionTab.setSelectedIndex(1);
             }
         });
@@ -125,6 +118,17 @@ public class SeleccionUI extends JFrame{
                 super.mouseClicked(e);
                 Pokemon p = PokemonService.getPokemon(grassStarter);
                 UIService.asignarTextoAlabel(String.format("<html>Nombre (id): %s (%s)<br>Tipos: %s<br>Descripción: %s</html>",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
+            }
+        });
+        pfin.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if(opcionPersonaje == 1){
+                    loginController.setPersona(User.username,1);
+                }else if(opcionPersonaje == 2){
+                    loginController.setPersona(User.username,2);
+                }
             }
         });
     }
