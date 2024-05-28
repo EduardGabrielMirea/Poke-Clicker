@@ -1,6 +1,7 @@
 package poke.app.service;
 
 import javax.swing.*;
+import java.awt.*;
 import java.net.URL;
 
 public class UIService extends JFrame {
@@ -17,5 +18,11 @@ public class UIService extends JFrame {
 
     public static void asignarTextoAlabel(String texto,JLabel label){
         label.setText(texto);
+    }
+
+    public static void asignarTextoAJTextArea(String texto,JTextArea textArea){
+        textArea.setText(texto);
+        textArea.setEditable(false);
+        textArea.setLineWrap(false);
     }
 }

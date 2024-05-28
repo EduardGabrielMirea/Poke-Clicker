@@ -44,7 +44,7 @@ public class SeleccionUI extends JFrame{
     private JPanel ConChico;
     private JPanel ConChica;
     private JPanel medioPokemon;
-    private JLabel informacion;
+    private JTextArea informacion;
     private Image foto;
     private String username;
     public SeleccionUI(LoginController loginController,LoginRepository loginRepository) {
@@ -101,7 +101,7 @@ public class SeleccionUI extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 Pokemon p = PokemonService.getPokemon(fireStarter);
-                UIService.asignarTextoAlabel(String.format("<html>Nombre (id): %s (%s)<br>Tipos: %s<br>Descripción: %s</html>",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
+                UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
         p2.addMouseListener(new MouseAdapter() {
@@ -109,7 +109,7 @@ public class SeleccionUI extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 Pokemon p = PokemonService.getPokemon(waterStarter);
-                UIService.asignarTextoAlabel(String.format("<html>Nombre (id): %s (%s)<br>Tipos: %s<br>Descripción: %s</html>",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
+                UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
         p3.addMouseListener(new MouseAdapter() {
@@ -117,7 +117,7 @@ public class SeleccionUI extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 Pokemon p = PokemonService.getPokemon(grassStarter);
-                UIService.asignarTextoAlabel(String.format("<html>Nombre (id): %s (%s)<br>Tipos: %s<br>Descripción: %s</html>",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
+                UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
         pfin.addMouseListener(new MouseAdapter() {
