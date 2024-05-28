@@ -33,12 +33,12 @@ public class LoginUI extends JFrame {
         //setLayout(null);
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 700, 700);
+        setBounds(100, 100, 800, 900);
         panelLogin = new JPanel();
         panelLogin.setLayout(null);
         panelLogin.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(panelLogin);
-
+        setLocationRelativeTo(null);
         Banner = new JLabel();
         Banner.setIcon(new ImageIcon(getClass().getResource("/img/Poke-Clicker.png")));
         Banner.setBounds(0, -150, 700, 700);

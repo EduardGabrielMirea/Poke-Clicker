@@ -30,8 +30,10 @@ public class Menu {
 
     public void main(JFrame frame) {
         frame.setContentPane(new Menu().menu);
-        frame.setSize(1080, 720);
+        frame.setSize(800, 900);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
     }
