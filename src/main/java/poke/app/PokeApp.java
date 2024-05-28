@@ -171,7 +171,7 @@ public class PokeApp {
             lastTime = currentTime;
 
 
-            System.out.println("FPS: " + currentFPS);
+            //System.out.println("FPS: " + currentFPS);
         }
 
 
