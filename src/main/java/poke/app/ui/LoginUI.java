@@ -36,8 +36,7 @@ public class LoginUI extends JFrame {
         this.equipoRepository = equipoRepository;
 
         SeleccionUI seleccionUI = new SeleccionUI(loginController, loginRepository);
-        //setLayout(null);
-        setTitle("Login");
+        setTitle("Poke-Clicker");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 900);
         panelLogin = new JPanel();
