@@ -41,9 +41,9 @@ public class LoginUI extends JFrame {
         setLocationRelativeTo(null);
         Banner = new JLabel();
         Banner.setIcon(new ImageIcon(getClass().getResource("/img/Poke-Clicker.png")));
-        Banner.setBounds(0, -150, 700, 700);
+        Banner.setBounds(0, -150, 800, 900);
         panelLogin.add(Banner);
-
+        setBackground(Color.black);
 
         JLabel usernameLabel = new JLabel("Username:");
         usernameLabel.setBounds(170, 400, 80, 20);
@@ -89,7 +89,7 @@ public class LoginUI extends JFrame {
                 if(loginController.isConfigured(nombreUser)){
                     //seleccionUI.setName(nombreUser);
                     JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText());
-                    Menu menu = new Menu();
+                    Menu menu = new Menu(loginController,loginRepository);
                     menu.main(this);
                 }else{
                     //seleccionUI.setName(nombreUser);
