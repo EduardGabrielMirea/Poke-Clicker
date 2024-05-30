@@ -67,4 +67,36 @@ public class LoginController{
         }
     }
 
+    public int getPersonaGenero(String username)
+    {
+        Login login = loginRepository.findByNombre(username);
+
+
+        if (login != null) {
+            if (login.getNuevo_user()==1)
+            {
+                System.out.println(1);
+               return 1;
+            }
+            if (login.getNuevo_user()==2)
+            {
+                System.out.println(2);
+                return 2;
+            }
+        }
+        return 0;
+    }
+
+    public String getPersonaNombre(String username)
+    {
+        Login login = loginRepository.findByNombre(username);
+
+
+        if (login != null) {
+            return login.getNombre();
+
+        }
+        return "tonto";
+    }
+
 }
