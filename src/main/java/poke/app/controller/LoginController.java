@@ -48,4 +48,23 @@ public class LoginController{
             return false;
         }
     }
+
+    public boolean isConfigured(String username){
+        Login login = loginRepository.findByNombre(username);
+        int dato = login.getNuevo_user();
+        if(dato == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public void setPersona(String username,int persona){
+        Login login = loginRepository.findByNombre(username);
+        if(login != null){
+            login.setNuevo_user(persona);
+            loginRepository.save(login);
+        }
+    }
+
 }

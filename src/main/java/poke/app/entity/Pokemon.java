@@ -510,4 +510,12 @@ public class Pokemon {
         public String name;
         public String url;
     }
+
+    public String getTipos(Pokemon p){
+        String tipos = "";
+        for(Pokemon.TypeSlot tipo: p.types){
+            tipos += " "+tipo.type.name;
+        }
+        return tipos;
+    }
 }

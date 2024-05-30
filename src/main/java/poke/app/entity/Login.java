@@ -1,9 +1,6 @@
 package poke.app.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Login {
@@ -13,19 +10,34 @@ public class Login {
     private Long id;
     private String nombre;
     private String pass;
+    private int nuevo_user;
 
-    /**
-     * Constructor completo.
-     *
-     * @param id    Identificador único de la entidad.
-     * @param nombre Nombre de usuario.
-     * @param pass   Contraseña del usuario.
-     */
+    @OneToOne(mappedBy = "login")
+    private Equipo equipo;
 
-    public Login(Long id, String nombre, String pass) {
+    public Login(Long id, String nombre, String pass, Equipo equipo) {
         this.id = id;
         this.nombre = nombre;
         this.pass = pass;
+        this.equipo = equipo;
+    }
+
+    /**
+     * Este constructor contiene el parámetro que contendrá (0--> No se ha configurado el usuario, 1--> Chico ,2--> Chica)
+     * @param nombre
+     * @param pass
+     * @param nuevo_user (0--> No se ha configurado el usuario, 1--> Chico ,2--> Chica)
+     */
+    public Login(String nombre, String pass, int nuevo_user) {
+        this.nombre = nombre;
+        this.pass = pass;
+        this.nuevo_user = nuevo_user;
+    }
+
+    public Login(String nombre, String pass, Equipo equipo) {
+        this.nombre = nombre;
+        this.pass = pass;
+        this.equipo = equipo;
     }
 
     /**
@@ -70,6 +82,23 @@ public class Login {
     public void setPass(String pass) {
         this.pass = pass;
     }
+
+    public int getNuevo_user() {
+        return nuevo_user;
+    }
+
+    public void setNuevo_user(int nuevo_user) {
+        this.nuevo_user = nuevo_user;
+    }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
+
 
     @Override
     public String toString() {

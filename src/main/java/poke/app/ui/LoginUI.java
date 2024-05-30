@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cache;
 import org.springframework.stereotype.Component;
 import poke.app.controller.LoginController;
 import poke.app.entity.Login;
+import poke.app.localData.User;
 import poke.app.repository.LoginRepository;
 
 import javax.swing.*;
@@ -14,6 +15,8 @@ import java.awt.*;
 public class LoginUI extends JFrame {
     private final LoginController loginController;
     private final LoginRepository loginRepository;
+
+
     private JPanel panelLogin;
     private JTextField usernameField;
     private JTextField passwordField;
@@ -24,15 +27,18 @@ public class LoginUI extends JFrame {
 
     public LoginUI(LoginController loginController, LoginRepository loginRepository) {
         this.loginController = loginController;
+        this.loginRepository = loginRepository;
+
+        SeleccionUI seleccionUI = new SeleccionUI(loginController, loginRepository);
         //setLayout(null);
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 700, 700);
+        setBounds(100, 100, 800, 900);
         panelLogin = new JPanel();
         panelLogin.setLayout(null);
         panelLogin.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(panelLogin);
-
+        setLocationRelativeTo(null);
         Banner = new JLabel();
         Banner.setIcon(new ImageIcon(getClass().getResource("/img/Poke-Clicker.png")));
         Banner.setBounds(0, -150, 700, 700);
@@ -77,12 +83,20 @@ public class LoginUI extends JFrame {
         panelLogin.add(loginButton);
         loginButton.addActionListener(e -> {
             // Lógica de inicio de sesión
-            if(loginController.login(usernameField.getText(), passwordField.getText())) {
-                JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText());
-                /*SeleccionUI seleccionUI = new SeleccionUI();
-                seleccionUI.setVisible(true);*/
-                SeleccionUI seleccionUI = new SeleccionUI();
-                seleccionUI.main(this);
+            String nombreUser = usernameField.getText();
+            User.username = nombreUser;
+            if(loginController.login(nombreUser, passwordField.getText())) {
+                if(loginController.isConfigured(nombreUser)){
+                    //seleccionUI.setName(nombreUser);
+                    JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText());
+                    Menu menu = new Menu();
+                    menu.main(this);
+                }else{
+                    //seleccionUI.setName(nombreUser);
+                    JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText()+" necesitamos que configures tu usuario.");
+                    //SeleccionUI seleccionUI = new SeleccionUI(loginController,loginRepository);
+                    seleccionUI.main(this);
+                }
             }else{
                 JOptionPane.showMessageDialog(null,"No se ha podido iniciar sesión con el usuario");
             }
@@ -100,6 +114,5 @@ public class LoginUI extends JFrame {
                 JOptionPane.showMessageDialog(null,String.format("El usuario %s ya existe",usernameField.getText()));
             }
         });
-        this.loginRepository = loginRepository;
     }
 }
