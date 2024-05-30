@@ -2,9 +2,11 @@ package poke.app.ui;
 
 import org.hibernate.annotations.Cache;
 import org.springframework.stereotype.Component;
+import poke.app.controller.EquipoController;
 import poke.app.controller.LoginController;
 import poke.app.entity.Login;
 import poke.app.localData.User;
+import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
 
 import javax.swing.*;
@@ -15,6 +17,8 @@ import java.awt.*;
 public class LoginUI extends JFrame {
     private final LoginController loginController;
     private final LoginRepository loginRepository;
+    private final EquipoController equipoController;
+    private final EquipoRepository equipoRepository;
 
 
     private JPanel panelLogin;
@@ -25,9 +29,11 @@ public class LoginUI extends JFrame {
     private JButton recuperarContraseñaButton;
     private JLabel Banner;
 
-    public LoginUI(LoginController loginController, LoginRepository loginRepository) {
+    public LoginUI(LoginController loginController, LoginRepository loginRepository, EquipoRepository equipoRepository, EquipoController equipoController) {
         this.loginController = loginController;
         this.loginRepository = loginRepository;
+        this.equipoController = equipoController;
+        this.equipoRepository = equipoRepository;
 
         SeleccionUI seleccionUI = new SeleccionUI(loginController, loginRepository);
         //setLayout(null);
@@ -89,7 +95,7 @@ public class LoginUI extends JFrame {
                 if(loginController.isConfigured(nombreUser)){
                     //seleccionUI.setName(nombreUser);
                     JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText());
-                    Menu menu = new Menu(loginController,loginRepository);
+                    Menu menu = new Menu(loginController,loginRepository,equipoController,equipoRepository);
                     menu.main(this);
                 }else{
                     //seleccionUI.setName(nombreUser);

@@ -20,4 +20,6 @@ public interface LoginRepository extends CrudRepository<Login, Long> {
      * @return True si existe, de lo contrario false.
      */
     boolean existsByNombre(String nombre);
+
+    Login findLoginById(long id);
 }
