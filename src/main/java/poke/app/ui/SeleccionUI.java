@@ -1,9 +1,12 @@
 package poke.app.ui;
 
 import org.springframework.stereotype.Component;
+import poke.app.controller.EquipoController;
 import poke.app.controller.LoginController;
+import poke.app.entity.Equipo;
 import poke.app.entity.Pokemon;
 import poke.app.localData.User;
+import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
 import poke.app.service.PokemonService;
 import poke.app.service.RandomStarter;
@@ -20,6 +23,8 @@ public class SeleccionUI extends JFrame{
 
     private final LoginController loginController;
     private final LoginRepository loginRepository;
+    private final EquipoRepository equipoRepository;
+    private final EquipoController equipoController;
     int opcionPersonaje = 0;
 
     private JTabbedPane SeleccionTab;
@@ -47,9 +52,14 @@ public class SeleccionUI extends JFrame{
     private JTextArea informacion;
     private Image foto;
     private String username;
-    public SeleccionUI(LoginController loginController,LoginRepository loginRepository) {
+    private int seleccionInicial;
+    private int nivelInicial;
+
+    public SeleccionUI(LoginController loginController,LoginRepository loginRepository,EquipoRepository equipoRepository,EquipoController equipoController, JFrame frame) {
         this.loginController = loginController;
         this.loginRepository = loginRepository;
+        this.equipoController = equipoController;
+        this.equipoRepository = equipoRepository;
 
 
         chico.addMouseListener(new MouseAdapter() {
@@ -101,6 +111,8 @@ public class SeleccionUI extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 Pokemon p = PokemonService.getPokemon(fireStarter);
+                seleccionInicial = p.id;
+                nivelInicial = 1;
                 UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
@@ -109,6 +121,8 @@ public class SeleccionUI extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 Pokemon p = PokemonService.getPokemon(waterStarter);
+                seleccionInicial = p.id;
+                nivelInicial = 1;
                 UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
@@ -117,6 +131,8 @@ public class SeleccionUI extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 Pokemon p = PokemonService.getPokemon(grassStarter);
+                seleccionInicial = p.id;
+                nivelInicial = 1;
                 UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
@@ -129,12 +145,16 @@ public class SeleccionUI extends JFrame{
                 }else if(opcionPersonaje == 2){
                     loginController.setPersona(User.username,2);
                 }
+                Login login = loginRepository.findByNombre(User.username);
+                Equipo equipo = new Equipo(login.getId(),seleccionInicial,nivelInicial);
+                Menu menu = new Menu(loginController,loginRepository,equipoController,equipoRepository);
+                menu.main(frame);
             }
         });
     }
 
     public void main(JFrame frame) {
-        frame.setContentPane(new SeleccionUI(loginController,loginRepository).pMain);
+        frame.setContentPane(new SeleccionUI(loginController,loginRepository,equipoRepository,equipoController, frame).pMain);
         //Tamaño de pantalla
         Dimension dimension = new Dimension(800,900);
         frame.setMinimumSize(dimension);

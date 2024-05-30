@@ -96,6 +96,12 @@ public class Equipo {
         this.login = login;
     }
 
+    public Equipo(Long id,int p1,int n1){
+        this.id = id;
+        this.p1 = p1;
+        this.n1 = n1;
+    }
+
     public Equipo() {
     }
 

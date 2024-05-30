@@ -35,7 +35,7 @@ public class LoginUI extends JFrame {
         this.equipoController = equipoController;
         this.equipoRepository = equipoRepository;
 
-        SeleccionUI seleccionUI = new SeleccionUI(loginController, loginRepository);
+        SeleccionUI seleccionUI = new SeleccionUI(loginController, loginRepository,equipoRepository,equipoController, this);
         //setLayout(null);
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
