@@ -112,7 +112,6 @@ public class SeleccionUI extends JFrame{
                 super.mouseClicked(e);
                 Pokemon p = PokemonService.getPokemon(fireStarter);
                 seleccionInicial = p.id;
-                nivelInicial = 1;
                 UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
@@ -122,7 +121,6 @@ public class SeleccionUI extends JFrame{
                 super.mouseClicked(e);
                 Pokemon p = PokemonService.getPokemon(waterStarter);
                 seleccionInicial = p.id;
-                nivelInicial = 1;
                 UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
@@ -132,7 +130,6 @@ public class SeleccionUI extends JFrame{
                 super.mouseClicked(e);
                 Pokemon p = PokemonService.getPokemon(grassStarter);
                 seleccionInicial = p.id;
-                nivelInicial = 1;
                 UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
@@ -146,7 +143,9 @@ public class SeleccionUI extends JFrame{
                     loginController.setPersona(User.username,2);
                 }
                 Login login = loginRepository.findByNombre(User.username);
-                Equipo equipo = new Equipo(login.getId(),seleccionInicial,nivelInicial);
+                Equipo equipoInicial = new Equipo(login.getId(),seleccionInicial);
+                equipoInicial.setN1(1);
+                equipoRepository.save(equipoInicial);
                 Menu menu = new Menu(loginController,loginRepository,equipoController,equipoRepository);
                 menu.main(frame);
             }

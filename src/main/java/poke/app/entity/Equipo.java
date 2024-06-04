@@ -96,10 +96,9 @@ public class Equipo {
         this.login = login;
     }
 
-    public Equipo(Long id,int p1,int n1){
+    public Equipo(Long id,int p1){
         this.id = id;
         this.p1 = p1;
-        this.n1 = n1;
         this.p2 = 0;
         this.p3 = 0;
         this.p4 = 0;
