@@ -53,17 +53,12 @@ public class Menu {
         this.equipoController = equipoController;
         this.equipoRepository = equipoRepository;
         this.menuController = new MenuController();
-        Equipo equipo = equipoController.getEquipo(6L);
-        UIService.mostrarImagenEnBotonById(equipo.getP1(),b1);
-        UIService.mostrarImagenEnBotonById(equipo.getP2(),b2);
-        UIService.mostrarImagenEnBotonById(equipo.getP3(),b3);
-        UIService.mostrarImagenEnBotonById(equipo.getP4(),b4);
-        UIService.mostrarImagenEnBotonById(equipo.getP5(),b5);
-        UIService.mostrarImagenEnBotonById(equipo.getP6(),b6);
-
 
         menuController.setImageLocal("src/main/resources/img/Poke-Clicker 300x101.png", titulo);
         Nombre.setText(User.username.toUpperCase());
+
+        imagesInPokemonButtons(User.username,equipoController);
+
         if (loginController.getPersonaGenero(User.username)==1)
         {
            menuController.setImageLocal("src/main/resources/img/icons/redPlayer.png",Foto);
@@ -84,9 +79,17 @@ public class Menu {
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
+    }
 
+    private void imagesInPokemonButtons(String name,EquipoController equipoController){
 
-
+        Equipo equipo = equipoController.getEquipo(6L);
+        UIService.mostrarImagenEnBotonById(equipo.getP1(),b1);
+        UIService.mostrarImagenEnBotonById(equipo.getP2(),b2);
+        UIService.mostrarImagenEnBotonById(equipo.getP3(),b3);
+        UIService.mostrarImagenEnBotonById(equipo.getP4(),b4);
+        UIService.mostrarImagenEnBotonById(equipo.getP5(),b5);
+        UIService.mostrarImagenEnBotonById(equipo.getP6(),b6);
     }
 
 }

@@ -75,12 +75,10 @@ public class LoginController{
         if (login != null) {
             if (login.getNuevo_user()==1)
             {
-                System.out.println(1);
                return 1;
             }
             if (login.getNuevo_user()==2)
             {
-                System.out.println(2);
                 return 2;
             }
         }
