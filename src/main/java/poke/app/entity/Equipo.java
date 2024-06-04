@@ -100,6 +100,17 @@ public class Equipo {
         this.id = id;
         this.p1 = p1;
         this.n1 = n1;
+        this.p2 = 0;
+        this.p3 = 0;
+        this.p4 = 0;
+        this.p5 = 0;
+        this.p6 = 0;
+        this.n1 = 0;
+        this.n2 = 0;
+        this.n3 = 0;
+        this.n4 = 0;
+        this.n5 = 0;
+        this.n6 = 0;
     }
 
     public Equipo() {
