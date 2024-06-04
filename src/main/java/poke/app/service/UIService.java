@@ -2,7 +2,12 @@ package poke.app.service;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import javax.sound.sampled.*;
 
 public class UIService extends JFrame {
     public static void mostrarImagenEnBoton(String nombrePokemon,JButton boton){
@@ -46,5 +51,17 @@ public class UIService extends JFrame {
         textArea.setText(texto);
         textArea.setEditable(false);
         textArea.setLineWrap(false);
+    }
+
+    public static void musicInLoop(){
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/main/resources/audio/PokemonRoute201.wav").getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+            System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAA");
+        } catch(UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            System.out.println("Error al reproducir el sonido.");
+        }
     }
 }

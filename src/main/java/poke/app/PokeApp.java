@@ -112,6 +112,7 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+import poke.app.service.UIService;
 import poke.app.ui.LoginUI;
 
 import javax.swing.*;
@@ -139,6 +140,7 @@ public class PokeApp {
             // Obtenemos los objetos form a través de Spring
             LoginUI loginUI = context.getBean(LoginUI.class);
             loginUI.setVisible(true);
+            UIService.musicInLoop();
 
             // Iniciamos el bucle de actualización
             startUpdateLoop(loginUI);
