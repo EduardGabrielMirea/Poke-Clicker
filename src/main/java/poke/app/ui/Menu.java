@@ -4,6 +4,7 @@ import poke.app.controller.EquipoController;
 import poke.app.controller.LoginController;
 import poke.app.controller.MenuController;
 import poke.app.entity.Equipo;
+import poke.app.entity.Login;
 import poke.app.localData.User;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
@@ -11,9 +12,6 @@ import poke.app.service.PokemonService;
 import poke.app.service.UIService;
 
 import javax.swing.*;
-import javax.swing.text.html.ImageView;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class Menu {
     private final LoginController loginController;
@@ -69,8 +67,6 @@ public class Menu {
 
     }
 
-
-
     public void main(JFrame frame) {
         frame.setContentPane(new Menu(loginController, loginRepository,equipoController, equipoRepository).menu);
         frame.setSize(800, 900);
@@ -82,14 +78,18 @@ public class Menu {
     }
 
     private void imagesInPokemonButtons(String name,EquipoController equipoController){
+        //Cambiar luego de refactorizar y unir las tablas bien
+        Login login = loginRepository.findByNombre(name);
+        if(login!=null){
+            Equipo equipo = equipoController.getEquipo(login.getId());
+            UIService.mostrarImagenEnBotonById(equipo.getP1(),b1);
+            UIService.mostrarImagenEnBotonById(equipo.getP2(),b2);
+            UIService.mostrarImagenEnBotonById(equipo.getP3(),b3);
+            UIService.mostrarImagenEnBotonById(equipo.getP4(),b4);
+            UIService.mostrarImagenEnBotonById(equipo.getP5(),b5);
+            UIService.mostrarImagenEnBotonById(equipo.getP6(),b6);
+        }
 
-        Equipo equipo = equipoController.getEquipo(6L);
-        UIService.mostrarImagenEnBotonById(equipo.getP1(),b1);
-        UIService.mostrarImagenEnBotonById(equipo.getP2(),b2);
-        UIService.mostrarImagenEnBotonById(equipo.getP3(),b3);
-        UIService.mostrarImagenEnBotonById(equipo.getP4(),b4);
-        UIService.mostrarImagenEnBotonById(equipo.getP5(),b5);
-        UIService.mostrarImagenEnBotonById(equipo.getP6(),b6);
     }
 
 }
