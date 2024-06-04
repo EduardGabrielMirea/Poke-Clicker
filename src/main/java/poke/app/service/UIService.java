@@ -19,9 +19,20 @@ public class UIService extends JFrame {
     public static void mostrarImagenEnBotonById(int id,JButton boton){
         try {
             // Cargar la imagen desde la URL
-            URL url = new URL(PokemonService.urlSpritePokemonByID(id));
-            ImageIcon icon = new ImageIcon(url);
-            boton.setIcon(icon);
+            if (id == 0)
+            {
+                ImageIcon icon = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+                boton.setIcon(icon);
+
+            }
+            else
+            {
+                URL url = new URL(PokemonService.urlSpritePokemonByID(id));
+                ImageIcon icon = new ImageIcon(url);
+                boton.setIcon(icon);
+            }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -102,13 +102,21 @@ public class PokemonService {
     }
 
     public static String urlSpritePokemonByID(int id){
-        Pokemon p = llamadasAPIporID(id);
-        //Sprites pequeñitos
-        //String sprite = p.sprites.versions.generationVIII.icons.frontDefault;
-        //Sprites más grandecitos
-        //String sprite = p.sprites.frontDefault;
-        //Sprites animados
-        String sprite = p.sprites.other.showdown.frontDefault;
-        return sprite;
+
+        if (id != 0)
+        {
+            Pokemon p = llamadasAPIporID(id);
+            //Sprites pequeñitos
+            //String sprite = p.sprites.versions.generationVIII.icons.frontDefault;
+            //Sprites más grandecitos
+            //String sprite = p.sprites.frontDefault;
+            //Sprites animados
+            String sprite = p.sprites.other.showdown.frontDefault;
+            return sprite;
+        }
+       else
+        {
+            return "src/main/resources/img/defaultPokeball.png";
+        }
     }
 }

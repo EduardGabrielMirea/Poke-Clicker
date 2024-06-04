@@ -44,6 +44,7 @@ public class Menu {
     private JButton b1;
     private MenuController menuController;
 
+
     public Menu(LoginController loginController, LoginRepository loginRepository, EquipoController equipoController, EquipoRepository equipoRepository)
     {
         this.loginController = loginController;
@@ -81,7 +82,11 @@ public class Menu {
         //Cambiar luego de refactorizar y unir las tablas bien
         Login login = loginRepository.findByNombre(name);
         if(login!=null){
+
             Equipo equipo = equipoController.getEquipo(login.getId());
+            if(equipo.getP1()==0){
+
+            }
             UIService.mostrarImagenEnBotonById(equipo.getP1(),b1);
             UIService.mostrarImagenEnBotonById(equipo.getP2(),b2);
             UIService.mostrarImagenEnBotonById(equipo.getP3(),b3);
