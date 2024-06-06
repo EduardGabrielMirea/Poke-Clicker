@@ -94,26 +94,6 @@ public class LoginUI {
         });
     }
 
-    // Métodos setters para inyectar dependencias
-    public void setLoginController(LoginController loginController) {
-        this.loginController = loginController;
-    }
-
-    public void setLoginRepository(LoginRepository loginRepository) {
-        this.loginRepository = loginRepository;
-    }
-
-    public void setEquipoController(EquipoController equipoController) {
-        this.equipoController = equipoController;
-    }
-
-    public void setEquipoRepository(EquipoRepository equipoRepository) {
-        this.equipoRepository = equipoRepository;
-    }
-
-    public void setAppConfig(AppConfig appConfig) {
-        this.appConfig = appConfig;
-    }
 
     public void initUI(JFrame frame) {
         frame.setContentPane(login); // Pass instances
