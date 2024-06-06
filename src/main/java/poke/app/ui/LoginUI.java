@@ -17,19 +17,31 @@ import java.awt.*;
 
 @Component
 public class LoginUI{
+
     private final LoginController loginController;
     private final LoginRepository loginRepository;
     private final EquipoController equipoController;
     private final EquipoRepository equipoRepository;
     private final AppConfig appConfig;
 
-    private JPanel panelLogin;
+
+
+
+    private JPanel loginMain;
     private JTextField usernameField;
     private JTextField passwordField;
     private JButton loginButton;
     private JButton registroButton;
     private JButton recuperarContraseñaButton;
-    private JLabel Banner;
+    private JLabel titulo;
+    private JPanel panelTitulo;
+    private JPanel panelBotones;
+    private JPanel panelDatos;
+    private JLabel user;
+    private JLabel password;
+
+
+
 
     public LoginUI(AppService appService) {
         this.loginController = appService.getLoginController();
@@ -41,43 +53,44 @@ public class LoginUI{
 
         JFrame frame = new Window();
         SeleccionUI seleccionUI = new SeleccionUI(appService);
-        //setLayout(null);
+
+
         frame.setTitle("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 800, 900);
-        panelLogin = new JPanel();
-        panelLogin.setLayout(null);
-        panelLogin.setBorder(new EmptyBorder(5, 5, 5, 5));
-        frame.setContentPane(panelLogin);
+        loginMain = new JPanel();
+        loginMain.setLayout(null);
+        loginMain.setBorder(new EmptyBorder(5, 5, 5, 5));
+        frame.setContentPane(loginMain);
         frame.setLocationRelativeTo(null);
-        Banner = new JLabel();
-        Banner.setIcon(new ImageIcon(getClass().getResource("/img/Poke-Clicker.png")));
-        Banner.setBounds(0, -150, 800, 900);
-        panelLogin.add(Banner);
+        titulo = new JLabel();
+        titulo.setIcon(new ImageIcon(getClass().getResource("/img/Poke-Clicker.png")));
+        titulo.setBounds(0, -150, 800, 900);
+        loginMain.add(titulo);
         frame.setBackground(Color.black);
         JLabel usernameLabel = new JLabel("Username:");
         usernameLabel.setBounds(170, 400, 80, 20);
-        panelLogin.add(usernameLabel);
+        loginMain.add(usernameLabel);
 
         usernameField = new JTextField();
         usernameField.setBounds(250, 400, 200, 20);
-        panelLogin.add(usernameField);
+        loginMain.add(usernameField);
         usernameField.setColumns(10);
 
 
         JLabel passwordLabel = new JLabel("Password:");
         passwordLabel.setBounds(170, 450, 80, 20);
-        panelLogin.add(passwordLabel);
+        loginMain.add(passwordLabel);
 
         passwordField = new JPasswordField();
         passwordField.setBounds(250, 450, 200, 20);
-        panelLogin.add(passwordField);
+        loginMain.add(passwordField);
         passwordField.setColumns(10);
 
 
         recuperarContraseñaButton = new JButton("Recuperar Contraseña");
         recuperarContraseñaButton.setBounds(200, 480, 280, 25);
-        panelLogin.add(recuperarContraseñaButton);
+        loginMain.add(recuperarContraseñaButton);
         recuperarContraseñaButton.addActionListener(e -> {
             // Lógica de recuperación de contraseña
             if(loginController.recuperarContraseña(usernameField.getText(),passwordField.getText())){
@@ -90,22 +103,20 @@ public class LoginUI{
 
         loginButton = new JButton("Login");
         loginButton.setBounds(200, 600, 120, 25);
-        panelLogin.add(loginButton);
+        loginMain.add(loginButton);
         loginButton.addActionListener(e -> {
             // Lógica de inicio de sesión
             String nombreUser = usernameField.getText();
             User.username = nombreUser;
             if(loginController.login(nombreUser, passwordField.getText())) {
                 if(loginController.isConfigured(nombreUser)){
-                    //seleccionUI.setName(nombreUser);
+
                     JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText());
                     MenuUI menuUI = new MenuUI(appService);
                     menuUI.main(frame);
                 }else{
-                    //seleccionUI.setName(nombreUser);
+
                     JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText()+" necesitamos que configures tu usuario.");
-                    //SeleccionUI seleccionUI = new SeleccionUI(loginController,loginRepository);
-                    //seleccionUI.main(appService);
                     SeleccionUI seleccionUI1 = new SeleccionUI(appService);
                     seleccionUI1.main(frame);
                 }
@@ -116,7 +127,7 @@ public class LoginUI{
 
         registroButton = new JButton("Registro");
         registroButton.setBounds(400, 600, 120, 25);
-        panelLogin.add(registroButton);
+        loginMain.add(registroButton);
         registroButton.addActionListener(e -> {
             // Lógica de registro
             if(loginController.registro(usernameField.getText(), passwordField.getText())) {
@@ -128,4 +139,6 @@ public class LoginUI{
         });
         frame.setVisible(true);
     }
+
+
 }

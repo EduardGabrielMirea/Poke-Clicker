@@ -17,11 +17,8 @@ public class MenuUI {
     private final LoginRepository loginRepository;
     private final EquipoController equipoController;
     private final EquipoRepository equipoRepository;
-    private JPanel menuUI;
-    private JPanel header;
-    private JPanel foot;
-    private JPanel izquierdo;
-    private JPanel derecho;
+    private MenuController menuController;
+
 
     //pokemons
     private JPanel p1;
@@ -33,11 +30,18 @@ public class MenuUI {
     //pokemons
 
 
+    //Paneles
     private JPanel texto;
     private JPanel player;
     private JLabel titulo;
     private JLabel Foto;
     private JLabel Nombre;
+    private JPanel menuUI;
+    private JPanel header;
+    private JPanel foot;
+    private JPanel izquierdo;
+    private JPanel derecho;
+    //Paneles
 
     //Marcos de los pokemons
     private JButton b2;
@@ -45,11 +49,18 @@ public class MenuUI {
     private JButton b4;
     private JButton b5;
     private JButton b6;
+    //Fin marcos
 
+
+
+    //Botones
     private JButton entrenar;
     private JButton luchar;
     private JButton b1;
-    private MenuController menuController;
+    //Fin Botones
+
+
+
 
 
 
@@ -61,11 +72,18 @@ public class MenuUI {
         this.equipoRepository = appService.getEquipoRepository();
         this.menuController = appService.getMenuController();
 
+        //PONE LA IMAGEN DEL TÍTULO
         menuController.setImageLocal("src/main/resources/img/Poke-Clicker 300x101.png", titulo);
+
+        //BUSCA USUARIO EN MAYÚSCULAS
         Nombre.setText(User.username.toUpperCase());
 
+        //LLAMA AL MÉTODO PARA INSERTAR IMÁGENES EN LAS CASILLAS DE LOS POKEMON
         imagesInPokemonButtons(User.username,equipoController);
 
+
+
+        //COMPROBAR SI EL USUARIO ES CHICO O CHICA PARA ELEGIR FOTO DE PERFIL
         if (loginController.getPersonaGenero(User.username)==1)
         {
            menuController.setImageLocal("src/main/resources/img/icons/redPlayer.png",Foto);
@@ -78,15 +96,14 @@ public class MenuUI {
 
     public void main(JFrame frame) {
         frame.setContentPane(menuUI);
-        frame.setSize(800, 900);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        frame.pack();
         frame.setVisible(true);
+
+
     }
 
-    private void imagesInPokemonButtons(String name,EquipoController equipoController){
+    //INSERTAR IMÁGENES EN BOTONES | SE PODRÍA MOVER A MenuController
+    private void imagesInPokemonButtons(String name,EquipoController equipoController)
+    {
         //Cambiar luego de refactorizar y unir las tablas bien
         Login login = loginRepository.findByNombre(name);
         if(login!=null){
