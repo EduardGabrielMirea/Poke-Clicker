@@ -113,6 +113,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import poke.app.service.UIService;
+import poke.app.ui.InicioSesionUI;
 import poke.app.ui.LoginUI;
 
 import javax.swing.*;
@@ -138,11 +139,13 @@ public class PokeApp {
 
         EventQueue.invokeLater(() -> {
             // Obtenemos los objetos form a través de Spring
-            LoginUI loginUI = context.getBean(LoginUI.class);
+            //LoginUI loginUI = context.getBean(LoginUI.class);
+            InicioSesionUI inicioSesionUI = context.getBean(InicioSesionUI.class);
+            inicioSesionUI.main();
             UIService.musicInLoop();
 
             // Iniciamos el bucle de actualización
-            startUpdateLoop(loginUI);
+            //startUpdateLoop(loginUI);
         });
     }
 

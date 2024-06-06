@@ -97,8 +97,6 @@ public class MenuUI {
     public void main(JFrame frame) {
         frame.setContentPane(menuUI);
         frame.setVisible(true);
-
-
     }
 
     //INSERTAR IMÁGENES EN BOTONES | SE PODRÍA MOVER A MenuController
