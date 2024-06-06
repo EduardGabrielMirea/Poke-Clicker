@@ -8,50 +8,58 @@ import poke.app.entity.Login;
 import poke.app.localData.User;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
-import poke.app.service.PokemonService;
+import poke.app.service.AppService;
 import poke.app.service.UIService;
-
 import javax.swing.*;
 
-public class Menu {
+public class MenuUI {
     private final LoginController loginController;
     private final LoginRepository loginRepository;
     private final EquipoController equipoController;
     private final EquipoRepository equipoRepository;
-    private JPanel menu;
+    private JPanel menuUI;
     private JPanel header;
     private JPanel foot;
     private JPanel izquierdo;
     private JPanel derecho;
+
+    //pokemons
     private JPanel p1;
     private JPanel p2;
     private JPanel p3;
     private JPanel p4;
     private JPanel p5;
     private JPanel p6;
+    //pokemons
+
+
     private JPanel texto;
     private JPanel player;
     private JLabel titulo;
     private JLabel Foto;
     private JLabel Nombre;
+
+    //Marcos de los pokemons
     private JButton b2;
     private JButton b3;
     private JButton b4;
     private JButton b5;
     private JButton b6;
+
     private JButton entrenar;
     private JButton luchar;
     private JButton b1;
     private MenuController menuController;
 
 
-    public Menu(LoginController loginController, LoginRepository loginRepository, EquipoController equipoController, EquipoRepository equipoRepository)
+
+    public MenuUI(AppService appService)
     {
-        this.loginController = loginController;
-        this.loginRepository = loginRepository;
-        this.equipoController = equipoController;
-        this.equipoRepository = equipoRepository;
-        this.menuController = new MenuController();
+        this.loginController = appService.getLoginController();
+        this.loginRepository = appService.getLoginRepository();
+        this.equipoController = appService.getEquipoController();
+        this.equipoRepository = appService.getEquipoRepository();
+        this.menuController = appService.getMenuController();
 
         menuController.setImageLocal("src/main/resources/img/Poke-Clicker 300x101.png", titulo);
         Nombre.setText(User.username.toUpperCase());
@@ -69,7 +77,7 @@ public class Menu {
     }
 
     public void main(JFrame frame) {
-        frame.setContentPane(new Menu(loginController, loginRepository,equipoController, equipoRepository).menu);
+        frame.setContentPane(menuUI);
         frame.setSize(800, 900);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);

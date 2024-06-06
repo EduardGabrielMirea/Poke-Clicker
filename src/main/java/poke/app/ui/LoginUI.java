@@ -1,13 +1,14 @@
 package poke.app.ui;
 
-import org.hibernate.annotations.Cache;
 import org.springframework.stereotype.Component;
+import poke.app.config.AppConfig;
 import poke.app.controller.EquipoController;
 import poke.app.controller.LoginController;
 import poke.app.entity.Login;
 import poke.app.localData.User;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
+import poke.app.service.AppService;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -19,7 +20,7 @@ public class LoginUI extends JFrame {
     private final LoginRepository loginRepository;
     private final EquipoController equipoController;
     private final EquipoRepository equipoRepository;
-
+    private final AppConfig appConfig;
 
     private JPanel panelLogin;
     private JTextField usernameField;
@@ -29,13 +30,16 @@ public class LoginUI extends JFrame {
     private JButton recuperarContraseñaButton;
     private JLabel Banner;
 
-    public LoginUI(LoginController loginController, LoginRepository loginRepository, EquipoRepository equipoRepository, EquipoController equipoController) {
-        this.loginController = loginController;
-        this.loginRepository = loginRepository;
-        this.equipoController = equipoController;
-        this.equipoRepository = equipoRepository;
+    public LoginUI(AppService appService) {
+        this.loginController = appService.getLoginController();
+        this.loginRepository = appService.getLoginRepository();
+        this.equipoController = appService.getEquipoController();
+        this.equipoRepository = appService.getEquipoRepository();
+        this.appConfig = appService.getAppConfig();
 
-        SeleccionUI seleccionUI = new SeleccionUI(loginController, loginRepository,equipoRepository,equipoController, this);
+
+
+        SeleccionUI seleccionUI = new SeleccionUI(appService);
         //setLayout(null);
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -95,13 +99,13 @@ public class LoginUI extends JFrame {
                 if(loginController.isConfigured(nombreUser)){
                     //seleccionUI.setName(nombreUser);
                     JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText());
-                    Menu menu = new Menu(loginController,loginRepository,equipoController,equipoRepository);
-                    menu.main(this);
+                    MenuUI menuUI = new MenuUI(appService);
+                    menuUI.main(this);
                 }else{
                     //seleccionUI.setName(nombreUser);
                     JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText()+" necesitamos que configures tu usuario.");
                     //SeleccionUI seleccionUI = new SeleccionUI(loginController,loginRepository);
-                    seleccionUI.main(this);
+                    seleccionUI.main(appService);
                 }
             }else{
                 JOptionPane.showMessageDialog(null,"No se ha podido iniciar sesión con el usuario");

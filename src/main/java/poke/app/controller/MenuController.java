@@ -1,19 +1,21 @@
 package poke.app.controller;
 
-import org.aspectj.asm.IProgramElement;
+
+
+import org.springframework.stereotype.Component;
+import poke.app.localData.User;
+import poke.app.service.AppService;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+@Component
 public class MenuController extends JFrame
 {
-
-
     public void setImageURL(String imagen, JLabel label){
 
         try {
@@ -44,4 +46,17 @@ public class MenuController extends JFrame
         }
 
     }
+
+    /*public void elegirGenero(User username){
+        if (loginController.getPersonaGenero(User.username)==1)
+        {
+            menuController.setImageLocal("src/main/resources/img/icons/redPlayer.png",Foto);
+        } else if (loginController.getPersonaGenero(User.username)==2)
+        {
+            menuController.setImageLocal("src/main/resources/img/icons/leafPlayer.png",Foto);
+        }
+    }
+
+     */
+
 }

@@ -1,6 +1,9 @@
 package poke.app.ui;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import poke.app.config.AppConfig;
 import poke.app.controller.EquipoController;
 import poke.app.controller.LoginController;
 import poke.app.entity.Equipo;
@@ -8,6 +11,7 @@ import poke.app.entity.Pokemon;
 import poke.app.localData.User;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
+import poke.app.service.AppService;
 import poke.app.service.PokemonService;
 import poke.app.service.RandomStarter;
 import poke.app.service.UIService;
@@ -25,6 +29,7 @@ public class SeleccionUI extends JFrame{
     private final LoginRepository loginRepository;
     private final EquipoRepository equipoRepository;
     private final EquipoController equipoController;
+    private final AppConfig appConfig;
     int opcionPersonaje = 0;
 
     private JTabbedPane SeleccionTab;
@@ -55,12 +60,12 @@ public class SeleccionUI extends JFrame{
     private int seleccionInicial;
     private int nivelInicial;
 
-    public SeleccionUI(LoginController loginController,LoginRepository loginRepository,EquipoRepository equipoRepository,EquipoController equipoController, JFrame frame) {
-        this.loginController = loginController;
-        this.loginRepository = loginRepository;
-        this.equipoController = equipoController;
-        this.equipoRepository = equipoRepository;
-
+    public SeleccionUI(AppService appService) {
+        this.loginController = appService.getLoginController();
+        this.loginRepository = appService.getLoginRepository();
+        this.equipoController = appService.getEquipoController();
+        this.equipoRepository = appService.getEquipoRepository();
+        this.appConfig = appService.getAppConfig();
 
         chico.addMouseListener(new MouseAdapter() {
             @Override
@@ -146,19 +151,19 @@ public class SeleccionUI extends JFrame{
                 Equipo equipoInicial = new Equipo(login.getId(),seleccionInicial);
                 equipoInicial.setN1(1);
                 equipoRepository.save(equipoInicial);
-                Menu menu = new Menu(loginController,loginRepository,equipoController,equipoRepository);
-                menu.main(frame);
+                MenuUI menuUI = new MenuUI(appService);
+                menuUI.main(appService.getAppConfig().jFrame());
             }
         });
     }
 
-    public void main(JFrame frame) {
-        frame.setContentPane(new SeleccionUI(loginController,loginRepository,equipoRepository,equipoController, frame).pMain);
+    public void main(AppService appService) {
+        JFrame frame = appService.getAppConfig().jFrame();
+        frame.setContentPane(new SeleccionUI(appService).pMain);
         //Tamaño de pantalla
         Dimension dimension = new Dimension(800,900);
         frame.setMinimumSize(dimension);
         frame.setResizable(false);
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

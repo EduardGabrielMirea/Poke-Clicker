@@ -7,7 +7,7 @@ import poke.app.entity.Login;
 import poke.app.entity.Pokemon;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
-import poke.app.service.AppService;
+
 import poke.app.service.PokemonService;
 
 import java.util.ArrayList;

@@ -59,7 +59,6 @@ public class UIService extends JFrame {
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
-            System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAA");
         } catch(UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             System.out.println("Error al reproducir el sonido.");
         }
