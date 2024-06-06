@@ -31,8 +31,7 @@ public class InicioSesionUI {
 
     private final LoginController loginController;
     private final LoginRepository loginRepository;
-
-    JFrame frame = new Window();
+    private final JFrame frame = Window.frame;
 
     public InicioSesionUI(AppService appService) {
         this.loginController = appService.getLoginController();
@@ -101,11 +100,11 @@ public class InicioSesionUI {
 
     public void main() {
         //JFrame frame = new JFrame("InicioSesionUI");
+        //Window.frame = frame;
         //frame.setContentPane(new InicioSesionUI(inicioSesion).inicioSesion);
         frame.setContentPane(inicioSesion);
-        System.out.println("HUIDHJBSDJHABSH");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.pack();
         frame.setVisible(true);
     }
 }

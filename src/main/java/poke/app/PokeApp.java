@@ -112,10 +112,14 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+import poke.app.controller.EquipoController;
+import poke.app.controller.LoginController;
+import poke.app.repository.EquipoRepository;
+import poke.app.repository.LoginRepository;
 import poke.app.service.UIService;
 import poke.app.ui.InicioSesionUI;
 import poke.app.ui.LoginUI;
-
+import poke.app.service.AppService;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -177,6 +181,10 @@ public class PokeApp {
 
             //System.out.println("FPS: " + currentFPS);
         }
+
+
+
+
 
 
         //loginUI.repaint();
