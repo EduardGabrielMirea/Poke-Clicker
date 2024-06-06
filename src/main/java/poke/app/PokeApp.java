@@ -139,7 +139,6 @@ public class PokeApp {
         EventQueue.invokeLater(() -> {
             // Obtenemos los objetos form a través de Spring
             LoginUI loginUI = context.getBean(LoginUI.class);
-            loginUI.setVisible(true);
             UIService.musicInLoop();
 
             // Iniciamos el bucle de actualización
@@ -177,6 +176,6 @@ public class PokeApp {
         }
 
 
-        loginUI.repaint();
+        //loginUI.repaint();
     }
 }

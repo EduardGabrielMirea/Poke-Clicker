@@ -6,6 +6,7 @@ import poke.app.controller.EquipoController;
 import poke.app.controller.LoginController;
 import poke.app.entity.Login;
 import poke.app.localData.User;
+import poke.app.localData.Window;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
 import poke.app.service.AppService;
@@ -15,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 @Component
-public class LoginUI extends JFrame {
+public class LoginUI{
     private final LoginController loginController;
     private final LoginRepository loginRepository;
     private final EquipoController equipoController;
@@ -38,23 +39,22 @@ public class LoginUI extends JFrame {
         this.appConfig = appService.getAppConfig();
 
 
-
+        JFrame frame = new Window();
         SeleccionUI seleccionUI = new SeleccionUI(appService);
         //setLayout(null);
-        setTitle("Login");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 800, 900);
+        frame.setTitle("Login");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setBounds(100, 100, 800, 900);
         panelLogin = new JPanel();
         panelLogin.setLayout(null);
         panelLogin.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setContentPane(panelLogin);
-        setLocationRelativeTo(null);
+        frame.setContentPane(panelLogin);
+        frame.setLocationRelativeTo(null);
         Banner = new JLabel();
         Banner.setIcon(new ImageIcon(getClass().getResource("/img/Poke-Clicker.png")));
         Banner.setBounds(0, -150, 800, 900);
         panelLogin.add(Banner);
-        setBackground(Color.black);
-
+        frame.setBackground(Color.black);
         JLabel usernameLabel = new JLabel("Username:");
         usernameLabel.setBounds(170, 400, 80, 20);
         panelLogin.add(usernameLabel);
@@ -100,12 +100,14 @@ public class LoginUI extends JFrame {
                     //seleccionUI.setName(nombreUser);
                     JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText());
                     MenuUI menuUI = new MenuUI(appService);
-                    menuUI.main(this);
+                    menuUI.main(frame);
                 }else{
                     //seleccionUI.setName(nombreUser);
                     JOptionPane.showMessageDialog(null,"Bienvenido "+usernameField.getText()+" necesitamos que configures tu usuario.");
                     //SeleccionUI seleccionUI = new SeleccionUI(loginController,loginRepository);
-                    seleccionUI.main(appService);
+                    //seleccionUI.main(appService);
+                    SeleccionUI seleccionUI1 = new SeleccionUI(appService);
+                    seleccionUI1.main(frame);
                 }
             }else{
                 JOptionPane.showMessageDialog(null,"No se ha podido iniciar sesión con el usuario");
@@ -124,5 +126,6 @@ public class LoginUI extends JFrame {
                 JOptionPane.showMessageDialog(null,String.format("El usuario %s ya existe",usernameField.getText()));
             }
         });
+        frame.setVisible(true);
     }
 }

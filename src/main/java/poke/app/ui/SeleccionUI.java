@@ -9,6 +9,7 @@ import poke.app.controller.LoginController;
 import poke.app.entity.Equipo;
 import poke.app.entity.Pokemon;
 import poke.app.localData.User;
+import poke.app.localData.Window;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
 import poke.app.service.AppService;
@@ -152,14 +153,15 @@ public class SeleccionUI extends JFrame{
                 equipoInicial.setN1(1);
                 equipoRepository.save(equipoInicial);
                 MenuUI menuUI = new MenuUI(appService);
-                menuUI.main(appService.getAppConfig().jFrame());
+                menuUI.main(appService.getAppConfig().jFrame(Window.frame));
             }
         });
     }
 
-    public void main(AppService appService) {
-        JFrame frame = appService.getAppConfig().jFrame();
-        frame.setContentPane(new SeleccionUI(appService).pMain);
+    public void main(JFrame frame) {
+
+        //frame.setContentPane(new SeleccionUI().pMain);
+        frame.setContentPane(SeleccionTab);
         //Tamaño de pantalla
         Dimension dimension = new Dimension(800,900);
         frame.setMinimumSize(dimension);

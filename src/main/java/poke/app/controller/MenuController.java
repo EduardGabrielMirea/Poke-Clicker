@@ -14,7 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 @Component
-public class MenuController extends JFrame
+public class MenuController
 {
     public void setImageURL(String imagen, JLabel label){
 
@@ -47,16 +47,16 @@ public class MenuController extends JFrame
 
     }
 
-    /*public void elegirGenero(User username){
-        if (loginController.getPersonaGenero(User.username)==1)
+    public void elegirGenero(User username, AppService appService, JLabel Foto){
+        if (appService.getLoginController().getPersonaGenero(User.username)==1)
         {
-            menuController.setImageLocal("src/main/resources/img/icons/redPlayer.png",Foto);
-        } else if (loginController.getPersonaGenero(User.username)==2)
+          appService.getMenuController().setImageLocal("src/main/resources/img/icons/redPlayer.png",Foto);
+        } else if (appService.getLoginController().getPersonaGenero(User.username)==2)
         {
-            menuController.setImageLocal("src/main/resources/img/icons/leafPlayer.png",Foto);
+            appService.getMenuController().setImageLocal("src/main/resources/img/icons/leafPlayer.png",Foto);
         }
     }
 
-     */
+
 
 }
