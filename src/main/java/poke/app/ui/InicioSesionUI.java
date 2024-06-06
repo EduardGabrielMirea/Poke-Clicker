@@ -99,12 +99,7 @@ public class InicioSesionUI {
     }
 
     public void main() {
-        //JFrame frame = new JFrame("InicioSesionUI");
-        //Window.frame = frame;
-        //frame.setContentPane(new InicioSesionUI(inicioSesion).inicioSesion);
         frame.setContentPane(inicioSesion);
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.pack();
         frame.setVisible(true);
     }
 }
