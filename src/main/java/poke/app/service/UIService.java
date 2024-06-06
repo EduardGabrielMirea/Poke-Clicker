@@ -2,7 +2,12 @@ package poke.app.service;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import javax.sound.sampled.*;
 
 public class UIService extends JFrame {
     public static void mostrarImagenEnBoton(String nombrePokemon,JButton boton){
@@ -19,9 +24,20 @@ public class UIService extends JFrame {
     public static void mostrarImagenEnBotonById(int id,JButton boton){
         try {
             // Cargar la imagen desde la URL
-            URL url = new URL(PokemonService.urlSpritePokemonByID(id));
-            ImageIcon icon = new ImageIcon(url);
-            boton.setIcon(icon);
+            if (id == 0)
+            {
+                ImageIcon icon = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+                boton.setIcon(icon);
+
+            }
+            else
+            {
+                URL url = new URL(PokemonService.urlSpritePokemonByID(id));
+                ImageIcon icon = new ImageIcon(url);
+                boton.setIcon(icon);
+            }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -35,5 +51,16 @@ public class UIService extends JFrame {
         textArea.setText(texto);
         textArea.setEditable(false);
         textArea.setLineWrap(false);
+    }
+
+    public static void musicInLoop(){
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/main/resources/audio/PokemonRoute201.wav").getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch(UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            System.out.println("Error al reproducir el sonido.");
+        }
     }
 }

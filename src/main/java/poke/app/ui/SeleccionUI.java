@@ -1,10 +1,18 @@
 package poke.app.ui;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import poke.app.config.AppConfig;
+import poke.app.controller.EquipoController;
 import poke.app.controller.LoginController;
+import poke.app.entity.Equipo;
 import poke.app.entity.Pokemon;
 import poke.app.localData.User;
+import poke.app.localData.Window;
+import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
+import poke.app.service.AppService;
 import poke.app.service.PokemonService;
 import poke.app.service.RandomStarter;
 import poke.app.service.UIService;
@@ -20,6 +28,9 @@ public class SeleccionUI extends JFrame{
 
     private final LoginController loginController;
     private final LoginRepository loginRepository;
+    private final EquipoRepository equipoRepository;
+    private final EquipoController equipoController;
+    private final AppConfig appConfig;
     int opcionPersonaje = 0;
 
     private JTabbedPane SeleccionTab;
@@ -47,10 +58,15 @@ public class SeleccionUI extends JFrame{
     private JTextArea informacion;
     private Image foto;
     private String username;
-    public SeleccionUI(LoginController loginController,LoginRepository loginRepository) {
-        this.loginController = loginController;
-        this.loginRepository = loginRepository;
+    private int seleccionInicial;
+    private int nivelInicial;
 
+    public SeleccionUI(AppService appService) {
+        this.loginController = appService.getLoginController();
+        this.loginRepository = appService.getLoginRepository();
+        this.equipoController = appService.getEquipoController();
+        this.equipoRepository = appService.getEquipoRepository();
+        this.appConfig = appService.getAppConfig();
 
         chico.addMouseListener(new MouseAdapter() {
             @Override
@@ -101,6 +117,7 @@ public class SeleccionUI extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 Pokemon p = PokemonService.getPokemon(fireStarter);
+                seleccionInicial = p.id;
                 UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
@@ -109,6 +126,7 @@ public class SeleccionUI extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 Pokemon p = PokemonService.getPokemon(waterStarter);
+                seleccionInicial = p.id;
                 UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
@@ -117,6 +135,7 @@ public class SeleccionUI extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 Pokemon p = PokemonService.getPokemon(grassStarter);
+                seleccionInicial = p.id;
                 UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),informacion);
             }
         });
@@ -129,17 +148,24 @@ public class SeleccionUI extends JFrame{
                 }else if(opcionPersonaje == 2){
                     loginController.setPersona(User.username,2);
                 }
+                Login login = loginRepository.findByNombre(User.username);
+                Equipo equipoInicial = new Equipo(login.getId(),seleccionInicial);
+                equipoInicial.setN1(1);
+                equipoRepository.save(equipoInicial);
+                MenuUI menuUI = new MenuUI(appService);
+                menuUI.main(appService.getAppConfig().jFrame(Window.frame));
             }
         });
     }
 
     public void main(JFrame frame) {
-        frame.setContentPane(new SeleccionUI(loginController,loginRepository).pMain);
+
+        //frame.setContentPane(new SeleccionUI().pMain);
+        frame.setContentPane(SeleccionTab);
         //Tamaño de pantalla
         Dimension dimension = new Dimension(800,900);
         frame.setMinimumSize(dimension);
         frame.setResizable(false);
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

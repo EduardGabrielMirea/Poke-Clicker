@@ -1,0 +1,12 @@
+package poke.app.localData;
+
+import javax.swing.*;
+
+public class Window extends JFrame {
+    public static JFrame frame = new JFrame();
+    public Window() {
+        frame.setSize(800, 900);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+}
