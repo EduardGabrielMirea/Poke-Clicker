@@ -116,7 +116,7 @@ public class PokemonService {
         }
        else
         {
-            return "src/main/resources/img/defaultPokeball.png";
+            return "src/initUI/resources/img/defaultPokeball.png";
         }
     }
 }

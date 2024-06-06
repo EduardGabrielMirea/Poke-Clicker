@@ -12,7 +12,7 @@ import poke.app.service.AppService;
 import poke.app.service.UIService;
 import javax.swing.*;
 
-public class MenuUI {
+public class MenuUI{
     private final LoginController loginController;
     private final LoginRepository loginRepository;
     private final EquipoController equipoController;
@@ -61,22 +61,22 @@ public class MenuUI {
         this.equipoRepository = appService.getEquipoRepository();
         this.menuController = appService.getMenuController();
 
-        menuController.setImageLocal("src/main/resources/img/Poke-Clicker 300x101.png", titulo);
+        menuController.setImageLocal("src/initUI/resources/img/Poke-Clicker 300x101.png", titulo);
         Nombre.setText(User.username.toUpperCase());
 
         imagesInPokemonButtons(User.username,equipoController);
 
         if (loginController.getPersonaGenero(User.username)==1)
         {
-           menuController.setImageLocal("src/main/resources/img/icons/redPlayer.png",Foto);
+           menuController.setImageLocal("src/initUI/resources/img/icons/redPlayer.png",Foto);
         } else if (loginController.getPersonaGenero(User.username)==2)
         {
-            menuController.setImageLocal("src/main/resources/img/icons/leafPlayer.png",Foto);
+            menuController.setImageLocal("src/initUI/resources/img/icons/leafPlayer.png",Foto);
         }
 
     }
 
-    public void main(JFrame frame) {
+    public void initUI(JFrame frame) {
         frame.setContentPane(menuUI);
         frame.setSize(800, 900);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

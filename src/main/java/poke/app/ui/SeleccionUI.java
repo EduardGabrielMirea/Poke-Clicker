@@ -1,7 +1,5 @@
 package poke.app.ui;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import poke.app.config.AppConfig;
 import poke.app.controller.EquipoController;
@@ -24,13 +22,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 @Component
-public class SeleccionUI extends JFrame{
+public class SeleccionUI{
 
-    private final LoginController loginController;
-    private final LoginRepository loginRepository;
-    private final EquipoRepository equipoRepository;
-    private final EquipoController equipoController;
-    private final AppConfig appConfig;
+    private LoginController loginController;
+    private LoginRepository loginRepository;
+    private EquipoRepository equipoRepository;
+    private EquipoController equipoController;
+    private AppConfig appConfig;
     int opcionPersonaje = 0;
 
     private JTabbedPane SeleccionTab;
@@ -153,12 +151,32 @@ public class SeleccionUI extends JFrame{
                 equipoInicial.setN1(1);
                 equipoRepository.save(equipoInicial);
                 MenuUI menuUI = new MenuUI(appService);
-                menuUI.main(appService.getAppConfig().jFrame(Window.frame));
+                menuUI.initUI(appService.getAppConfig().jFrame(Window.frame));
             }
         });
     }
+    // Métodos setters para inyectar dependencias
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
+    }
 
-    public void main(JFrame frame) {
+    public void setLoginRepository(LoginRepository loginRepository) {
+        this.loginRepository = loginRepository;
+    }
+
+    public void setEquipoController(EquipoController equipoController) {
+        this.equipoController = equipoController;
+    }
+
+    public void setEquipoRepository(EquipoRepository equipoRepository) {
+        this.equipoRepository = equipoRepository;
+    }
+
+    public void setAppConfig(AppConfig appConfig) {
+        this.appConfig = appConfig;
+    }
+
+    public void initUI(JFrame frame) {
 
         //frame.setContentPane(new SeleccionUI().pMain);
         frame.setContentPane(SeleccionTab);

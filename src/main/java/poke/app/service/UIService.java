@@ -26,7 +26,7 @@ public class UIService extends JFrame {
             // Cargar la imagen desde la URL
             if (id == 0)
             {
-                ImageIcon icon = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+                ImageIcon icon = new ImageIcon("src/initUI/resources/img/defaultPokeball.png");
                 boton.setIcon(icon);
 
             }
@@ -55,7 +55,7 @@ public class UIService extends JFrame {
 
     public static void musicInLoop(){
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/main/resources/audio/PokemonRoute201.wav").getAbsoluteFile());
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/initUI/resources/audio/PokemonRoute201.wav").getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();

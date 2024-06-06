@@ -12,7 +12,7 @@ import java.awt.*;
 public class PokeApp {
 
 
-    public static void main(String[] args) {
+    public static void initUI(String[] args) {
         ConfigurableApplicationContext context =
                 new SpringApplicationBuilder(PokeApp.class)
                         .headless(false)
@@ -52,7 +52,7 @@ public class PokeApp {
     private static long lastTime = System.currentTimeMillis();
     private static int currentFPS = 0;
 
-    public static void main(String[] args) {
+    public static void initUI(String[] args) {
         ConfigurableApplicationContext context =
                 new SpringApplicationBuilder(PokeApp.class)
                         .headless(false)
@@ -112,6 +112,7 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import poke.app.service.UIService;
 import poke.app.ui.LoginUI;
 

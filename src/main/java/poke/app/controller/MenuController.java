@@ -50,10 +50,10 @@ public class MenuController
     public void elegirGenero(User username, AppService appService, JLabel Foto){
         if (appService.getLoginController().getPersonaGenero(User.username)==1)
         {
-          appService.getMenuController().setImageLocal("src/main/resources/img/icons/redPlayer.png",Foto);
+          appService.getMenuController().setImageLocal("src/initUI/resources/img/icons/redPlayer.png",Foto);
         } else if (appService.getLoginController().getPersonaGenero(User.username)==2)
         {
-            appService.getMenuController().setImageLocal("src/main/resources/img/icons/leafPlayer.png",Foto);
+            appService.getMenuController().setImageLocal("src/initUI/resources/img/icons/leafPlayer.png",Foto);
         }
     }
 
