@@ -11,6 +11,8 @@ import poke.app.repository.LoginRepository;
 import poke.app.service.AppService;
 import poke.app.service.UIService;
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MenuUI {
     private final LoginController loginController;
@@ -27,6 +29,9 @@ public class MenuUI {
     private JPanel p4;
     private JPanel p5;
     private JPanel p6;
+
+    private JLabel oficialArtwork;
+    private JLabel informacionPokemon;
     //pokemons
 
 
@@ -92,12 +97,71 @@ public class MenuUI {
             menuController.setImageLocal("src/main/resources/img/icons/leafPlayer.png",Foto);
         }
 
+        //LISTENERS DE BOTONES
+        Equipo equipo;
+        b1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+
+        b2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+
+        b3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+
+        b4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+
+        b5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+
+        b6.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
     }
 
     public void main(JFrame frame) {
         frame.setContentPane(menuUI);
         frame.setVisible(true);
     }
+
+//    //INSERTAR IMAGEN EN LABEL
+//    private void imagesInPokemonLabel(String name,JLabel label,EquipoController equipoController)
+//    {
+//        Equipo equipo = equipoController.getEquipo(login.getId());
+//        Login login = loginRepository.findByNombre(name);
+//        if(login!=null){
+//
+//            Equipo equipo = equipoController.getEquipo(login.getId());
+//            if(equipo.getP1()==0){
+//
+//            }
+//            UIService.mostrarImagenEnLabelById(equipo.getP1(),label);
+//        }
+//
+//    }
 
     //INSERTAR IMÁGENES EN BOTONES | SE PODRÍA MOVER A MenuController
     private void imagesInPokemonButtons(String name,EquipoController equipoController)
