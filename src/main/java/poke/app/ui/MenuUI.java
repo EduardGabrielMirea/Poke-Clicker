@@ -30,8 +30,7 @@ public class MenuUI {
     private JPanel p5;
     private JPanel p6;
 
-    private JLabel oficialArtwork;
-    private JLabel informacionPokemon;
+    private JLabel infoPokemon;
     //pokemons
 
 
@@ -62,6 +61,7 @@ public class MenuUI {
     private JButton entrenar;
     private JButton luchar;
     private JButton b1;
+    private JProgressBar barraExp;
     //Fin Botones
 
 
