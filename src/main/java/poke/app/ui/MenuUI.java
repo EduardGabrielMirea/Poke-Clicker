@@ -1,5 +1,7 @@
 package poke.app.ui;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 import poke.app.controller.EquipoController;
 import poke.app.controller.LoginController;
 import poke.app.controller.MenuController;
@@ -7,6 +9,7 @@ import poke.app.entity.Equipo;
 import poke.app.entity.Login;
 import poke.app.entity.Pokemon;
 import poke.app.localData.User;
+import poke.app.localData.Window;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
 import poke.app.service.AppService;
@@ -15,13 +18,15 @@ import poke.app.service.UIService;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+@Component
 public class MenuUI {
     private final LoginController loginController;
     private final LoginRepository loginRepository;
     private final EquipoController equipoController;
     private final EquipoRepository equipoRepository;
     private MenuController menuController;
+    private final ApplicationContext context;
+    private final JFrame frame = Window.frame;
 
 
     //pokemons
@@ -72,19 +77,20 @@ public class MenuUI {
 
 
 
-    public MenuUI(AppService appService)
+    public MenuUI(AppService appService,ApplicationContext context)
     {
         this.loginController = appService.getLoginController();
         this.loginRepository = appService.getLoginRepository();
         this.equipoController = appService.getEquipoController();
         this.equipoRepository = appService.getEquipoRepository();
         this.menuController = appService.getMenuController();
+        this.context = context;
 
         //PONE LA IMAGEN DEL TÍTULO
         menuController.setImageLocal("src/main/resources/img/Poke-Clicker 300x101.png", titulo);
 
-        //BUSCA USUARIO EN MAYÚSCULAS
-        Nombre.setText(User.username.toUpperCase());
+        // USUARIO EN MAYÚSCULAS
+        //Nombre.setText(User.username.toUpperCase());
 
         //LLAMA AL MÉTODO PARA INSERTAR IMÁGENES EN LAS CASILLAS DE LOS POKEMON
         imagesInPokemonButtons(User.username,equipoController);
@@ -105,7 +111,7 @@ public class MenuUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                infoPokemon();
+                //infoPokemon();
             }
         });
 
@@ -113,6 +119,7 @@ public class MenuUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+
             }
         });
 
@@ -120,6 +127,7 @@ public class MenuUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+
             }
         });
 
@@ -127,6 +135,7 @@ public class MenuUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+
             }
         });
 
@@ -134,6 +143,7 @@ public class MenuUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+
             }
         });
 
@@ -141,11 +151,22 @@ public class MenuUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+
+            }
+        });
+
+
+        entrenar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                CombateUI combateUI = context.getBean(CombateUI.class);
+                combateUI.initCombateUI();
             }
         });
     }
 
-    public void main(JFrame frame) {
+    public void initMenuUI() {
         frame.setContentPane(menuUI);
         frame.setVisible(true);
     }

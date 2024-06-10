@@ -5,11 +5,10 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
-import poke.app.config.AppConfig;
 import poke.app.service.AppService;
 import poke.app.service.UIService;
 import poke.app.ui.InicioSesionUI;
-import poke.app.ui.LoginUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -53,25 +52,25 @@ public class PokeApp {
 
              */
 
-            inicioSesionUI.main();
+            inicioSesionUI.initInicioSesionUI();
             UIService.musicInLoop();
             // Iniciamos el bucle de actualización
             //startUpdateLoop(loginUI);
         });
     }
 
-    private static void startUpdateLoop(LoginUI loginUI) {
+    private static void startUpdateLoop(InicioSesionUI inicioSesionUI) {
         Timer timer = new Timer(FRAME_DELAY, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Aquí puedes actualizar la UI o realizar las acciones necesarias
-                update(loginUI);
+                update(inicioSesionUI);
             }
         });
         timer.start();
     }
 
-    private static void update(LoginUI loginUI) {
+    private static void update(InicioSesionUI inicioSesionUI) {
         // Incrementa el contador de frames
         frameCount++;
 

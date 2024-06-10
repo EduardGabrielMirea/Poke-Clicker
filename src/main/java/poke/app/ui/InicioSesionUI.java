@@ -1,5 +1,7 @@
 package poke.app.ui;
 
+
+
 import org.springframework.stereotype.Component;
 import poke.app.controller.LoginController;
 import poke.app.entity.Login;
@@ -12,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import org.springframework.context.ApplicationContext;
 
 @Component
 public class InicioSesionUI {
@@ -30,11 +33,14 @@ public class InicioSesionUI {
 
     private final LoginController loginController;
     private final LoginRepository loginRepository;
+    private final ApplicationContext context;
     private final JFrame frame = Window.frame;
 
-    public InicioSesionUI(AppService appService) {
+    public InicioSesionUI(AppService appService,ApplicationContext context) {
         this.loginController = appService.getLoginController();
         this.loginRepository = appService.getLoginRepository();
+        this.context = context;
+
 
         nameField.addActionListener(new ActionListener() {
             @Override
@@ -82,13 +88,23 @@ public class InicioSesionUI {
                     if(loginController.isConfigured(nombreUser)){
 
                         JOptionPane.showMessageDialog(null,"Bienvenido "+nameField.getText());
-                        MenuUI menuUI = new MenuUI(appService);
-                        menuUI.main(Window.frame);
+
+                        MenuUI menuUI = context.getBean(MenuUI.class);
+                        menuUI.initMenuUI();
+                        /*
+                         MenuUI menuUI = new MenuUI(appService);
+                        menuUI.initMenuUI(Window.frame);
+                         */
                     }else{
 
                         JOptionPane.showMessageDialog(null,"Bienvenido "+nameField.getText()+" necesitamos que configures tu usuario.");
+                        SeleccionUI seleccionUI = context.getBean(SeleccionUI.class);
+                        seleccionUI.initSeleccionUI();
+                        /*
                         SeleccionUI seleccionUI1 = new SeleccionUI(appService);
-                        seleccionUI1.main(Window.frame);
+                        seleccionUI1.initSeleccionUI(Window.frame);
+
+                         */
                     }
                 }else{
                     JOptionPane.showMessageDialog(null,"No se ha podido iniciar sesión con el usuario");
@@ -97,7 +113,7 @@ public class InicioSesionUI {
         });
     }
 
-    public void main() {
+    public void initInicioSesionUI() {
         frame.setContentPane(inicioSesion);
         frame.setVisible(true);
     }

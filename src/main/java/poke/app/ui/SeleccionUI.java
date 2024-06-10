@@ -1,7 +1,8 @@
 package poke.app.ui;
 
 import org.springframework.stereotype.Component;
-import poke.app.config.AppConfig;
+//import poke.app.config.AppConfig;
+import org.springframework.context.ApplicationContext;
 import poke.app.controller.EquipoController;
 import poke.app.controller.LoginController;
 import poke.app.entity.Equipo;
@@ -28,7 +29,9 @@ public class SeleccionUI{
     private LoginRepository loginRepository;
     private EquipoRepository equipoRepository;
     private EquipoController equipoController;
-    private AppConfig appConfig;
+    private final ApplicationContext context;
+    private final JFrame frame = Window.frame;
+    //private AppConfig appConfig;
     int opcionPersonaje = 0;
 
     private JTabbedPane SeleccionTab;
@@ -59,12 +62,14 @@ public class SeleccionUI{
     private int seleccionInicial;
     private int nivelInicial;
 
-    public SeleccionUI(AppService appService) {
+    public SeleccionUI(AppService appService,ApplicationContext context) {
         this.loginController = appService.getLoginController();
         this.loginRepository = appService.getLoginRepository();
         this.equipoController = appService.getEquipoController();
         this.equipoRepository = appService.getEquipoRepository();
-        this.appConfig = appService.getAppConfig();
+        this.context = context;
+
+       // this.appConfig = appService.getAppConfig();
 
         chico.addMouseListener(new MouseAdapter() {
             @Override
@@ -150,16 +155,14 @@ public class SeleccionUI{
                 Equipo equipoInicial = new Equipo(login.getId(),seleccionInicial);
                 equipoInicial.setN1(1);
                 equipoRepository.save(equipoInicial);
-                MenuUI menuUI = new MenuUI(appService);
-                menuUI.initUI(appService.getAppConfig().jFrame(Window.frame));
+                MenuUI menuUI = context.getBean(MenuUI.class);
+                menuUI.initMenuUI();
             }
         });
     }
 
-    public void initUI(JFrame frame) {
-
+    public void initSeleccionUI() {
         frame.setContentPane(SeleccionTab);
         frame.setVisible(true);
-
     }
 }

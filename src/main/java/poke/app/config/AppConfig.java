@@ -1,13 +1,9 @@
-package poke.app.config;
+/*package poke.app.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import poke.app.localData.Window;
-import poke.app.ui.LoginUI;
 
 import javax.swing.JFrame;
-import poke.app.service.AppService;
-import poke.app.ui.SeleccionUI;
 
 
 @Configuration
@@ -47,4 +43,5 @@ public class AppConfig {
     }
 
  */
-}
+
+
