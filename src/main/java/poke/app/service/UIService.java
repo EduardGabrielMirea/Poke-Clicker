@@ -1,15 +1,31 @@
 package poke.app.service;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import javax.sound.sampled.*;
 
 public class UIService extends JFrame {
+    public static void mostrarImagenEnLabelById(int id,JLabel label){
+        try {
+            // Cargar la imagen desde la URL
+            if (id == 0) {
+                ImageIcon icon = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+                label.setIcon(icon);
+
+            } else {
+                URL url = new URL(PokemonService.urlSpritePokemonByID(id));
+                ImageIcon icon = new ImageIcon(url);
+                //label.setIcon(icon);
+                label.setIcon(icon);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void mostrarImagenEnBoton(String nombrePokemon,JButton boton){
         try {
             // Cargar la imagen desde la URL

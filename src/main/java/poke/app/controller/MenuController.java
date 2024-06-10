@@ -1,11 +1,8 @@
 package poke.app.controller;
 
-
-
 import org.springframework.stereotype.Component;
 import poke.app.localData.User;
 import poke.app.service.AppService;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
@@ -56,7 +53,6 @@ public class MenuController
             appService.getMenuController().setImageLocal("src/initUI/resources/img/icons/leafPlayer.png",Foto);
         }
     }
-
 
 
 }

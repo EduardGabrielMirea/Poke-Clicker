@@ -158,16 +158,8 @@ public class SeleccionUI{
 
     public void initUI(JFrame frame) {
 
-        //frame.setContentPane(new SeleccionUI().pMain);
         frame.setContentPane(SeleccionTab);
-        //Tamaño de pantalla
-        Dimension dimension = new Dimension(800,900);
-        frame.setMinimumSize(dimension);
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
         frame.setVisible(true);
-        System.out.println(username);
 
     }
 }
