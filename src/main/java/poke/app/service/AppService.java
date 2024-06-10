@@ -10,7 +10,7 @@ import poke.app.controller.PokemonController;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
 
-import javax.swing.*;
+
 
 @Service
 public class AppService
@@ -61,5 +61,6 @@ public class AppService
     public AppConfig getAppConfig() {
         return appConfig;
     }
+
 
 }

@@ -25,9 +25,11 @@
             <properties>
               <background color="-14844042"/>
               <enabled value="true"/>
+              <focusable value="false"/>
               <foreground color="-14844042"/>
               <icon value="img/Poke-Clicker.png"/>
               <text value=""/>
+              <visible value="true"/>
             </properties>
           </component>
         </children>

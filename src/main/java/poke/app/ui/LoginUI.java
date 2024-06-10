@@ -137,7 +137,7 @@ public class LoginUI{
                 JOptionPane.showMessageDialog(null,String.format("El usuario %s ya existe",usernameField.getText()));
             }
         });
-        //frame.setVisible(true);
+
     }
 
 

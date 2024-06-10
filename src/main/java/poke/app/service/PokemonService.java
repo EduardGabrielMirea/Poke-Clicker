@@ -3,7 +3,6 @@ package poke.app.service;
 import com.google.gson.Gson;
 import poke.app.entity.Pokemon;
 import poke.app.entity.PokemonSpecies;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;

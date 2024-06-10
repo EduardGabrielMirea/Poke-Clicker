@@ -7,7 +7,6 @@ import poke.app.localData.User;
 import poke.app.localData.Window;
 import poke.app.repository.LoginRepository;
 import poke.app.service.AppService;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
