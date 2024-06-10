@@ -74,6 +74,11 @@ public class PokemonService {
         return p;
     }
 
+    public static Pokemon getPokemon(int id){
+        Pokemon p = llamadasAPIporID(id);
+        return p;
+    }
+
     public static Pokemon getName(int id){
         Pokemon p = llamadasAPIporID(id);
         return p;

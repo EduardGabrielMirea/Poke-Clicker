@@ -5,10 +5,12 @@ import poke.app.controller.LoginController;
 import poke.app.controller.MenuController;
 import poke.app.entity.Equipo;
 import poke.app.entity.Login;
+import poke.app.entity.Pokemon;
 import poke.app.localData.User;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
 import poke.app.service.AppService;
+import poke.app.service.PokemonService;
 import poke.app.service.UIService;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -30,7 +32,7 @@ public class MenuUI {
     private JPanel p5;
     private JPanel p6;
 
-    private JLabel infoPokemon;
+    private JTextArea infoPokemon;
     //pokemons
 
 
@@ -61,7 +63,8 @@ public class MenuUI {
     private JButton entrenar;
     private JButton luchar;
     private JButton b1;
-    private JProgressBar barraExp;
+    private JButton evolucionar;
+    private JButton tiendaButton;
     //Fin Botones
 
 
@@ -98,11 +101,11 @@ public class MenuUI {
         }
 
         //LISTENERS DE BOTONES
-        Equipo equipo;
         b1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                infoPokemon();
             }
         });
 
@@ -182,6 +185,19 @@ public class MenuUI {
             UIService.mostrarImagenEnBotonById(equipo.getP6(),b6);
         }
 
+    }
+
+    private void infoPokemon(int id,EquipoController equipoController){
+        Login login = loginRepository.findByNombre(User.username);
+        if(login!=null){
+
+            Equipo equipo = equipoController.getEquipo(login.getId());
+            if(equipo.getP1()==0){
+                Pokemon p = PokemonService.getPokemon(id);
+                UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),infoPokemon);
+            }
+
+        }
     }
 
 }
