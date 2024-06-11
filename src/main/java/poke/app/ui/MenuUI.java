@@ -103,7 +103,7 @@ public class MenuUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                infoPokemon();
+                //infoPokemon();
             }
         });
 
