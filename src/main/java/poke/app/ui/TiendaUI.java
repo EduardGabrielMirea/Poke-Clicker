@@ -16,6 +16,12 @@ public class TiendaUI {
     private JPanel derecha;
     private JPanel abajo;
     private JPanel arriba;
+    private JButton p1;
+    private JButton p2;
+    private JButton p3;
+    private JButton p4;
+    private JButton p5;
+    private JButton p6;
 
 
     public void ventanaTienda() {
