@@ -83,13 +83,11 @@ public class MenuUI {
         //PONE LA IMAGEN DEL TÍTULO
         menuController.setImageLocal("src/main/resources/img/Poke-Clicker 300x101.png", titulo);
 
-        //BUSCA USUARIO EN MAYÚSCULAS
+        //MUESTRA EL USUARIO EN MAYÚSCULAS
         Nombre.setText(User.username.toUpperCase());
 
         //LLAMA AL MÉTODO PARA INSERTAR IMÁGENES EN LAS CASILLAS DE LOS POKEMON
         imagesInPokemonButtons(User.username,equipoController);
-
-
 
         //COMPROBAR SI EL USUARIO ES CHICO O CHICA PARA ELEGIR FOTO DE PERFIL
         if (loginController.getPersonaGenero(User.username)==1)
@@ -187,12 +185,12 @@ public class MenuUI {
 
     }
 
-    private void infoPokemon(int id,EquipoController equipoController){
+    private void infoPokemon(int id,int idPokemon){
         Login login = loginRepository.findByNombre(User.username);
         if(login!=null){
 
             Equipo equipo = equipoController.getEquipo(login.getId());
-            if(equipo.getP1()==0){
+            if(equipo.getP2()==0){
                 Pokemon p = PokemonService.getPokemon(id);
                 UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),infoPokemon);
             }
