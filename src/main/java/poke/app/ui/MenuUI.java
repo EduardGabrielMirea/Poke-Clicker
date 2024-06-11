@@ -141,6 +141,14 @@ public class MenuUI {
                 super.mouseClicked(e);
             }
         });
+        tiendaButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                TiendaUI tiendaUI = new TiendaUI();
+                tiendaUI.ventanaTienda();
+            }
+        });
     }
 
     public void main(JFrame frame) {
