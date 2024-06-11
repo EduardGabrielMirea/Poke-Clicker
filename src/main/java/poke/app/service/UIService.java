@@ -1,10 +1,13 @@
 package poke.app.service;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import javax.sound.sampled.*;
+
+import static poke.app.service.PokemonService.urlSpritePokemonByIDStatico;
 
 public class UIService extends JFrame {
     public static void mostrarImagenEnLabelById(int id,JLabel label){
@@ -57,6 +60,45 @@ public class UIService extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void mostrarImagenEnBotonByIdStatico(int id,JButton boton){
+        try {
+            // Cargar la imagen desde la URL
+            if (id == 0)
+            {
+                ImageIcon icon = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+                boton.setIcon(icon);
+
+            }
+            else
+            {
+                URL url = new URL(urlSpritePokemonByIDStatico(id));
+                ImageIcon icon = new ImageIcon(url);
+                boton.setIcon(icon);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void resizeImgInButton(int idPokemon,JButton boton){
+        // Load the original image
+        ImageIcon originalIcon = new ImageIcon(urlSpritePokemonByIDStatico(idPokemon));
+        Image originalImage = originalIcon.getImage();
+
+        // Resize the image
+        int newWidth = 100; // Desired width
+        int newHeight = 100; // Desired height
+        Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Create an ImageIcon from the resized image
+        ImageIcon resizedIcon = new ImageIcon(resizedImage);
+
+        // Set the resized icon on the button
+        boton.setIcon(resizedIcon);
     }
 
     public static void asignarTextoAlabel(String texto,JLabel label){

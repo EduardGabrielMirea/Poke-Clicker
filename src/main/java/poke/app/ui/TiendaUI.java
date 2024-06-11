@@ -2,8 +2,11 @@ package poke.app.ui;
 
 import org.springframework.stereotype.Component;
 import poke.app.localData.Window;
+import poke.app.service.UIService;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 @Component
@@ -23,6 +26,53 @@ public class TiendaUI {
     private JButton p5;
     private JButton p6;
 
+
+    public TiendaUI() {
+        //Mostrar Pokemons
+        UIService.mostrarImagenEnBotonByIdStatico(1,p1);
+        UIService.mostrarImagenEnBotonByIdStatico(37,p2);
+        UIService.resizeImgInButton(68,p3);
+        UIService.resizeImgInButton(132,p4);
+        UIService.resizeImgInButton(29,p5);
+        UIService.resizeImgInButton(12,p6);
+
+        p1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+        p2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+        p3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+        p4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+        p5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+        p6.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+    }
 
     public void ventanaTienda() {
         JFrame frame = Window.frame;

@@ -123,4 +123,24 @@ public class PokemonService {
             return "src/main/resources/img/defaultPokeball.png";
         }
     }
+
+    public static String urlSpritePokemonByIDStatico(int id){
+
+        if (id != 0)
+        {
+            Pokemon p = llamadasAPIporID(id);
+            //Sprites pequeñitos
+            //String sprite = p.sprites.versions.generationVIII.icons.frontDefault;
+            //Sprites más grandecitos
+            //String sprite = p.sprites.frontDefault;
+            //Sprites animados
+            String sprite = p.sprites.other.officialArtwork.frontDefault;
+            //String sprite = p.sprites.versions.generationVIII.icons.frontDefault;
+            return sprite;
+        }
+        else
+        {
+            return "src/main/resources/img/defaultPokeball.png";
+        }
+    }
 }
