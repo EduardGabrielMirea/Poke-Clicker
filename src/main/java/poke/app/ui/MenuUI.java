@@ -15,6 +15,7 @@ import poke.app.service.UIService;
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class MenuUI {
     private final LoginController loginController;
@@ -145,7 +146,12 @@ public class MenuUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                TiendaUI tiendaUI = new TiendaUI();
+                TiendaUI tiendaUI = null;
+                try {
+                    tiendaUI = new TiendaUI();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 tiendaUI.ventanaTienda();
             }
         });

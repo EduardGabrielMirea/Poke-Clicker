@@ -1,15 +1,19 @@
 package poke.app.service;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import javax.sound.sampled.*;
 
 import static poke.app.service.PokemonService.urlSpritePokemonByIDStatico;
 
 public class UIService extends JFrame {
+
     public static void mostrarImagenEnLabelById(int id,JLabel label){
         try {
             // Cargar la imagen desde la URL
@@ -61,6 +65,24 @@ public class UIService extends JFrame {
             e.printStackTrace();
         }
     }
+    public static void ImagenEnJlabelByIdStatico(int id, JLabel label) throws IOException {
+        try {
+            if (id == 0) {
+
+                ImageIcon icon = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+            } else {
+                URL url = new URL(urlSpritePokemonByIDStatico(id));
+                BufferedImage image = resize(url, new Dimension(100, 100));
+                ImageIcon icon = new ImageIcon(image);
+                label.setIcon(icon);
+            }
+        } finally {
+
+        }
+
+    }
+
+
 
     public static void mostrarImagenEnBotonByIdStatico(int id,JButton boton){
         try {
@@ -83,6 +105,17 @@ public class UIService extends JFrame {
             e.printStackTrace();
         }
     }
+
+
+    private static BufferedImage resize(final URL url, final Dimension size) throws IOException{
+        final BufferedImage image = ImageIO.read(url);
+        final BufferedImage resized = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);
+        final Graphics2D g = resized.createGraphics();
+        g.drawImage(image, 0, 0, size.width, size.height, null);
+        g.dispose();
+        return resized;
+    }
+
 
     public static void resizeImgInButton(int idPokemon,JButton boton){
         // Load the original image

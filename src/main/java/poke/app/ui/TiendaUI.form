@@ -63,21 +63,11 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="5df07" class="javax.swing.JButton" binding="p1">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="50" height="50"/>
-                    <maximum-size width="50" height="50"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <label value=""/>
-                  <text value=""/>
-                </properties>
-              </component>
               <component id="2cfa7" class="javax.swing.JButton" binding="p2">
                 <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
+                    <preferred-size width="90" height="90"/>
+                  </grid>
                 </constraints>
                 <properties>
                   <label value=""/>
@@ -86,7 +76,9 @@
               </component>
               <component id="e1546" class="javax.swing.JButton" binding="p3">
                 <constraints>
-                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="90" height="90"/>
+                  </grid>
                 </constraints>
                 <properties>
                   <label value=""/>
@@ -117,6 +109,18 @@
                 </constraints>
                 <properties>
                   <label value=""/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="f9cee" class="javax.swing.JLabel" binding="p1">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false">
+                    <preferred-size width="80" height="80"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-12209768"/>
+                  <foreground color="-11082326"/>
                   <text value=""/>
                 </properties>
               </component>
