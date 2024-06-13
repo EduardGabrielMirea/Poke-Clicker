@@ -22,6 +22,4 @@ public interface LoginRepository extends CrudRepository<Login, Long> {
     boolean existsByNombre(String nombre);
 
     Login findLoginById(long id);
-
-    Long getIdByNombre(String nombre);
 }

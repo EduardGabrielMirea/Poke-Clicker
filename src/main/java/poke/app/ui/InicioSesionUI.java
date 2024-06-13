@@ -78,14 +78,16 @@ public class InicioSesionUI {
                 super.mouseClicked(e);
                 String nombreUser = nameField.getText();
                 User.username = nombreUser;
+                Login user = loginRepository.findByNombre(nombreUser);
+                User.id = user.getId();
                 if(loginController.login(nombreUser, passField.getText())) {
                     if(loginController.isConfigured(nombreUser)){
-                        JOptionPane.showMessageDialog(null,"Bienvenido "+nameField.getText());
+                        JOptionPane.showMessageDialog(null,"Bienvenido "+nombreUser);
                         MenuUI menuUI = new MenuUI(appService);
                         menuUI.main(Window.frame);
                     }else{
 
-                        JOptionPane.showMessageDialog(null,"Bienvenido "+nameField.getText()+" necesitamos que configures tu usuario.");
+                        JOptionPane.showMessageDialog(null,"Bienvenido "+nombreUser+" necesitamos que configures tu usuario.");
                         SeleccionUI seleccionUI1 = new SeleccionUI(appService);
                         seleccionUI1.main(Window.frame);
                     }
