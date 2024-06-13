@@ -80,7 +80,6 @@ public class InicioSesionUI {
                 User.username = nombreUser;
                 if(loginController.login(nombreUser, passField.getText())) {
                     if(loginController.isConfigured(nombreUser)){
-
                         JOptionPane.showMessageDialog(null,"Bienvenido "+nameField.getText());
                         MenuUI menuUI = new MenuUI(appService);
                         menuUI.main(Window.frame);

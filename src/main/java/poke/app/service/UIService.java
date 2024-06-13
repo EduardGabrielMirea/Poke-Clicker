@@ -1,5 +1,8 @@
 package poke.app.service;
 
+import poke.app.entity.Equipo;
+import poke.app.entity.Login;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -65,10 +68,9 @@ public class UIService extends JFrame {
             e.printStackTrace();
         }
     }
-    public static void ImagenEnJlabelByIdStatico(int id, JLabel label) throws IOException {
+    public static void mostrarImagenEnJlabelByIdStatico(int id, JLabel label) throws IOException {
         try {
             if (id == 0) {
-
                 ImageIcon icon = new ImageIcon("src/main/resources/img/defaultPokeball.png");
             } else {
                 URL url = new URL(urlSpritePokemonByIDStatico(id));
@@ -154,4 +156,6 @@ public class UIService extends JFrame {
             System.out.println("Error al reproducir el sonido.");
         }
     }
+
+
 }

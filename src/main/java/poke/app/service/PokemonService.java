@@ -2,6 +2,7 @@ package poke.app.service;
 
 import com.google.gson.Gson;
 import poke.app.entity.Pokemon;
+import poke.app.entity.PokemonImages;
 import poke.app.entity.PokemonSpecies;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -142,5 +143,9 @@ public class PokemonService {
         {
             return "src/main/resources/img/defaultPokeball.png";
         }
+    }
+
+    public static int idOficialDeOrder(int order){
+        return 0;
     }
 }

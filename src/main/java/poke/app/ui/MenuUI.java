@@ -148,7 +148,7 @@ public class MenuUI {
                 super.mouseClicked(e);
                 TiendaUI tiendaUI = null;
                 try {
-                    tiendaUI = new TiendaUI();
+                    tiendaUI = new TiendaUI(appService);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
