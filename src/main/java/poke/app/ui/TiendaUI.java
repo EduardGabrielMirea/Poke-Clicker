@@ -42,6 +42,14 @@ public class TiendaUI {
     private JLabel p4;
     private JLabel p5;
     private JLabel p6;
+    private JLabel ps1;
+    private JLabel ps2;
+    private JLabel ps3;
+    private JLabel ps4;
+    private JLabel ps5;
+    private JLabel ps6;
+    private JLabel ps7;
+    private JLabel ps8;
 
 
     public TiendaUI(AppService appService) throws IOException {
@@ -52,9 +60,7 @@ public class TiendaUI {
         this.menuController = appService.getMenuController();
 
 
-        //Mostrar Pokemon
-
-        //UIService.mostrarImagenEnJlabelByIdStatico(135,p1);
+        //Mostrar Pokemon del equipo en tienda
         if(User.id != null){
             UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP1(),p1);
             UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP2(),p2);
@@ -64,7 +70,17 @@ public class TiendaUI {
             UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP6(),p6);
         }
 
-        //UIService.most(12,p1);
+        //Tienda Pokemon con scrollbar
+        UIService.mostrarImagenEnJlabelByIdStatico(1,ps1);
+        UIService.mostrarImagenEnJlabelByIdStatico(2,ps2);
+        UIService.mostrarImagenEnJlabelByIdStatico(3,ps3);
+        UIService.mostrarImagenEnJlabelByIdStatico(4,ps4);
+        UIService.mostrarImagenEnJlabelByIdStatico(5,ps5);
+        UIService.mostrarImagenEnJlabelByIdStatico(6,ps6);
+        UIService.mostrarImagenEnJlabelByIdStatico(7,ps7);
+        UIService.mostrarImagenEnJlabelByIdStatico(8,ps8);
+
+
         p1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
