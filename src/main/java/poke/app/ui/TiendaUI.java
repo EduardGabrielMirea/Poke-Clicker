@@ -6,6 +6,7 @@ import poke.app.controller.LoginController;
 import poke.app.controller.MenuController;
 import poke.app.entity.Equipo;
 import poke.app.entity.Login;
+import poke.app.entity.PokemonSpecies;
 import poke.app.localData.User;
 import poke.app.localData.Window;
 import poke.app.repository.EquipoRepository;
@@ -30,7 +31,6 @@ public class TiendaUI {
     private JPanel panelPrincipal;
     private JTabbedPane Tienda;
     private JPanel mejoras;
-    private JPanel pokemon;
     private JScrollBar scrollBar1;
     private JPanel derecha;
     private JPanel abajo;
@@ -50,6 +50,7 @@ public class TiendaUI {
     private JLabel ps6;
     private JLabel ps7;
     private JLabel ps8;
+    private JScrollPane Pokemon;
 
 
     public TiendaUI(AppService appService) throws IOException {
@@ -71,14 +72,14 @@ public class TiendaUI {
         }
 
         //Tienda Pokemon con scrollbar
-        UIService.mostrarImagenEnJlabelByIdStatico(1,ps1);
-        UIService.mostrarImagenEnJlabelByIdStatico(2,ps2);
-        UIService.mostrarImagenEnJlabelByIdStatico(3,ps3);
-        UIService.mostrarImagenEnJlabelByIdStatico(4,ps4);
-        UIService.mostrarImagenEnJlabelByIdStatico(5,ps5);
-        UIService.mostrarImagenEnJlabelByIdStatico(6,ps6);
-        UIService.mostrarImagenEnJlabelByIdStatico(7,ps7);
-        UIService.mostrarImagenEnJlabelByIdStatico(8,ps8);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps1);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps2);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps3);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps4);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps5);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps6);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps7);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps8);
 
 
         p1.addMouseListener(new MouseAdapter() {

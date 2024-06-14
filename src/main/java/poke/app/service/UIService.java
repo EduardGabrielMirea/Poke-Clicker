@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Random;
 import javax.sound.sampled.*;
 
 import static poke.app.service.PokemonService.urlSpritePokemonByIDStatico;
@@ -157,5 +158,10 @@ public class UIService extends JFrame {
         }
     }
 
+    public static int pokemonRandomizer(int[] listaPokemon){
+        Random rand = new Random();
+        int randomNumber = rand.nextInt(listaPokemon.length-1 - 0 + 1) + 0;
+        return listaPokemon[randomNumber];
+    }
 
 }

@@ -9,7 +9,7 @@ public class PokemonSpecies {
     public int capture_rate;
     public boolean is_legendary;
     public List<FlavorTextEntry> flavor_text_entries;
-    int[] pokemonJefesIDs = {
+    public static int[] pokemonJefesIDs = {
             248, // Tyranitar (Gen 2)
             254, // Sceptile (Gen 3)
             260, // Swampert (Gen 3)
@@ -34,7 +34,7 @@ public class PokemonSpecies {
             905  // Enamorus (Gen 8)
 
     };
-    int[] primeraEtapaIDs = {
+    public static int[] primeraEtapaIDs = {
             19, // Rattata
             21, // Spearow
             27, // Sandshrew
@@ -93,7 +93,7 @@ public class PokemonSpecies {
             147  // Dratini
     };
 
-    int[] minionIDs = {
+    public static int[] minionIDs = {
             175, // Togepi (Gen 2)
             176, // Togetic (Gen 2)
             183, // Marill (Gen 2)
