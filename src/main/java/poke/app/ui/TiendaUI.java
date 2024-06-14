@@ -55,12 +55,14 @@ public class TiendaUI {
         //Mostrar Pokemon
 
         //UIService.mostrarImagenEnJlabelByIdStatico(135,p1);
-        //UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP1(),p1);
-        UIService.mostrarImagenEnJlabelByIdStatico(134,p2);
-        UIService.mostrarImagenEnJlabelByIdStatico(133,p3);
-        UIService.mostrarImagenEnJlabelByIdStatico(136,p4);
-        UIService.mostrarImagenEnJlabelByIdStatico(132,p5);
-        UIService.mostrarImagenEnJlabelByIdStatico(131,p6);
+        if(User.id != null){
+            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP1(),p1);
+            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP2(),p2);
+            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP3(),p3);
+            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP4(),p4);
+            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP5(),p5);
+            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP6(),p6);
+        }
 
         //UIService.most(12,p1);
         p1.addMouseListener(new MouseAdapter() {

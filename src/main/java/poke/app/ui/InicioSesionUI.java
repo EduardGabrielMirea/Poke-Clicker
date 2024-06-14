@@ -79,7 +79,9 @@ public class InicioSesionUI {
                 String nombreUser = nameField.getText();
                 User.username = nombreUser;
                 Login user = loginRepository.findByNombre(nombreUser);
-                User.id = user.getId();
+                if(user != null){
+                    User.id = user.getId();
+                }
                 if(loginController.login(nombreUser, passField.getText())) {
                     if(loginController.isConfigured(nombreUser)){
                         JOptionPane.showMessageDialog(null,"Bienvenido "+nombreUser);
