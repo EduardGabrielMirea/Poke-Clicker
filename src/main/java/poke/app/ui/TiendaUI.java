@@ -31,7 +31,6 @@ public class TiendaUI {
 
     private JPanel panelPrincipal;
     private JTabbedPane Tienda;
-    private JPanel mejoras;
     private JScrollBar scrollBar1;
     private JPanel derecha;
     private JPanel abajo;
@@ -52,6 +51,10 @@ public class TiendaUI {
     private JLabel ps7;
     private JLabel ps8;
     private JScrollPane Pokemon;
+    private JPanel panelScrollBar2;
+    private JPanel equipoPokemon;
+    private JScrollPane equipoPokemonScroll;
+    private JPanel panelScrollBar1;
 
 
     public TiendaUI(AppService appService) throws IOException {

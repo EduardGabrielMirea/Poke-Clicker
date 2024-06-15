@@ -77,7 +77,7 @@ public class UIService extends JFrame {
                 ImageIcon icon = new ImageIcon("src/main/resources/img/defaultPokeball.png");
             } else {
                 URL url = new URL(urlSpritePokemonByIDStatico(id));
-                BufferedImage image = resize(url, new Dimension(100, 100));
+                BufferedImage image = resize(url, new Dimension(250, 250));
                 ImageIcon icon = new ImageIcon(image);
                 label.setIcon(icon);
                 //Conseguir el nombre en el label
