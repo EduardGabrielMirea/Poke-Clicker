@@ -2,6 +2,8 @@ package poke.app.service;
 
 import poke.app.entity.Equipo;
 import poke.app.entity.Login;
+import poke.app.entity.Pokemon;
+import poke.app.entity.PokemonSpecies;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -78,6 +80,9 @@ public class UIService extends JFrame {
                 BufferedImage image = resize(url, new Dimension(100, 100));
                 ImageIcon icon = new ImageIcon(image);
                 label.setIcon(icon);
+                //Conseguir el nombre en el label
+                Pokemon p = PokemonService.getPokemon(id);
+                label.setText(String.format("%s",p.name));
             }
         } finally {
 

@@ -5,15 +5,10 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
-import poke.app.config.AppConfig;
 import poke.app.service.AppService;
 import poke.app.service.UIService;
 import poke.app.ui.InicioSesionUI;
-import poke.app.ui.LoginUI;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 @SpringBootApplication(scanBasePackages = {"poke.app"})
 
@@ -22,11 +17,11 @@ public class PokeApp {
     @Autowired
     private AppService appService;
 
-    private static final int FRAME_RATE = 60; // 60 FPS
-    private static final int FRAME_DELAY = 1000 / FRAME_RATE;
-    private static long frameCount = 0;
-    private static long lastTime = System.currentTimeMillis();
-    private static int currentFPS = 0;
+    //private static final int FRAME_RATE = 60; // 60 FPS
+    //private static final int FRAME_DELAY = 1000 / FRAME_RATE;
+    //private static long frameCount = 0;
+    //private static long lastTime = System.currentTimeMillis();
+    //private static int currentFPS = 0;
 
     public static void main(String[] args) {
 
@@ -38,8 +33,10 @@ public class PokeApp {
 
         EventQueue.invokeLater(() -> {
             // Obtenemos los objetos form a través de Spring
-            //LoginUI loginUI = context.getBean(LoginUI.class);
+            //Inicio de Sesión UI
             InicioSesionUI inicioSesionUI = context.getBean(InicioSesionUI.class);
+            inicioSesionUI.main();
+            UIService.musicInLoop();
 
             /* HILOS
 
@@ -53,14 +50,13 @@ public class PokeApp {
 
              */
 
-            inicioSesionUI.main();
-            UIService.musicInLoop();
+
             // Iniciamos el bucle de actualización
             //startUpdateLoop(loginUI);
         });
     }
 
-    private static void startUpdateLoop(LoginUI loginUI) {
+    /*private static void startUpdateLoop(LoginUI loginUI) {
         Timer timer = new Timer(FRAME_DELAY, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,6 +84,6 @@ public class PokeApp {
 
 
         }
-    }
+    }*/
 
 }

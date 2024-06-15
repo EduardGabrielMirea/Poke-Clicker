@@ -51,6 +51,7 @@ public class MenuUI {
     //Paneles
 
     //Marcos de los pokemons
+    private JButton b1;
     private JButton b2;
     private JButton b3;
     private JButton b4;
@@ -58,20 +59,12 @@ public class MenuUI {
     private JButton b6;
     //Fin marcos
 
-
-
     //Botones
     private JButton entrenar;
     private JButton luchar;
-    private JButton b1;
     private JButton evolucionar;
     private JButton tiendaButton;
     //Fin Botones
-
-
-
-
-
 
     public MenuUI(AppService appService)
     {
@@ -145,14 +138,20 @@ public class MenuUI {
         tiendaButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                TiendaUI tiendaUI = null;
-                try {
-                    tiendaUI = new TiendaUI(appService);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-                tiendaUI.ventanaTienda();
+                //Hilos
+                Thread thread = new Thread(() ->
+                {
+                    //System.out.println("hilo ejecutado por"+Thread.currentThread().getName());
+                    super.mouseClicked(e);
+                    TiendaUI tiendaUI = null;
+                    try {
+                        tiendaUI = new TiendaUI(appService);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    tiendaUI.ventanaTienda();
+                });
+                thread.start();
             }
         });
     }
@@ -178,7 +177,7 @@ public class MenuUI {
 //
 //    }
 
-    //INSERTAR IMÁGENES EN BOTONES | SE PODRÍA MOVER A MenuController
+    //INSERTAR IMÁGENES EN BOTONES
     private void imagesInPokemonButtons(String name,EquipoController equipoController)
     {
         //Cambiar luego de refactorizar y unir las tablas bien

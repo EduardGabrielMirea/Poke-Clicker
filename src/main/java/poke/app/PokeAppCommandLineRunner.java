@@ -4,9 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import poke.app.repository.LoginRepository;
-import poke.app.ui.LoginUI;
-
-import java.awt.*;
 
 @Component
 public class PokeAppCommandLineRunner implements CommandLineRunner {

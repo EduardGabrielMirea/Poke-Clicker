@@ -6,7 +6,7 @@ import poke.app.controller.LoginController;
 import poke.app.controller.MenuController;
 import poke.app.entity.Equipo;
 import poke.app.entity.Login;
-import poke.app.entity.PokemonSpecies;
+import poke.app.localData.PokemonList;
 import poke.app.localData.User;
 import poke.app.localData.Window;
 import poke.app.repository.EquipoRepository;
@@ -15,6 +15,7 @@ import poke.app.service.AppService;
 import poke.app.service.UIService;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -72,14 +73,14 @@ public class TiendaUI {
         }
 
         //Tienda Pokemon con scrollbar
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps1);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps2);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps3);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps4);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps5);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps6);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps7);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonSpecies.primeraEtapaIDs),ps8);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps1);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps2);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps3);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps4);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps5);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps6);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps7);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps8);
 
 
         p1.addMouseListener(new MouseAdapter() {
@@ -119,6 +120,7 @@ public class TiendaUI {
                 super.mouseClicked(e);
             }
         });
+
     }
 
     public void ventanaTienda() {

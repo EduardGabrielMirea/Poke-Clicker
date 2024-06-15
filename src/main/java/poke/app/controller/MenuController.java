@@ -3,6 +3,7 @@ package poke.app.controller;
 import org.springframework.stereotype.Component;
 import poke.app.localData.User;
 import poke.app.service.AppService;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
@@ -11,10 +12,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 @Component
-public class MenuController
-{
-    public void setImageURL(String imagen, JLabel label){
+public class MenuController {
 
+    public void setImageURL(String imagen, JLabel label){
         try {
             URL url= new URL(imagen);
             BufferedImage image = ImageIO.read(url);
@@ -53,6 +53,5 @@ public class MenuController
             appService.getMenuController().setImageLocal("src/main/resources/img/icons/leafPlayer.png",Foto);
         }
     }
-
 
 }
