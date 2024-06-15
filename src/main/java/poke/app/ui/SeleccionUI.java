@@ -153,7 +153,7 @@ public class SeleccionUI extends JFrame{
                 equipoInicial.setN1(1);
                 equipoRepository.save(equipoInicial);
                 MenuUI menuUI = new MenuUI(appService);
-                menuUI.main(appService.getAppConfig().jFrame(Window.frame));
+                menuUI.main(Window.frame);
             }
         });
     }
