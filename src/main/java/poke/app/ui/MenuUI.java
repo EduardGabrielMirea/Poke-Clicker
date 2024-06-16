@@ -64,6 +64,7 @@ public class MenuUI {
     private JButton luchar;
     private JButton cheatMoney;
     private JButton tiendaButton;
+    private JLabel informacionPlayer;
     //Fin Botones
 
     public MenuUI(AppService appService)
@@ -154,6 +155,9 @@ public class MenuUI {
                 thread.start();
             }
         });
+
+        monedasInfo();
+
         cheatMoney.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -163,9 +167,11 @@ public class MenuUI {
                     user.setPokemonedas(user.getPokemonedas()+1);
                     System.out.println(user.getPokemonedas());
                     loginRepository.save(user);
+                    informacionPlayer.setText(user.getPokemonedas()+"");
                 }
             }
         });
+
     }
 
     public void main(JFrame frame) {
@@ -220,6 +226,15 @@ public class MenuUI {
                 UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),infoPokemon);
             }
 
+        }
+    }
+
+    private void monedasInfo(){
+        Login user = loginRepository.findByNombre(User.username);
+        if(user!=null){
+            informacionPlayer.setText(user.getPokemonedas()+"");
+            informacionPlayer.setFocusable(false);
+            informacionPlayer.setVisible(true);
         }
     }
 
