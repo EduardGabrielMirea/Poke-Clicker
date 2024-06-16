@@ -167,7 +167,7 @@ public class MenuUI {
                     user.setPokemonedas(user.getPokemonedas()+1);
                     System.out.println(user.getPokemonedas());
                     loginRepository.save(user);
-                    informacionPlayer.setText(user.getPokemonedas()+"");
+                    informacionPlayer.setText("<html><br><br>POKEMONEDAS: "+user.getPokemonedas()+"</html>");
                 }
             }
         });
@@ -232,7 +232,7 @@ public class MenuUI {
     private void monedasInfo(){
         Login user = loginRepository.findByNombre(User.username);
         if(user!=null){
-            informacionPlayer.setText(user.getPokemonedas()+"");
+            informacionPlayer.setText("<html><br><br>POKEMONEDAS: "+user.getPokemonedas()+"</html>");
             informacionPlayer.setFocusable(false);
             informacionPlayer.setVisible(true);
         }
