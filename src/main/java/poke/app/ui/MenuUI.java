@@ -361,7 +361,7 @@ public class MenuUI {
                 default:
                     break;
             }
-
+            System.out.println("ES MONDONGO "+PokemonList.pokemonElegido);
         }
     }
 

@@ -11,10 +11,7 @@ import poke.app.localData.Window;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.EvolucionesRepository;
 import poke.app.repository.LoginRepository;
-import poke.app.service.AppService;
-import poke.app.service.PokemonService;
-import poke.app.service.RandomStarter;
-import poke.app.service.UIService;
+import poke.app.service.*;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -54,9 +51,16 @@ public class LuchaUI {
         this.evolucionesRepository = appService.getEvolucionesRepository();
 
         hpEnemigo.setValue(100);
+        ButtonColors.setColors(bVolver);
+
 
         UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.minionIDs),enemigo);
-        UIService.mostrarImagenEnJlabelByIdStatico(PokemonList.pokemonElegido,pokemon);
+
+        if(PokemonList.pokemonElegido == 0){
+            pokemon.setIcon(new ImageIcon("src/main/resources/img/players/mondongo.jpg"));
+        }else{
+            UIService.mostrarImagenEnJlabelByIdStatico(PokemonList.pokemonElegido,pokemon);
+        }
 
         bVolver.addMouseListener(new MouseAdapter() {
             @Override
@@ -64,6 +68,12 @@ public class LuchaUI {
                 super.mouseClicked(e);
                 MenuUI menuUI = new MenuUI(appService);
                 menuUI.main(Window.frame);
+            }
+            public void mouseEntered(MouseEvent e) {
+                ButtonColors.setHoverBackgroundColor(bVolver);
+            }
+            public void mouseExited(MouseEvent e) {
+                ButtonColors.setExitedBackgroundColor(bVolver);
             }
         });
         enemigo.addMouseListener(new MouseAdapter() {
