@@ -184,8 +184,7 @@ public class MenuUI {
                 super.mouseClicked(e);
                 Login user = loginRepository.findByNombre(User.username);
                 if(user!=null){
-                    user.setPokemonedas(user.getPokemonedas()+1);
-                    System.out.println(user.getPokemonedas());
+                    user.setPokemonedas(user.getPokemonedas()+10);
                     loginRepository.save(user);
                     informacionPlayer.setText("<html><br><br>POKEMONEDAS: "+user.getPokemonedas()+"</html>");
                 }
