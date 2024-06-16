@@ -171,16 +171,6 @@ public class TiendaUI {
                 comprar.setEnabled(false);
             }
         });
-        /*MouseAdapter evoluciona = new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                if(suficienteDinero(true,false)){
-                    evolucionar.setEnabled(true);
-                }
-                comprar.setEnabled(false);
-            }
-        };*/
 
         //Listeners Pokemon Shop
         ps1.addMouseListener(new MouseAdapter() {
@@ -341,8 +331,8 @@ public class TiendaUI {
             //NOMBRE DE LA EVOLUCIÓN
             Pokemon p = PokemonService.llamadasAPIporID(evoluciones.getE2());
             if(p != null) {
-                System.out.println(p.name);
-                System.out.println(p.id);
+                //System.out.println(p.name);
+                //System.out.println(p.id);
                 try {
                     Equipo equipo = equipoRepository.findEquipoById(user);
                     switch(slot){

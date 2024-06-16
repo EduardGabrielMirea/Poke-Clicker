@@ -262,7 +262,7 @@
                         <properties>
                           <background color="-13272272"/>
                           <enabled value="true"/>
-                          <foreground color="-1"/>
+                          <foreground color="-16777216"/>
                           <hideActionText value="false"/>
                           <text value="Finalizar"/>
                         </properties>

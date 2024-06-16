@@ -12,10 +12,7 @@ import poke.app.localData.User;
 import poke.app.localData.Window;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
-import poke.app.service.AppService;
-import poke.app.service.PokemonService;
-import poke.app.service.RandomStarter;
-import poke.app.service.UIService;
+import poke.app.service.*;
 import poke.app.entity.Login;
 
 import javax.swing.*;
@@ -68,6 +65,10 @@ public class SeleccionUI extends JFrame{
         this.equipoRepository = appService.getEquipoRepository();
         this.appConfig = appService.getAppConfig();
 
+
+        ButtonColors.setColors(continuar1);
+        ButtonColors.setColors(pfin);
+
         chico.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -92,6 +93,13 @@ public class SeleccionUI extends JFrame{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 SeleccionTab.setSelectedIndex(1);
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                ButtonColors.setHoverBackgroundColor(continuar1);
+            }
+            public void mouseExited(MouseEvent e) {
+                ButtonColors.setExitedBackgroundColor(continuar1);
             }
         });
 
@@ -157,6 +165,13 @@ public class SeleccionUI extends JFrame{
                 }
                 MenuUI menuUI = new MenuUI(appService);
                 menuUI.main(Window.frame);
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                ButtonColors.setHoverBackgroundColor(pfin);
+            }
+            public void mouseExited(MouseEvent e) {
+                ButtonColors.setExitedBackgroundColor(pfin);
             }
         });
     }

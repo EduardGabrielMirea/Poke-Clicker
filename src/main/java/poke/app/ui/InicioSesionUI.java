@@ -7,6 +7,8 @@ import poke.app.localData.User;
 import poke.app.localData.Window;
 import poke.app.repository.LoginRepository;
 import poke.app.service.AppService;
+import poke.app.service.ButtonColors;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,8 +39,9 @@ public class InicioSesionUI {
         this.loginRepository = appService.getLoginRepository();
 
 
-
-        
+        ButtonColors.setColors(recoverPass);
+        ButtonColors.setColors(registro);
+        ButtonColors.setColors(login);
 
 
 
@@ -64,6 +67,15 @@ public class InicioSesionUI {
                 }else{
                     JOptionPane.showMessageDialog(null,"El usuario "+nameField.getText()+" no existe");
                 }
+
+
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                ButtonColors.setHoverBackgroundColor(recoverPass);
+            }
+            public void mouseExited(MouseEvent e) {
+                ButtonColors.setExitedBackgroundColor(recoverPass);
             }
         });
         registro.addMouseListener(new MouseAdapter() {
@@ -76,6 +88,13 @@ public class InicioSesionUI {
                 }else{
                     JOptionPane.showMessageDialog(null,String.format("El usuario %s ya existe",nameField.getText()));
                 }
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                ButtonColors.setHoverBackgroundColor(registro);
+            }
+            public void mouseExited(MouseEvent e) {
+                ButtonColors.setExitedBackgroundColor(registro);
             }
         });
         login.addMouseListener(new MouseAdapter() {
@@ -102,6 +121,13 @@ public class InicioSesionUI {
                 }else{
                     JOptionPane.showMessageDialog(null,"No se ha podido iniciar sesión con el usuario");
                 }
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                ButtonColors.setHoverBackgroundColor(login);
+            }
+            public void mouseExited(MouseEvent e) {
+                ButtonColors.setExitedBackgroundColor(login);
             }
         });
     }
