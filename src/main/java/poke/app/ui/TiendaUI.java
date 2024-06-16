@@ -88,7 +88,6 @@ public class TiendaUI {
         UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps8);
 
         //Listeners pestaña Equipo
-        abajo.repaint();
         p1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
