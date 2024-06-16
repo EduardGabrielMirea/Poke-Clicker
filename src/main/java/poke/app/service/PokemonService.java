@@ -24,7 +24,6 @@ public class PokemonService {
             Pokemon p = gson.fromJson(in, Pokemon.class);
             return p;
         }catch (FileNotFoundException e){
-            System.out.println("Pokemon no encontrado");
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -42,7 +41,6 @@ public class PokemonService {
             Pokemon p = gson.fromJson(in, Pokemon.class);
             return p;
         }catch (FileNotFoundException e){
-            System.out.println("Pokemon no encontrado");
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -61,7 +59,6 @@ public class PokemonService {
             PokemonSpecies p = gson.fromJson(in, PokemonSpecies.class);
             return p;
         }catch (FileNotFoundException e){
-            System.out.println("Pokemon no encontrado");
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -79,7 +76,6 @@ public class PokemonService {
             PokemonSpecies p = gson.fromJson(in, PokemonSpecies.class);
             return p;
         }catch (FileNotFoundException e){
-            System.out.println("Pokemon no encontrado");
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -99,8 +95,12 @@ public class PokemonService {
     }
 
     public static String getName(int id){
-        Pokemon p = llamadasAPIporID(id);
-        return p.name;
+        try {
+            Pokemon p = llamadasAPIporID(id);
+            return p.name;
+        }catch(NullPointerException e){
+            return "VACÍO";
+        }
     }
 
     public static String getDescription(String name){

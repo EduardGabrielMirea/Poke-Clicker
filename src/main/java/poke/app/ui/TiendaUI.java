@@ -230,17 +230,17 @@ public class TiendaUI {
         //descripcionEquipo(equipoPokemonLista);
         if(User.id != null) {
             UIService.asignarTextoAJTextArea(String.format("Pokemon 1: %s\n" +
-                            "Pokemon 2: %s\n" +
-                            "Pokemon 3: %s\n" +
-                            "Pokemon 4: %s\n" +
-                            "Pokemon 5: %s\n" +
-                            "Pokemon 6: %s"
-                    ,PokemonService.getName(equipoController.getEquipo(User.id).getP1()),
-                    PokemonService.getName(equipoController.getEquipo(User.id).getP2()),
-                    PokemonService.getName(equipoController.getEquipo(User.id).getP3()),
-                    PokemonService.getName(equipoController.getEquipo(User.id).getP4()),
-                    PokemonService.getName(equipoController.getEquipo(User.id).getP5()),
-                    PokemonService.getName(equipoController.getEquipo(User.id).getP6())),
+                                    "Pokemon 2: %s\n" +
+                                    "Pokemon 3: %s\n" +
+                                    "Pokemon 4: %s\n" +
+                                    "Pokemon 5: %s\n" +
+                                    "Pokemon 6: %s"
+                            , PokemonService.getName(equipoController.getEquipo(User.id).getP1()),
+                            PokemonService.getName(equipoController.getEquipo(User.id).getP2()),
+                            PokemonService.getName(equipoController.getEquipo(User.id).getP3()),
+                            PokemonService.getName(equipoController.getEquipo(User.id).getP4()),
+                            PokemonService.getName(equipoController.getEquipo(User.id).getP5()),
+                            PokemonService.getName(equipoController.getEquipo(User.id).getP6())),
                     equipoPokemonLista);
         }
         //Botones de la tienda
