@@ -142,7 +142,63 @@ public class TiendaUI {
         };*/
 
         //Listeners Pokemon Shop
-        MouseAdapter compra = new MouseAdapter() {
+        ps1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                botonesCompra();
+            }
+        });
+        ps2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                botonesCompra();
+            }
+        });
+        ps3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                botonesCompra();
+            }
+        });
+        ps4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                botonesCompra();
+            }
+        });
+        ps5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                botonesCompra();
+            }
+        });
+        ps6.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                botonesCompra();
+            }
+        });
+        ps7.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                botonesCompra();
+            }
+        });
+        ps8.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                botonesCompra();
+            }
+        });
+        /*MouseAdapter compra = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -159,7 +215,7 @@ public class TiendaUI {
         ps5.addMouseListener(compra);
         ps6.addMouseListener(compra);
         ps7.addMouseListener(compra);
-        ps8.addMouseListener(compra);
+        ps8.addMouseListener(compra);*/
 
         //Botones de la tienda
         comprar.addMouseListener(new MouseAdapter() {
@@ -223,5 +279,12 @@ public class TiendaUI {
             evolucionar.setEnabled(true);
         }
         comprar.setEnabled(false);
+    }
+
+    private void botonesCompra(){
+        if(suficienteDinero(false,true)){
+            comprar.setEnabled(true);
+        }
+        evolucionar.setEnabled(false);
     }
 }
