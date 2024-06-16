@@ -88,42 +88,42 @@ public class TiendaUI {
         UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps8);
 
         //Listeners pestaña Equipo
-        p1.addMouseListener(new MouseAdapter() {
+        MouseAdapter evoluciona = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                if(suficienteDinero(true,false)){
+                    evolucionar.setEnabled(true);
+                }
+                comprar.setEnabled(false);
             }
-        });
-        p2.addMouseListener(new MouseAdapter() {
+        };
+        p1.addMouseListener(evoluciona);
+        p2.addMouseListener(evoluciona);
+        p3.addMouseListener(evoluciona);
+        p4.addMouseListener(evoluciona);
+        p5.addMouseListener(evoluciona);
+        p6.addMouseListener(evoluciona);
+
+        //Listeners Pokemon Shop
+        MouseAdapter compra = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                if(suficienteDinero(false,true)){
+                    comprar.setEnabled(true);
+                }
+                evolucionar.setEnabled(false);
             }
-        });
-        p3.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
-        p4.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
-        p5.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
-        p6.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
+        };
+        ps1.addMouseListener(compra);
+        ps2.addMouseListener(compra);
+        ps3.addMouseListener(compra);
+        ps4.addMouseListener(compra);
+        ps5.addMouseListener(compra);
+        ps6.addMouseListener(compra);
+        ps7.addMouseListener(compra);
+        ps8.addMouseListener(compra);
 
         //Botones de la tienda
         comprar.addMouseListener(new MouseAdapter() {
@@ -156,12 +156,29 @@ public class TiendaUI {
         frame.setVisible(true);
     }
 
-    public Equipo getEquipoByNameUser(String name) {
+    private Equipo getEquipoByNameUser(String name) {
         Login login = loginRepository.findByNombre(name);
         if (login != null) {
             return equipoController.getEquipo(login.getId());
         }else{
             return null;
         }
+    }
+
+
+    private boolean suficienteDinero(boolean evolucion,boolean compra){
+        Login login = loginRepository.findLoginById(User.id);
+        if(login != null){
+            if(compra){
+                if(login.getPokemonedas() >= 10){
+                    return true;
+                }
+            }else if(evolucion){
+                if(login.getPokemonedas() >= 50){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

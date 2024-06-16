@@ -11,9 +11,19 @@ public class Login {
     private String nombre;
     private String pass;
     private int nuevo_user;
+    private int pokemonedas;
 
     @OneToOne(mappedBy = "login")
     private Equipo equipo;
+
+    public Login(Long id, String nombre, String pass, int nuevo_user, int pokemonedas, Equipo equipo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.pass = pass;
+        this.nuevo_user = nuevo_user;
+        this.pokemonedas = pokemonedas;
+        this.equipo = equipo;
+    }
 
     public Login(Long id, String nombre, String pass, Equipo equipo) {
         this.id = id;
@@ -99,6 +109,13 @@ public class Login {
         this.equipo = equipo;
     }
 
+    public int getPokemonedas() {
+        return pokemonedas;
+    }
+
+    public void setPokemonedas(int pokemonedas) {
+        this.pokemonedas = pokemonedas;
+    }
 
     @Override
     public String toString() {

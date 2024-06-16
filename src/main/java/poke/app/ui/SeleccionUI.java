@@ -149,9 +149,12 @@ public class SeleccionUI extends JFrame{
                     loginController.setPersona(User.username,2);
                 }
                 Login login = loginRepository.findByNombre(User.username);
-                Equipo equipoInicial = new Equipo(login.getId(),seleccionInicial);
-                equipoInicial.setN1(1);
-                equipoRepository.save(equipoInicial);
+                if(login!=null){
+                    login.setPokemonedas(1);
+                    Equipo equipoInicial = new Equipo(login.getId(),seleccionInicial);
+                    equipoInicial.setN1(1);
+                    equipoRepository.save(equipoInicial);
+                }
                 MenuUI menuUI = new MenuUI(appService);
                 menuUI.main(Window.frame);
             }

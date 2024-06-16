@@ -62,7 +62,7 @@ public class MenuUI {
     //Botones
     private JButton entrenar;
     private JButton luchar;
-    private JButton evolucionar;
+    private JButton cheatMoney;
     private JButton tiendaButton;
     //Fin Botones
 
@@ -152,6 +152,18 @@ public class MenuUI {
                     tiendaUI.ventanaTienda();
                 });
                 thread.start();
+            }
+        });
+        cheatMoney.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                Login user = loginRepository.findByNombre(User.username);
+                if(user!=null){
+                    user.setPokemonedas(user.getPokemonedas()+1);
+                    System.out.println(user.getPokemonedas());
+                    loginRepository.save(user);
+                }
             }
         });
     }

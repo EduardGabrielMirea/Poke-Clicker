@@ -136,14 +136,14 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="d8d73" class="javax.swing.JButton" binding="evolucionar">
+          <component id="d8d73" class="javax.swing.JButton" binding="cheatMoney">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <enabled value="false"/>
+              <enabled value="true"/>
               <hideActionText value="false"/>
-              <text value="Evolucionar"/>
+              <text value="Add PokeMoney"/>
             </properties>
           </component>
         </children>
