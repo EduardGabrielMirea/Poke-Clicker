@@ -66,6 +66,18 @@ public class TiendaUI {
     private JTextArea equipoPokemonLista;
     private int slot = 0;
     private int pokemonEquipo = 0;
+    private int pokemonShop = 0;
+
+    private int pshop1 = UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs);
+    private int pshop2 = UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs);
+    private int pshop3 = UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs);
+    private int pshop4 = UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs);
+    private int pshop5 = UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs);
+    private int pshop6 = UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs);
+    private int pshop7 = UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs);
+    private int pshop8 = UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs);
+
+    private int compraElegida = 0;
 
     public TiendaUI(AppService appService) throws IOException {
         this.loginController = appService.getLoginController();
@@ -91,14 +103,15 @@ public class TiendaUI {
         }
 
         //Tienda Pokemon con scrollbar
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps1);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps2);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps3);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps4);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps5);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps6);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps7);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps8);
+
+        UIService.mostrarImagenEnJlabelByIdStatico(pshop1, ps1);
+        UIService.mostrarImagenEnJlabelByIdStatico(pshop2, ps2);
+        UIService.mostrarImagenEnJlabelByIdStatico(pshop3, ps3);
+        UIService.mostrarImagenEnJlabelByIdStatico(pshop4, ps4);
+        UIService.mostrarImagenEnJlabelByIdStatico(pshop5, ps5);
+        UIService.mostrarImagenEnJlabelByIdStatico(pshop6, ps6);
+        UIService.mostrarImagenEnJlabelByIdStatico(pshop7, ps7);
+        UIService.mostrarImagenEnJlabelByIdStatico(pshop8, ps8);
 
         //Listeners pestaña Equipo
         p1.addMouseListener(new MouseAdapter() {
@@ -198,6 +211,7 @@ public class TiendaUI {
                 super.mouseClicked(e);
                 if (suficienteDinero(false, true)) {
                     comprar.setEnabled(true);
+                    compraElegida = pshop1;
                 }else{
                     comprar.setEnabled(false);
                 }
@@ -210,6 +224,7 @@ public class TiendaUI {
                 super.mouseClicked(e);
                 if (suficienteDinero(false, true)) {
                     comprar.setEnabled(true);
+                    compraElegida = pshop2;
                 }else{
                     comprar.setEnabled(false);
                 }
@@ -222,6 +237,7 @@ public class TiendaUI {
                 super.mouseClicked(e);
                 if (suficienteDinero(false, true)) {
                     comprar.setEnabled(true);
+                    compraElegida = pshop3;
                 }else{
                     comprar.setEnabled(false);
                 }
@@ -234,6 +250,7 @@ public class TiendaUI {
                 super.mouseClicked(e);
                 if (suficienteDinero(false, true)) {
                     comprar.setEnabled(true);
+                    compraElegida = pshop4;
                 }else{
                     comprar.setEnabled(false);
                 }
@@ -246,6 +263,7 @@ public class TiendaUI {
                 super.mouseClicked(e);
                 if (suficienteDinero(false, true)) {
                     comprar.setEnabled(true);
+                    compraElegida = pshop5;
                 }else{
                     comprar.setEnabled(false);
                 }
@@ -258,6 +276,7 @@ public class TiendaUI {
                 super.mouseClicked(e);
                 if (suficienteDinero(false, true)) {
                     comprar.setEnabled(true);
+                    compraElegida = pshop6;
                 }else{
                     comprar.setEnabled(false);
                 }
@@ -270,6 +289,7 @@ public class TiendaUI {
                 super.mouseClicked(e);
                 if (suficienteDinero(false, true)) {
                     comprar.setEnabled(true);
+                    compraElegida = pshop7;
                 }else{
                     comprar.setEnabled(false);
                 }
@@ -282,6 +302,7 @@ public class TiendaUI {
                 super.mouseClicked(e);
                 if (suficienteDinero(false, true)) {
                     comprar.setEnabled(true);
+                    compraElegida = pshop8;
                 }else{
                     comprar.setEnabled(false);
                 }
@@ -429,6 +450,8 @@ public class TiendaUI {
 
     private void botonesCompra(){
         ImageIcon imageIcon1,imageIcon2,imageIcon3,imageIcon4,imageIcon5,imageIcon6;
+        Login login = loginRepository.findLoginById(User.id);
+
         try {
             imageIcon1 = new ImageIcon(new URL(PokemonService.urlSpritePokemonByID(equipoRepository.getEquipoById(User.id).getP1())));
         }catch(java.net.MalformedURLException e){
@@ -490,32 +513,39 @@ public class TiendaUI {
             // Aquí colocas el código para manejar la cancelación
         }
 
-        // Manejar la opción elegida
-        switch (opcionElegida) {
-            case 0:
-                // Código para Pokémon 1
-                break;
-            case 1:
-                // Código para Pokémon 2
-                break;
-            case 2:
-                // Código para Pokémon 3
-                break;
-            case 3:
-                // Código para Pokémon 4
-                break;
-            case 4:
-                // Código para Pokémon 5
-                break;
-            case 5:
-                // Código para Pokémon 6
-                break;
-            case 6:
-                // Código para Cancelar
-                break;
-            default:
-                // Código para manejar opciones no esperadas
-                break;
+        if(suficienteDinero(false,true)) {
+            login.setPokemonedas(login.getPokemonedas() - 10);
+            loginRepository.save(login);
+
+            // Manejar la opción elegida
+            Equipo equipo = equipoRepository.findEquipoById(User.id);
+            if(equipo!= null) {
+                switch (opcionElegida) {
+                    case 0:
+                        equipo.setP1(compraElegida);
+                        break;
+                    case 1:
+                        equipo.setP2(compraElegida);
+                        break;
+                    case 2:
+                        equipo.setP3(compraElegida);
+                        break;
+                    case 3:
+                        equipo.setP4(compraElegida);
+                        break;
+                    case 4:
+                        equipo.setP5(compraElegida);
+                        break;
+                    case 5:
+                        equipo.setP6(compraElegida);
+                        break;
+                    case 6:
+                        break;
+                    default:
+                        break;
+                }
+                equipoRepository.save(equipo);
+            }
         }
     }
 
