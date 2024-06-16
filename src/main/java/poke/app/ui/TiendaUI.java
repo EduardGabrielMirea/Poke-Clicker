@@ -20,6 +20,8 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Optional;
 
 
@@ -108,6 +110,10 @@ public class TiendaUI {
                 if (suficienteDinero(true, false)) {
                     evolucionar.setEnabled(true);
                 }
+                else
+                {
+                    evolucionar.setEnabled(false);
+                }
                 comprar.setEnabled(false);
             }
         });
@@ -120,6 +126,11 @@ public class TiendaUI {
                 if (suficienteDinero(true, false)) {
                     evolucionar.setEnabled(true);
                 }
+
+                else
+                {
+                    evolucionar.setEnabled(false);
+                }
                 comprar.setEnabled(false);
             }
         });
@@ -131,6 +142,8 @@ public class TiendaUI {
                 pokemonEquipo = equipoController.getEquipo(User.id).getP3();
                 if (suficienteDinero(true, false)) {
                     evolucionar.setEnabled(true);
+                }else{
+                    evolucionar.setEnabled(false);
                 }
                 comprar.setEnabled(false);
             }
@@ -143,6 +156,8 @@ public class TiendaUI {
                 pokemonEquipo = equipoController.getEquipo(User.id).getP4();
                 if (suficienteDinero(true, false)) {
                     evolucionar.setEnabled(true);
+                }else{
+                    evolucionar.setEnabled(false);
                 }
                 comprar.setEnabled(false);
             }
@@ -155,6 +170,8 @@ public class TiendaUI {
                 pokemonEquipo = equipoController.getEquipo(User.id).getP5();
                 if (suficienteDinero(true, false)) {
                     evolucionar.setEnabled(true);
+                }else{
+                    evolucionar.setEnabled(false);
                 }
                 comprar.setEnabled(false);
             }
@@ -167,6 +184,8 @@ public class TiendaUI {
                 pokemonEquipo = equipoController.getEquipo(User.id).getP6();
                 if (suficienteDinero(true, false)) {
                     evolucionar.setEnabled(true);
+                }else{
+                    evolucionar.setEnabled(false);
                 }
                 comprar.setEnabled(false);
             }
@@ -177,76 +196,98 @@ public class TiendaUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                botonesCompra();
+                if (suficienteDinero(false, true)) {
+                    comprar.setEnabled(true);
+                }else{
+                    comprar.setEnabled(false);
+                }
+                evolucionar.setEnabled(false);
             }
         });
         ps2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                botonesCompra();
+                if (suficienteDinero(false, true)) {
+                    comprar.setEnabled(true);
+                }else{
+                    comprar.setEnabled(false);
+                }
+                evolucionar.setEnabled(false);
             }
         });
         ps3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                botonesCompra();
+                if (suficienteDinero(false, true)) {
+                    comprar.setEnabled(true);
+                }else{
+                    comprar.setEnabled(false);
+                }
+                evolucionar.setEnabled(false);
             }
         });
         ps4.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                botonesCompra();
+                if (suficienteDinero(false, true)) {
+                    comprar.setEnabled(true);
+                }else{
+                    comprar.setEnabled(false);
+                }
+                evolucionar.setEnabled(false);
             }
         });
         ps5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                botonesCompra();
+                if (suficienteDinero(false, true)) {
+                    comprar.setEnabled(true);
+                }else{
+                    comprar.setEnabled(false);
+                }
+                evolucionar.setEnabled(false);
             }
         });
         ps6.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                botonesCompra();
+                if (suficienteDinero(false, true)) {
+                    comprar.setEnabled(true);
+                }else{
+                    comprar.setEnabled(false);
+                }
+                evolucionar.setEnabled(false);
             }
         });
         ps7.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                botonesCompra();
+                if (suficienteDinero(false, true)) {
+                    comprar.setEnabled(true);
+                }else{
+                    comprar.setEnabled(false);
+                }
+                evolucionar.setEnabled(false);
             }
         });
         ps8.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                botonesCompra();
-            }
-        });
-        /*MouseAdapter compra = new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                if(suficienteDinero(false,true)){
+                if (suficienteDinero(false, true)) {
                     comprar.setEnabled(true);
+                }else{
+                    comprar.setEnabled(false);
                 }
                 evolucionar.setEnabled(false);
             }
-        };
-        ps1.addMouseListener(compra);
-        ps2.addMouseListener(compra);
-        ps3.addMouseListener(compra);
-        ps4.addMouseListener(compra);
-        ps5.addMouseListener(compra);
-        ps6.addMouseListener(compra);
-        ps7.addMouseListener(compra);
-        ps8.addMouseListener(compra);*/
+        });
 
         //INFORMACIÓN EQUIPO POKEMON
         //descripcionEquipo(equipoPokemonLista);
@@ -270,6 +311,7 @@ public class TiendaUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                botonesCompra();
             }
         });
 
@@ -331,13 +373,19 @@ public class TiendaUI {
             //NOMBRE DE LA EVOLUCIÓN
             Pokemon p = PokemonService.llamadasAPIporID(evoluciones.getE2());
             if(p != null) {
+
                 //System.out.println(p.name);
                 //System.out.println(p.id);
+                Login login = loginRepository.findLoginById(user);
+
+                if(suficienteDinero(true,false)){
+                    login.setPokemonedas(login.getPokemonedas()-50);
+                    loginRepository.save(login);
                 try {
                     Equipo equipo = equipoRepository.findEquipoById(user);
                     switch(slot){
                         case 1:
-                            Login login = loginRepository.findLoginById(user);
+                            login = loginRepository.findLoginById(user);
                             if(login != null) {
                                 equipo.setP1(p.id);
                                 equipoRepository.save(equipo);
@@ -370,52 +418,105 @@ public class TiendaUI {
                             UIService.mostrarImagenEnJlabelByIdStatico(equipo.getP1(), p6);
                             break;
                     }
+
                 } catch (IOException ew) {
                     throw new RuntimeException(ew);
+                }
                 }
             }
         });
     }
 
-    private void botonesCompra() {
-        if (suficienteDinero(false, true)) {
-            comprar.setEnabled(true);
+    private void botonesCompra(){
+        ImageIcon imageIcon1,imageIcon2,imageIcon3,imageIcon4,imageIcon5,imageIcon6;
+        try {
+            imageIcon1 = new ImageIcon(new URL(PokemonService.urlSpritePokemonByID(equipoRepository.getEquipoById(User.id).getP1())));
+        }catch(java.net.MalformedURLException e){
+            imageIcon1 = new ImageIcon("src/main/resources/img/defaultPokeball.png");
         }
-        evolucionar.setEnabled(false);
+        try {
+            imageIcon2 = new ImageIcon(new URL(PokemonService.urlSpritePokemonByID(equipoRepository.getEquipoById(User.id).getP2())));
+        }catch(java.net.MalformedURLException e){
+            imageIcon2 = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+        }
+        try {
+            imageIcon3 = new ImageIcon(new URL(PokemonService.urlSpritePokemonByID(equipoRepository.getEquipoById(User.id).getP3())));
+        }catch(java.net.MalformedURLException e){
+            imageIcon3 = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+        }
+        try {
+            imageIcon4 = new ImageIcon(new URL(PokemonService.urlSpritePokemonByID(equipoRepository.getEquipoById(User.id).getP4())));
+        }catch(java.net.MalformedURLException e){
+            imageIcon4 = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+        }
+        try {
+            imageIcon5 = new ImageIcon(new URL(PokemonService.urlSpritePokemonByID(equipoRepository.getEquipoById(User.id).getP5())));
+        }catch(java.net.MalformedURLException e){
+            imageIcon5 = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+        }
+        try {
+            imageIcon6 = new ImageIcon(new URL(PokemonService.urlSpritePokemonByID(equipoRepository.getEquipoById(User.id).getP6())));
+        }catch(java.net.MalformedURLException e){
+            imageIcon6 = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+        }
+
+        Icon iconoPersonalizado = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+        int opcionElegida = JOptionPane.showOptionDialog(
+                null,"En qué espacio deseas añadir este pokémon?","Comprando Pokémon",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.ERROR_MESSAGE,
+                iconoPersonalizado,
+                //new Object[]{"Pokémon 1","Pokémon 2","Pokémon 3","Pokémon 4","Pokémon 5","Pokémon 6", "Cancelar"},
+
+
+                new Object[]{
+                        imageIcon1,
+                        imageIcon2,
+                        imageIcon3,
+                        imageIcon4,
+                        imageIcon5,
+                        imageIcon6, "Cancelar"
+                },
+                "Cancelar"
+        );
+
+        if (opcionElegida == JOptionPane.YES_OPTION) {
+            // Se seleccionó "Reintentar"
+            // Aquí colocas el código para reintentar la operación
+
+        } else if (opcionElegida == JOptionPane.NO_OPTION || opcionElegida == JOptionPane.CLOSED_OPTION) {
+
+            // Se seleccionó "Cancelar" o se cerró el cuadro de diálogo
+            // Aquí colocas el código para manejar la cancelación
+        }
+
+        // Manejar la opción elegida
+        switch (opcionElegida) {
+            case 0:
+                // Código para Pokémon 1
+                break;
+            case 1:
+                // Código para Pokémon 2
+                break;
+            case 2:
+                // Código para Pokémon 3
+                break;
+            case 3:
+                // Código para Pokémon 4
+                break;
+            case 4:
+                // Código para Pokémon 5
+                break;
+            case 5:
+                // Código para Pokémon 6
+                break;
+            case 6:
+                // Código para Cancelar
+                break;
+            default:
+                // Código para manejar opciones no esperadas
+                break;
+        }
     }
 
-
-    /*private void descripcionEquipo(JTextArea jTextArea) {
-        //PokemonSpecies p = PokemonService.llamadasAPISpeciesID(id);
-        //assert p != null;
-        Login login = loginRepository.findLoginById(User.id);
-        if (login == null) {
-            User.id = login.getId();
-            descripcionEquipo(equipoPokemonLista);
-        }else{
-            UIService.asignarTextoAJTextArea(String.format("Pokemon 1: %s" +
-                            "Pokemon 2: %s" +
-                            "Pokemon 3: %s" +
-                            "Pokemon 4: %s" +
-                            "Pokemon 5: %s" +
-                            "Pokemon 6: %s"
-                    , equipoController.getEquipo(User.id).getP1(),
-                    equipoController.getEquipo(User.id).getP2(),
-                    equipoController.getEquipo(User.id).getP3(),
-                    equipoController.getEquipo(User.id).getP4(),
-                    equipoController.getEquipo(User.id).getP5(),
-                    equipoController.getEquipo(User.id).getP6()), jTextArea);
-        }
-    }*/
 }
-
-        /*descripcionEquipo(1,equipoController.getEquipo(User.id).getP1(),equipoPokemonLista);
-        descripcionEquipo(2,equipoController.getEquipo(User.id).getP2(),equipoPokemonLista);
-        descripcionEquipo(3,equipoController.getEquipo(User.id).getP3(),equipoPokemonLista);
-        descripcionEquipo(4,equipoController.getEquipo(User.id).getP4(),equipoPokemonLista);
-        descripcionEquipo(5,equipoController.getEquipo(User.id).getP5(),equipoPokemonLista);
-        descripcionEquipo(6,equipoController.getEquipo(User.id).getP6(),equipoPokemonLista);
-    }
-}
-
-         */
