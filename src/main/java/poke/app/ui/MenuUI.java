@@ -6,6 +6,7 @@ import poke.app.controller.MenuController;
 import poke.app.entity.Equipo;
 import poke.app.entity.Login;
 import poke.app.entity.Pokemon;
+import poke.app.localData.PokemonList;
 import poke.app.localData.User;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
@@ -17,6 +18,7 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.net.URL;
 
 public class MenuUI {
     private final LoginController loginController;
@@ -36,7 +38,6 @@ public class MenuUI {
 
     private JTextArea infoPokemon;
     //pokemons
-
 
     //Paneles
     private JPanel texto;
@@ -207,7 +208,12 @@ public class MenuUI {
                     //System.out.println("hilo ejecutado por"+Thread.currentThread().getName());
                     super.mouseClicked(e);
                     LuchaUI luchaUI = null;
-                    luchaUI = new LuchaUI(appService);
+                    try {
+                        seleccionLucha();
+                        luchaUI = new LuchaUI(appService);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     luchaUI.ventanaLucha();
                 });
 
@@ -260,6 +266,102 @@ public class MenuUI {
             informacionPlayer.setText("<html><br><br>POKEMONEDAS: "+user.getPokemonedas()+"</html>");
             informacionPlayer.setFocusable(false);
             informacionPlayer.setVisible(true);
+        }
+    }
+
+    private void seleccionLucha()
+    {
+        ImageIcon imageIcon1,imageIcon2,imageIcon3,imageIcon4,imageIcon5,imageIcon6;
+        Login login = loginRepository.findLoginById(User.id);
+
+        try {
+            imageIcon1 = new ImageIcon(new URL(PokemonService.urlSpritePokemonByID(equipoRepository.getEquipoById(User.id).getP1())));
+        }catch(java.net.MalformedURLException e){
+            imageIcon1 = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+        }
+        try {
+            imageIcon2 = new ImageIcon(new URL(PokemonService.urlSpritePokemonByID(equipoRepository.getEquipoById(User.id).getP2())));
+        }catch(java.net.MalformedURLException e){
+            imageIcon2 = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+        }
+        try {
+            imageIcon3 = new ImageIcon(new URL(PokemonService.urlSpritePokemonByID(equipoRepository.getEquipoById(User.id).getP3())));
+        }catch(java.net.MalformedURLException e){
+            imageIcon3 = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+        }
+        try {
+            imageIcon4 = new ImageIcon(new URL(PokemonService.urlSpritePokemonByID(equipoRepository.getEquipoById(User.id).getP4())));
+        }catch(java.net.MalformedURLException e){
+            imageIcon4 = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+        }
+        try {
+            imageIcon5 = new ImageIcon(new URL(PokemonService.urlSpritePokemonByID(equipoRepository.getEquipoById(User.id).getP5())));
+        }catch(java.net.MalformedURLException e){
+            imageIcon5 = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+        }
+        try {
+            imageIcon6 = new ImageIcon(new URL(PokemonService.urlSpritePokemonByID(equipoRepository.getEquipoById(User.id).getP6())));
+        }catch(java.net.MalformedURLException e){
+            imageIcon6 = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+        }
+
+        Icon iconoPersonalizado = new ImageIcon("src/main/resources/img/defaultPokeball.png");
+        int opcionElegida = JOptionPane.showOptionDialog(
+                null,"En qué espacio deseas añadir este pokémon?","Comprando Pokémon",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.ERROR_MESSAGE,
+                iconoPersonalizado,
+                //new Object[]{"Pokémon 1","Pokémon 2","Pokémon 3","Pokémon 4","Pokémon 5","Pokémon 6", "Cancelar"},
+
+                new Object[]{
+                        imageIcon1,
+                        imageIcon2,
+                        imageIcon3,
+                        imageIcon4,
+                        imageIcon5,
+                        imageIcon6, "Cancelar"
+                },
+                "Cancelar"
+        );
+
+        if (opcionElegida == JOptionPane.YES_OPTION) {
+            // Se seleccionó "Reintentar"
+            // Aquí colocas el código para reintentar la operación
+
+        } else if (opcionElegida == JOptionPane.NO_OPTION || opcionElegida == JOptionPane.CLOSED_OPTION) {
+
+            // Se seleccionó "Cancelar" o se cerró el cuadro de diálogo
+            // Aquí colocas el código para manejar la cancelación
+        }
+
+        // Manejar la opción elegida
+        Equipo equipo = equipoRepository.findEquipoById(User.id);
+        if(equipo!= null) {
+            switch (opcionElegida) {
+                case 0:
+                    PokemonList.pokemonElegido = equipo.getP1();
+                    break;
+                case 1:
+                    PokemonList.pokemonElegido = equipo.getP2();
+                    break;
+                case 2:
+                    PokemonList.pokemonElegido = equipo.getP3();
+                    break;
+                case 3:
+                    PokemonList.pokemonElegido = equipo.getP4();
+                    break;
+                case 4:
+                    PokemonList.pokemonElegido = equipo.getP5();
+                    break;
+                case 5:
+                    PokemonList.pokemonElegido = equipo.getP6();
+                    break;
+                case 6:
+                    break;
+                default:
+                    break;
+            }
+
         }
     }
 

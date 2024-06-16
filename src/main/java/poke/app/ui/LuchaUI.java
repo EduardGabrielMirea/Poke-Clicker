@@ -3,13 +3,23 @@ package poke.app.ui;
 import poke.app.controller.EquipoController;
 import poke.app.controller.LoginController;
 import poke.app.controller.MenuController;
+import poke.app.entity.Equipo;
+import poke.app.entity.Login;
+import poke.app.localData.PokemonList;
+import poke.app.localData.User;
 import poke.app.localData.Window;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.EvolucionesRepository;
 import poke.app.repository.LoginRepository;
 import poke.app.service.AppService;
+import poke.app.service.PokemonService;
+import poke.app.service.UIService;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URL;
 
 public class LuchaUI {
     private final LoginController loginController;
@@ -24,14 +34,43 @@ public class LuchaUI {
     private JPanel panelEquipo;
     private JPanel pInformacion;
     private JPanel pBotones;
+    private JProgressBar hpEnemigo;
+    private JLabel enemigo;
+    private JPanel panelEnemigo;
+    private JLabel pokemon;
+    private JButton bVolver;
 
-    public LuchaUI(AppService appService) {
+    public LuchaUI(AppService appService) throws IOException {
         this.loginController = appService.getLoginController();
         this.loginRepository = appService.getLoginRepository();
         this.equipoController = appService.getEquipoController();
         this.equipoRepository = appService.getEquipoRepository();
         this.menuController = appService.getMenuController();
         this.evolucionesRepository = appService.getEvolucionesRepository();
+
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.minionIDs),enemigo);
+        UIService.mostrarImagenEnJlabelByIdStatico(PokemonList.pokemonElegido,pokemon);
+
+        bVolver.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+        enemigo.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+        bVolver.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                MenuUI menuUI = new MenuUI(appService);
+                menuUI.main(Window.frame);
+            }
+        });
     }
 
     public void ventanaLucha() {
@@ -41,4 +80,5 @@ public class LuchaUI {
         frame.pack();
         frame.setVisible(true);
     }
+
 }

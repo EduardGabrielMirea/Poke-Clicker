@@ -133,4 +133,6 @@ public class PokemonList {
             872, // Snom (Gen 8)
             873  // Frosmoth (Gen 8)
     };
+
+    public static int pokemonElegido = 0;
 }
