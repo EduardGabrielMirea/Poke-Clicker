@@ -61,7 +61,6 @@ public class MenuUI {
     //Fin marcos
 
     //Botones
-    private JButton entrenar;
     private JButton luchar;
     private JButton cheatMoney;
     private JButton tiendaButton;
@@ -82,7 +81,6 @@ public class MenuUI {
         ButtonColors.setColors(cheatMoney);
         ButtonColors.setColors(tiendaButton);
         ButtonColors.setColors(luchar);
-        ButtonColors.setColors(entrenar);
 
         //PONE LA IMAGEN DEL TÍTULO
         menuController.setImageLocal("src/main/resources/img/Poke-Clicker 300x101.png", titulo);
@@ -197,24 +195,6 @@ public class MenuUI {
             }
             public void mouseExited(MouseEvent e) {
                 ButtonColors.setExitedBackgroundColor(cheatMoney);
-            }
-        });
-
-        entrenar.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                //Hilos
-                Thread thread = new Thread(() ->
-                {
-                    //System.out.println("hilo ejecutado por"+Thread.currentThread().getName());
-                    super.mouseClicked(e);
-                    LuchaUI luchaUI = null;
-                    luchaUI = new LuchaUI(appService);
-                    luchaUI.ventanaLucha();
-                });
-
-                thread.start();
             }
         });
         luchar.addMouseListener(new MouseAdapter() {

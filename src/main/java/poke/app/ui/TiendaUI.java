@@ -319,7 +319,7 @@ public class TiendaUI {
                                     "Pokemon 4: %s\n" +
                                     "Pokemon 5: %s\n" +
                                     "Pokemon 6: %s"
-                            , PokemonService.getName(equipoController.getEquipo(User.id).getP1()),
+                            ,PokemonService.getName(equipoController.getEquipo(User.id).getP1()),
                             PokemonService.getName(equipoController.getEquipo(User.id).getP2()),
                             PokemonService.getName(equipoController.getEquipo(User.id).getP3()),
                             PokemonService.getName(equipoController.getEquipo(User.id).getP4()),
@@ -421,22 +421,22 @@ public class TiendaUI {
                         case 3:
                             equipo.setP3(p.id);
                             equipoRepository.save(equipo);
-                            UIService.mostrarImagenEnJlabelByIdStatico(equipo.getP1(), p3);
+                            UIService.mostrarImagenEnJlabelByIdStatico(equipo.getP3(), p3);
                             break;
                         case 4:
                             equipo.setP4(p.id);
                             equipoRepository.save(equipo);
-                            UIService.mostrarImagenEnJlabelByIdStatico(equipo.getP1(), p4);
+                            UIService.mostrarImagenEnJlabelByIdStatico(equipo.getP4(), p4);
                             break;
                         case 5:
                             equipo.setP5(p.id);
                             equipoRepository.save(equipo);
-                            UIService.mostrarImagenEnJlabelByIdStatico(equipo.getP1(), p5);
+                            UIService.mostrarImagenEnJlabelByIdStatico(equipo.getP5(), p5);
                             break;
                         case 6:
                             equipo.setP6(p.id);
                             equipoRepository.save(equipo);
-                            UIService.mostrarImagenEnJlabelByIdStatico(equipo.getP1(), p6);
+                            UIService.mostrarImagenEnJlabelByIdStatico(equipo.getP6(), p6);
                             break;
                     }
 
