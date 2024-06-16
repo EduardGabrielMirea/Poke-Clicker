@@ -200,6 +200,40 @@ public class MenuUI {
             }
         });
 
+        entrenar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                //Hilos
+                Thread thread = new Thread(() ->
+                {
+                    //System.out.println("hilo ejecutado por"+Thread.currentThread().getName());
+                    super.mouseClicked(e);
+                    LuchaUI luchaUI = null;
+                    luchaUI = new LuchaUI(appService);
+                    luchaUI.ventanaLucha();
+                });
+
+                thread.start();
+            }
+        });
+        luchar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                //Hilos
+                Thread thread = new Thread(() ->
+                {
+                    //System.out.println("hilo ejecutado por"+Thread.currentThread().getName());
+                    super.mouseClicked(e);
+                    LuchaUI luchaUI = null;
+                    luchaUI = new LuchaUI(appService);
+                    luchaUI.ventanaLucha();
+                });
+
+                thread.start();
+            }
+        });
     }
 
     public void main(JFrame frame) {
@@ -207,26 +241,9 @@ public class MenuUI {
         frame.setVisible(true);
     }
 
-//    //INSERTAR IMAGEN EN LABEL
-//    private void imagesInPokemonLabel(String name,JLabel label,EquipoController equipoController)
-//    {
-//        Equipo equipo = equipoController.getEquipo(login.getId());
-//        Login login = loginRepository.findByNombre(name);
-//        if(login!=null){
-//
-//            Equipo equipo = equipoController.getEquipo(login.getId());
-//            if(equipo.getP1()==0){
-//
-//            }
-//            UIService.mostrarImagenEnLabelById(equipo.getP1(),label);
-//        }
-//
-//    }
-
     //INSERTAR IMÁGENES EN BOTONES
     private void imagesInPokemonButtons(String name,EquipoController equipoController)
     {
-        //Cambiar luego de refactorizar y unir las tablas bien
         Login login = loginRepository.findByNombre(name);
         if(login!=null){
 
