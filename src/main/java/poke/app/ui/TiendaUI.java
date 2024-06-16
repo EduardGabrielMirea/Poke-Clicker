@@ -88,7 +88,49 @@ public class TiendaUI {
         UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps8);
 
         //Listeners pestaña Equipo
-        MouseAdapter evoluciona = new MouseAdapter() {
+        p1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                botonesEvoluciona();
+            }
+        });
+        p2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                botonesEvoluciona();
+            }
+        });
+        p3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                botonesEvoluciona();
+            }
+        });
+        p4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                botonesEvoluciona();
+            }
+        });
+        p5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                botonesEvoluciona();
+            }
+        });
+        p6.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                botonesEvoluciona();
+            }
+        });
+        /*MouseAdapter evoluciona = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -97,13 +139,7 @@ public class TiendaUI {
                 }
                 comprar.setEnabled(false);
             }
-        };
-        p1.addMouseListener(evoluciona);
-        p2.addMouseListener(evoluciona);
-        p3.addMouseListener(evoluciona);
-        p4.addMouseListener(evoluciona);
-        p5.addMouseListener(evoluciona);
-        p6.addMouseListener(evoluciona);
+        };*/
 
         //Listeners Pokemon Shop
         MouseAdapter compra = new MouseAdapter() {
@@ -180,5 +216,12 @@ public class TiendaUI {
             }
         }
         return false;
+    }
+
+    private void botonesEvoluciona(){
+        if(suficienteDinero(true,false)){
+            evolucionar.setEnabled(true);
+        }
+        comprar.setEnabled(false);
     }
 }
