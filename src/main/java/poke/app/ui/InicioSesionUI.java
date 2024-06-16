@@ -36,6 +36,12 @@ public class InicioSesionUI {
         this.loginController = appService.getLoginController();
         this.loginRepository = appService.getLoginRepository();
 
+
+
+        
+
+
+
         nameField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
