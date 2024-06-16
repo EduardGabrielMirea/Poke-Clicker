@@ -2,6 +2,7 @@ package poke.app.service;
 
 import com.google.gson.Gson;
 import poke.app.entity.Pokemon;
+import poke.app.entity.PokemonChain;
 import poke.app.entity.PokemonImages;
 import poke.app.entity.PokemonSpecies;
 import java.io.BufferedReader;
@@ -39,6 +40,23 @@ public class PokemonService {
             URL pokeAPI = new URL("https://pokeapi.co/api/v2/pokemon/" + id);
             BufferedReader in = new BufferedReader(new InputStreamReader(pokeAPI.openStream(), StandardCharsets.UTF_8));
             Pokemon p = gson.fromJson(in, Pokemon.class);
+            return p;
+        }catch (FileNotFoundException e){
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    public static PokemonChain llamadasAPIPokemonChainID(int id){
+        final Gson gson = new Gson();
+
+        try {
+            URL pokeAPI = new URL("https://pokeapi.co/api/v2/evolution-chain/" + id);
+            BufferedReader in = new BufferedReader(new InputStreamReader(pokeAPI.openStream(), StandardCharsets.UTF_8));
+            PokemonChain p = gson.fromJson(in, PokemonChain.class);
             return p;
         }catch (FileNotFoundException e){
         } catch (MalformedURLException e) {

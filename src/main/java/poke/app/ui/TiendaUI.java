@@ -4,14 +4,12 @@ import org.springframework.stereotype.Component;
 import poke.app.controller.EquipoController;
 import poke.app.controller.LoginController;
 import poke.app.controller.MenuController;
-import poke.app.entity.Equipo;
-import poke.app.entity.Login;
-import poke.app.entity.Pokemon;
-import poke.app.entity.PokemonSpecies;
+import poke.app.entity.*;
 import poke.app.localData.PokemonList;
 import poke.app.localData.User;
 import poke.app.localData.Window;
 import poke.app.repository.EquipoRepository;
+import poke.app.repository.EvolucionesRepository;
 import poke.app.repository.LoginRepository;
 import poke.app.service.AppService;
 import poke.app.service.ButtonColors;
@@ -22,6 +20,7 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.Optional;
 
 
 @Component
@@ -31,6 +30,7 @@ public class TiendaUI {
     private final EquipoController equipoController;
     private final EquipoRepository equipoRepository;
     private MenuController menuController;
+    private EvolucionesRepository evolucionesRepository;
 
     private JPanel panelPrincipal;
     private JTabbedPane Tienda;
@@ -62,7 +62,8 @@ public class TiendaUI {
     private JButton evolucionar;
     private JButton salir;
     private JTextArea equipoPokemonLista;
-
+    private int slot = 0;
+    private int pokemonEquipo = 0;
 
     public TiendaUI(AppService appService) throws IOException {
         this.loginController = appService.getLoginController();
@@ -70,6 +71,7 @@ public class TiendaUI {
         this.equipoController = appService.getEquipoController();
         this.equipoRepository = appService.getEquipoRepository();
         this.menuController = appService.getMenuController();
+        this.evolucionesRepository = appService.getEvolucionesRepository();
 
         ButtonColors.setColors(comprar);
         ButtonColors.setColors(evolucionar);
@@ -101,42 +103,48 @@ public class TiendaUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                botonesEvoluciona();
+                slot =1;
+                pokemonEquipo = equipoController.getEquipo(User.id).getP1();
             }
         });
         p2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                botonesEvoluciona();
+                slot = 2;
+                pokemonEquipo = equipoController.getEquipo(User.id).getP2();
             }
         });
         p3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                botonesEvoluciona();
+                slot = 3;
+                pokemonEquipo = equipoController.getEquipo(User.id).getP3();
             }
         });
         p4.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                botonesEvoluciona();
+                slot = 4;
+                pokemonEquipo = equipoController.getEquipo(User.id).getP4();
             }
         });
         p5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                botonesEvoluciona();
+                slot = 5;
+                pokemonEquipo = equipoController.getEquipo(User.id).getP5();
             }
         });
         p6.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                botonesEvoluciona();
+                slot = 6;
+                pokemonEquipo = equipoController.getEquipo(User.id).getP6();
             }
         });
         /*MouseAdapter evoluciona = new MouseAdapter() {
@@ -244,20 +252,21 @@ public class TiendaUI {
                     equipoPokemonLista);
         }
         //Botones de la tienda
-
-
         comprar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
             }
         });
+
         evolucionar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                realizaEvolucion(User.id,slot,pokemonEquipo);
             }
         });
+
         salir.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -302,10 +311,53 @@ public class TiendaUI {
         return false;
     }
 
-    private void botonesEvoluciona() {
-        if (suficienteDinero(true, false)) {
-            evolucionar.setEnabled(true);
-        }
+    private void realizaEvolucion(Long user,int slot,int id) {
+        Optional<Evoluciones> ev = evolucionesRepository.findById(id);
+        ev.ifPresent(evoluciones -> {
+            //NOMBRE DE LA EVOLUCIÓN
+            Pokemon p = PokemonService.llamadasAPIporID(evoluciones.getE2());
+            if (suficienteDinero(true, false)) {
+                if(p!=null){
+                    evolucionar.setEnabled(true);
+                }
+            }
+            if(p != null) {
+                System.out.println(p.name);
+                System.out.println(p.id);
+                try {
+                    switch(slot){
+                        case 1:
+                            equipoController.getEquipo(user).setP1(p.id);
+                            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP1(), p1);
+                            break;
+                        case 2:
+                            equipoController.getEquipo(user).setP2(p.id);
+                            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP2(), p2);
+                            break;
+                        case 3:
+                            equipoController.getEquipo(user).setP3(p.id);
+                            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP3(), p3);
+                            break;
+                        case 4:
+                            equipoController.getEquipo(user).setP4(p.id);
+                            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP4(), p4);
+                            break;
+                        case 5:
+                            equipoController.getEquipo(user).setP5(p.id);
+                            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP5(), p5);
+                            break;
+                        case 6:
+                            equipoController.getEquipo(user).setP6(p.id);
+                            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP6(), p6);
+                            break;
+                    }
+                } catch (IOException ew) {
+                    throw new RuntimeException(ew);
+                }
+
+                equipoRepository.save(equipoController.getEquipo(user));
+            }
+        });
         comprar.setEnabled(false);
     }
 

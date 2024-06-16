@@ -8,6 +8,7 @@ import poke.app.controller.LoginController;
 import poke.app.controller.MenuController;
 import poke.app.controller.PokemonController;
 import poke.app.repository.EquipoRepository;
+import poke.app.repository.EvolucionesRepository;
 import poke.app.repository.LoginRepository;
 
 
@@ -21,15 +22,17 @@ public class AppService
     private final LoginRepository loginRepository;
     private final MenuController menuController;
     private final PokemonController pokemonController;
+    private final EvolucionesRepository evolucionesRepository;
     private final AppConfig appConfig;
     @Autowired
-    public AppService(EquipoRepository equipoRepository, EquipoController equipoController, LoginController loginController, LoginRepository loginRepository, MenuController menuController, PokemonController pokemonController, AppConfig appConfig) {
+    public AppService(EquipoRepository equipoRepository, EquipoController equipoController, LoginController loginController, LoginRepository loginRepository, MenuController menuController, PokemonController pokemonController,EvolucionesRepository evolucionesRepository, AppConfig appConfig) {
         this.equipoRepository = equipoRepository;
         this.equipoController = equipoController;
         this.loginController = loginController;
         this.loginRepository = loginRepository;
         this.menuController = menuController;
         this.pokemonController = pokemonController;
+        this.evolucionesRepository = evolucionesRepository;
         this.appConfig = appConfig;
     }
 
@@ -62,5 +65,7 @@ public class AppService
         return appConfig;
     }
 
-
+    public EvolucionesRepository getEvolucionesRepository() {
+        return evolucionesRepository;
+    }
 }
