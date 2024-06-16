@@ -10,6 +10,7 @@ import poke.app.localData.User;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
 import poke.app.service.AppService;
+import poke.app.service.ButtonColors;
 import poke.app.service.PokemonService;
 import poke.app.service.UIService;
 import javax.swing.*;
@@ -75,6 +76,14 @@ public class MenuUI {
         this.equipoRepository = appService.getEquipoRepository();
         this.menuController = appService.getMenuController();
 
+        //tiendaButton.set
+
+        ButtonColors.setColors(tiendaButton);
+        ButtonColors.setColors(cheatMoney);
+        ButtonColors.setColors(tiendaButton);
+        ButtonColors.setColors(luchar);
+        ButtonColors.setColors(entrenar);
+
         //PONE LA IMAGEN DEL TÍTULO
         menuController.setImageLocal("src/main/resources/img/Poke-Clicker 300x101.png", titulo);
 
@@ -136,6 +145,7 @@ public class MenuUI {
                 super.mouseClicked(e);
             }
         });
+
         tiendaButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -152,7 +162,17 @@ public class MenuUI {
                     }
                     tiendaUI.ventanaTienda();
                 });
+
+
                 thread.start();
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                ButtonColors.setHoverBackgroundColor(tiendaButton);
+            }
+            public void mouseExited(MouseEvent e) {
+                ButtonColors.setExitedBackgroundColor(tiendaButton);
             }
         });
 
@@ -169,6 +189,15 @@ public class MenuUI {
                     loginRepository.save(user);
                     informacionPlayer.setText("<html><br><br>POKEMONEDAS: "+user.getPokemonedas()+"</html>");
                 }
+
+
+            }
+
+            public void mouseEntered(MouseEvent e) {
+                ButtonColors.setHoverBackgroundColor(cheatMoney);
+            }
+            public void mouseExited(MouseEvent e) {
+                ButtonColors.setExitedBackgroundColor(cheatMoney);
             }
         });
 

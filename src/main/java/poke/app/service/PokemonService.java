@@ -33,7 +33,7 @@ public class PokemonService {
         return null;
     }
 
-    private static Pokemon llamadasAPIporID(int id){
+    public static Pokemon llamadasAPIporID(int id){
         final Gson gson = new Gson();
 
         try {
@@ -51,12 +51,30 @@ public class PokemonService {
         return null;
     }
 
-    private static PokemonSpecies llamadasAPISpecies(String nombre){
+    public static PokemonSpecies llamadasAPISpecies(String nombre){
         nombre = nombre.toLowerCase();
         final Gson gson = new Gson();
 
         try {
             URL pokeAPI = new URL("https://pokeapi.co/api/v2/pokemon-species/" + nombre);
+            BufferedReader in = new BufferedReader(new InputStreamReader(pokeAPI.openStream(), StandardCharsets.UTF_8));
+            PokemonSpecies p = gson.fromJson(in, PokemonSpecies.class);
+            return p;
+        }catch (FileNotFoundException e){
+            System.out.println("Pokemon no encontrado");
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    public static PokemonSpecies llamadasAPISpeciesID(int id){
+        final Gson gson = new Gson();
+
+        try {
+            URL pokeAPI = new URL("https://pokeapi.co/api/v2/pokemon-species/" + id);
             BufferedReader in = new BufferedReader(new InputStreamReader(pokeAPI.openStream(), StandardCharsets.UTF_8));
             PokemonSpecies p = gson.fromJson(in, PokemonSpecies.class);
             return p;
@@ -80,9 +98,9 @@ public class PokemonService {
         return p;
     }
 
-    public static Pokemon getName(int id){
+    public static String getName(int id){
         Pokemon p = llamadasAPIporID(id);
-        return p;
+        return p.name;
     }
 
     public static String getDescription(String name){

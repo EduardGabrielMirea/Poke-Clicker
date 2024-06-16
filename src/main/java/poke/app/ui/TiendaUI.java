@@ -6,12 +6,16 @@ import poke.app.controller.LoginController;
 import poke.app.controller.MenuController;
 import poke.app.entity.Equipo;
 import poke.app.entity.Login;
+import poke.app.entity.Pokemon;
+import poke.app.entity.PokemonSpecies;
 import poke.app.localData.PokemonList;
 import poke.app.localData.User;
 import poke.app.localData.Window;
 import poke.app.repository.EquipoRepository;
 import poke.app.repository.LoginRepository;
 import poke.app.service.AppService;
+import poke.app.service.ButtonColors;
+import poke.app.service.PokemonService;
 import poke.app.service.UIService;
 
 import javax.swing.*;
@@ -34,7 +38,7 @@ public class TiendaUI {
     private JPanel derecha;
     private JPanel abajo;
     private JPanel arriba;
-   // private JButton p1;
+    // private JButton p1;
     private JLabel p1;
     private JLabel p2;
     private JLabel p3;
@@ -57,6 +61,7 @@ public class TiendaUI {
     private JButton comprar;
     private JButton evolucionar;
     private JButton salir;
+    private JTextArea equipoPokemonLista;
 
 
     public TiendaUI(AppService appService) throws IOException {
@@ -66,26 +71,30 @@ public class TiendaUI {
         this.equipoRepository = appService.getEquipoRepository();
         this.menuController = appService.getMenuController();
 
+        ButtonColors.setColors(comprar);
+        ButtonColors.setColors(evolucionar);
+        ButtonColors.setColors(salir);
+
 
         //Mostrar Pokemon del equipo en tienda
-        if(User.id != null){
-            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP1(),p1);
-            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP2(),p2);
-            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP3(),p3);
-            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP4(),p4);
-            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP5(),p5);
-            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP6(),p6);
+        if (User.id != null) {
+            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP1(), p1);
+            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP2(), p2);
+            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP3(), p3);
+            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP4(), p4);
+            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP5(), p5);
+            UIService.mostrarImagenEnJlabelByIdStatico(equipoController.getEquipo(User.id).getP6(), p6);
         }
 
         //Tienda Pokemon con scrollbar
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps1);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps2);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps3);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps4);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps5);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps6);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps7);
-        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps8);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps1);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps2);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps3);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps4);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps5);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps6);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps7);
+        UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs), ps8);
 
         //Listeners pestaña Equipo
         p1.addMouseListener(new MouseAdapter() {
@@ -217,7 +226,26 @@ public class TiendaUI {
         ps7.addMouseListener(compra);
         ps8.addMouseListener(compra);*/
 
+        //INFORMACIÓN EQUIPO POKEMON
+        //descripcionEquipo(equipoPokemonLista);
+        if(User.id != null) {
+            UIService.asignarTextoAJTextArea(String.format("Pokemon 1: %s\n" +
+                            "Pokemon 2: %s\n" +
+                            "Pokemon 3: %s\n" +
+                            "Pokemon 4: %s\n" +
+                            "Pokemon 5: %s\n" +
+                            "Pokemon 6: %s"
+                    ,PokemonService.getName(equipoController.getEquipo(User.id).getP1()),
+                    PokemonService.getName(equipoController.getEquipo(User.id).getP2()),
+                    PokemonService.getName(equipoController.getEquipo(User.id).getP3()),
+                    PokemonService.getName(equipoController.getEquipo(User.id).getP4()),
+                    PokemonService.getName(equipoController.getEquipo(User.id).getP5()),
+                    PokemonService.getName(equipoController.getEquipo(User.id).getP6())),
+                    equipoPokemonLista);
+        }
         //Botones de la tienda
+
+
         comprar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -252,21 +280,21 @@ public class TiendaUI {
         Login login = loginRepository.findByNombre(name);
         if (login != null) {
             return equipoController.getEquipo(login.getId());
-        }else{
+        } else {
             return null;
         }
     }
 
 
-    private boolean suficienteDinero(boolean evolucion,boolean compra){
+    private boolean suficienteDinero(boolean evolucion, boolean compra) {
         Login login = loginRepository.findLoginById(User.id);
-        if(login != null){
-            if(compra){
-                if(login.getPokemonedas() >= 10){
+        if (login != null) {
+            if (compra) {
+                if (login.getPokemonedas() >= 10) {
                     return true;
                 }
-            }else if(evolucion){
-                if(login.getPokemonedas() >= 50){
+            } else if (evolucion) {
+                if (login.getPokemonedas() >= 50) {
                     return true;
                 }
             }
@@ -274,17 +302,52 @@ public class TiendaUI {
         return false;
     }
 
-    private void botonesEvoluciona(){
-        if(suficienteDinero(true,false)){
+    private void botonesEvoluciona() {
+        if (suficienteDinero(true, false)) {
             evolucionar.setEnabled(true);
         }
         comprar.setEnabled(false);
     }
 
-    private void botonesCompra(){
-        if(suficienteDinero(false,true)){
+    private void botonesCompra() {
+        if (suficienteDinero(false, true)) {
             comprar.setEnabled(true);
         }
         evolucionar.setEnabled(false);
     }
+
+
+    /*private void descripcionEquipo(JTextArea jTextArea) {
+        //PokemonSpecies p = PokemonService.llamadasAPISpeciesID(id);
+        //assert p != null;
+        Login login = loginRepository.findLoginById(User.id);
+        if (login == null) {
+            User.id = login.getId();
+            descripcionEquipo(equipoPokemonLista);
+        }else{
+            UIService.asignarTextoAJTextArea(String.format("Pokemon 1: %s" +
+                            "Pokemon 2: %s" +
+                            "Pokemon 3: %s" +
+                            "Pokemon 4: %s" +
+                            "Pokemon 5: %s" +
+                            "Pokemon 6: %s"
+                    , equipoController.getEquipo(User.id).getP1(),
+                    equipoController.getEquipo(User.id).getP2(),
+                    equipoController.getEquipo(User.id).getP3(),
+                    equipoController.getEquipo(User.id).getP4(),
+                    equipoController.getEquipo(User.id).getP5(),
+                    equipoController.getEquipo(User.id).getP6()), jTextArea);
+        }
+    }*/
 }
+
+        /*descripcionEquipo(1,equipoController.getEquipo(User.id).getP1(),equipoPokemonLista);
+        descripcionEquipo(2,equipoController.getEquipo(User.id).getP2(),equipoPokemonLista);
+        descripcionEquipo(3,equipoController.getEquipo(User.id).getP3(),equipoPokemonLista);
+        descripcionEquipo(4,equipoController.getEquipo(User.id).getP4(),equipoPokemonLista);
+        descripcionEquipo(5,equipoController.getEquipo(User.id).getP5(),equipoPokemonLista);
+        descripcionEquipo(6,equipoController.getEquipo(User.id).getP6(),equipoPokemonLista);
+    }
+}
+
+         */
