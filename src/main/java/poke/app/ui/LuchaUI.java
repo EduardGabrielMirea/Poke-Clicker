@@ -13,13 +13,18 @@ import poke.app.repository.EvolucionesRepository;
 import poke.app.repository.LoginRepository;
 import poke.app.service.AppService;
 import poke.app.service.PokemonService;
+import poke.app.service.RandomStarter;
 import poke.app.service.UIService;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.event.ComponentAdapter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 
 public class LuchaUI {
     private final LoginController loginController;
@@ -39,7 +44,7 @@ public class LuchaUI {
     private JPanel panelEnemigo;
     private JLabel pokemon;
     private JButton bVolver;
-
+    private Random random = new Random();
     public LuchaUI(AppService appService) throws IOException {
         this.loginController = appService.getLoginController();
         this.loginRepository = appService.getLoginRepository();
@@ -48,6 +53,8 @@ public class LuchaUI {
         this.menuController = appService.getMenuController();
         this.evolucionesRepository = appService.getEvolucionesRepository();
 
+        hpEnemigo.setValue(100);
+
         UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.minionIDs),enemigo);
         UIService.mostrarImagenEnJlabelByIdStatico(PokemonList.pokemonElegido,pokemon);
 
@@ -55,20 +62,28 @@ public class LuchaUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                MenuUI menuUI = new MenuUI(appService);
+                menuUI.main(Window.frame);
             }
         });
         enemigo.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-            }
-        });
-        bVolver.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                MenuUI menuUI = new MenuUI(appService);
-                menuUI.main(Window.frame);
+                hpEnemigo.setValue(hpEnemigo.getValue()-10);
+                if(hpEnemigo.getValue() <= 0){
+                    Login login = loginRepository.findLoginById(User.id);
+                    int randomWin = random.nextInt(20)+1;
+                    if(login!=null){
+                        login.setPokemonedas(login.getPokemonedas()+randomWin);
+                        loginRepository.save(login);
+                        JOptionPane.showMessageDialog(null,"Haz ganado "+randomWin+" pokemonedas");
+                    }
+
+                    MenuUI menuUI = new MenuUI(appService);
+                    menuUI.main(Window.frame);
+                }
+
             }
         });
     }
