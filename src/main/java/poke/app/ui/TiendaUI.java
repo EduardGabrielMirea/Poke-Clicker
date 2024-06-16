@@ -15,7 +15,6 @@ import poke.app.service.AppService;
 import poke.app.service.UIService;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -55,6 +54,9 @@ public class TiendaUI {
     private JPanel equipoPokemon;
     private JScrollPane equipoPokemonScroll;
     private JPanel panelScrollBar1;
+    private JButton comprar;
+    private JButton evolucionar;
+    private JButton salir;
 
 
     public TiendaUI(AppService appService) throws IOException {
@@ -85,12 +87,12 @@ public class TiendaUI {
         UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps7);
         UIService.mostrarImagenEnJlabelByIdStatico(UIService.pokemonRandomizer(PokemonList.primeraEtapaIDs),ps8);
 
-
+        //Listeners pestaña Equipo
+        abajo.repaint();
         p1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                System.out.println("Hola");
             }
         });
         p2.addMouseListener(new MouseAdapter() {
@@ -124,6 +126,27 @@ public class TiendaUI {
             }
         });
 
+        //Botones de la tienda
+        comprar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+        evolucionar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+        salir.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                MenuUI menuUI = new MenuUI(appService);
+                menuUI.main(Window.frame);
+            }
+        });
     }
 
     public void ventanaTienda() {
