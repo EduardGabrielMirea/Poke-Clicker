@@ -36,7 +36,7 @@ public class MenuUI {
     private JPanel p5;
     private JPanel p6;
 
-    private JTextArea infoPokemon;
+    private JTextArea inforPokemon;
     //pokemons
 
     //Paneles
@@ -66,6 +66,7 @@ public class MenuUI {
     private JButton cheatMoney;
     private JButton tiendaButton;
     private JLabel informacionPlayer;
+    private JLabel informPoke;
     //Fin Botones
 
     public MenuUI(AppService appService)
@@ -106,7 +107,7 @@ public class MenuUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                //infoPokemon();
+                infoPokemon(equipoController.getEquipo(User.id).getP1());
             }
         });
 
@@ -114,6 +115,7 @@ public class MenuUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                infoPokemon(equipoController.getEquipo(User.id).getP2());
             }
         });
 
@@ -121,6 +123,7 @@ public class MenuUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                infoPokemon(equipoController.getEquipo(User.id).getP3());
             }
         });
 
@@ -128,6 +131,7 @@ public class MenuUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                infoPokemon(equipoController.getEquipo(User.id).getP4());
             }
         });
 
@@ -135,6 +139,7 @@ public class MenuUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                infoPokemon(equipoController.getEquipo(User.id).getP5());
             }
         });
 
@@ -142,6 +147,7 @@ public class MenuUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                infoPokemon(equipoController.getEquipo(User.id).getP6());
             }
         });
 
@@ -247,14 +253,16 @@ public class MenuUI {
 
     }
 
-    private void infoPokemon(int id,int idPokemon){
+    private void infoPokemon(int id){
         Login login = loginRepository.findByNombre(User.username);
         if(login!=null){
 
             Equipo equipo = equipoController.getEquipo(login.getId());
-            if(equipo.getP2()==0){
-                Pokemon p = PokemonService.getPokemon(id);
-                UIService.asignarTextoAJTextArea(String.format("Nombre (id): %s (%s)\nTipos: %s\nDescripción: %s",p.name,p.id,p.getTipos(p),PokemonService.getDescription(p.name)),infoPokemon);
+            Pokemon p = PokemonService.getPokemon(id);
+            if(p!=null){
+            UIService.asignarTextoAlabel(String.format("<html>Nombre (id): %s (%s)<br>Tipos: %s<br>Exp.Base: %s</html>",p.name,p.id,p.getTipos(p),p.baseExperience),informPoke);
+            }else{
+                UIService.asignarTextoAlabel("No hay pokemon en el equipo",informPoke);
             }
 
         }
@@ -361,8 +369,7 @@ public class MenuUI {
                 default:
                     break;
             }
-            System.out.println("ES MONDONGO "+PokemonList.pokemonElegido);
+            //System.out.println("ES MONDONGO "+PokemonList.pokemonElegido);
         }
     }
-
 }
