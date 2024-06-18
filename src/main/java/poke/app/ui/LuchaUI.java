@@ -81,6 +81,9 @@ public class LuchaUI {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 hpEnemigo.setValue(hpEnemigo.getValue()-10);
+                if(PokemonList.pokemonElegido == 0){
+                    UIService.musicInLoop("src/main/resources/audio/mondongo.wav");
+                }
                 if(hpEnemigo.getValue() <= 0){
                     Login login = loginRepository.findLoginById(User.id);
                     int randomWin = random.nextInt(20)+1;

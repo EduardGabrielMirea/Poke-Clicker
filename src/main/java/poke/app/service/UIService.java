@@ -148,9 +148,9 @@ public class UIService extends JFrame {
         textArea.setLineWrap(false);
     }
 
-    public static void musicInLoop(){
+    public static void musicInLoop(String audio){
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/main/resources/audio/PokemonRoute201.wav").getAbsoluteFile());
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(audio).getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();

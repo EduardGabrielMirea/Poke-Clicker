@@ -30,7 +30,7 @@ public class PokeApp {
             //Inicio de Sesión UI
             InicioSesionUI inicioSesionUI = context.getBean(InicioSesionUI.class);
             inicioSesionUI.main();
-            UIService.musicInLoop();
+            UIService.musicInLoop("src/main/resources/audio/PokemonRoute201.wav");
         });
     }
 
