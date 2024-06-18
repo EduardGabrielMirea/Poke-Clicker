@@ -20,7 +20,6 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Optional;
 
@@ -103,7 +102,6 @@ public class TiendaUI {
         }
 
         //Tienda Pokemon con scrollbar
-
         UIService.mostrarImagenEnJlabelByIdStatico(pshop1, ps1);
         UIService.mostrarImagenEnJlabelByIdStatico(pshop2, ps2);
         UIService.mostrarImagenEnJlabelByIdStatico(pshop3, ps3);
@@ -504,13 +502,11 @@ public class TiendaUI {
         );
 
         if (opcionElegida == JOptionPane.YES_OPTION) {
-            // Se seleccionó "Reintentar"
-            // Aquí colocas el código para reintentar la operación
+            //Reintentar
 
         } else if (opcionElegida == JOptionPane.NO_OPTION || opcionElegida == JOptionPane.CLOSED_OPTION) {
 
-            // Se seleccionó "Cancelar" o se cerró el cuadro de diálogo
-            // Aquí colocas el código para manejar la cancelación
+            //Cancelar o cerrar
         }
 
         if(suficienteDinero(false,true)) {

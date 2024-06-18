@@ -1,9 +1,6 @@
 package poke.app.entity;
 
 import jakarta.persistence.*;
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
 
 @Entity
 public class Equipo {

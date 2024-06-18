@@ -17,8 +17,6 @@ public class PokeAppCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        //This boots up the GUI.
-        //EventQueue.invokeLater(()  ->  JOptionPane.showMessageDialog(null, "FUNCIONA"));
-        //EventQueue.invokeLater(() -> new LoginUI(loginRepository).setVisible(true));
+
     }
 }

@@ -257,7 +257,6 @@ public class MenuUI {
         Login login = loginRepository.findByNombre(User.username);
         if(login!=null){
 
-            Equipo equipo = equipoController.getEquipo(login.getId());
             Pokemon p = PokemonService.getPokemon(id);
             if(p!=null){
             UIService.asignarTextoAlabel(String.format("<html>Nombre (id): %s (%s)<br>Tipos: %s<br>Exp.Base: %s</html>",p.name,p.id,p.getTipos(p),p.baseExperience),informPoke);
@@ -319,7 +318,6 @@ public class MenuUI {
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.ERROR_MESSAGE,
                 iconoPersonalizado,
-                //new Object[]{"Pokémon 1","Pokémon 2","Pokémon 3","Pokémon 4","Pokémon 5","Pokémon 6", "Cancelar"},
 
                 new Object[]{
                         imageIcon1,
@@ -333,13 +331,11 @@ public class MenuUI {
         );
 
         if (opcionElegida == JOptionPane.YES_OPTION) {
-            // Se seleccionó "Reintentar"
-            // Aquí colocas el código para reintentar la operación
+            //Reintentar
 
         } else if (opcionElegida == JOptionPane.NO_OPTION || opcionElegida == JOptionPane.CLOSED_OPTION) {
 
-            // Se seleccionó "Cancelar" o se cerró el cuadro de diálogo
-            // Aquí colocas el código para manejar la cancelación
+            //Cancelar o cerrar
         }
 
         // Manejar la opción elegida
@@ -369,7 +365,6 @@ public class MenuUI {
                 default:
                     break;
             }
-            //System.out.println("ES MONDONGO "+PokemonList.pokemonElegido);
         }
     }
 }
